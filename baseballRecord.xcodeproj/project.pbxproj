@@ -7,17 +7,31 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		02127C7D1ED41E0D007FDC75 /* baseballField-2.png in Resources */ = {isa = PBXBuildFile; fileRef = 02127C7B1ED41E0D007FDC75 /* baseballField-2.png */; };
+		02127C7E1ED41E0D007FDC75 /* baseballField.png in Resources */ = {isa = PBXBuildFile; fileRef = 02127C7C1ED41E0D007FDC75 /* baseballField.png */; };
+		02127C801ED423A0007FDC75 /* start.png in Resources */ = {isa = PBXBuildFile; fileRef = 02127C7F1ED423A0007FDC75 /* start.png */; };
+		02127C861ED4AAF4007FDC75 /* aboutus.png in Resources */ = {isa = PBXBuildFile; fileRef = 02127C811ED4AAF4007FDC75 /* aboutus.png */; };
+		02127C871ED4AAF4007FDC75 /* baseball.png in Resources */ = {isa = PBXBuildFile; fileRef = 02127C821ED4AAF4007FDC75 /* baseball.png */; };
+		02127C881ED4AAF4007FDC75 /* baseballcourt.png in Resources */ = {isa = PBXBuildFile; fileRef = 02127C831ED4AAF4007FDC75 /* baseballcourt.png */; };
+		02127C891ED4AAF4007FDC75 /* bbbaseball.png in Resources */ = {isa = PBXBuildFile; fileRef = 02127C841ED4AAF4007FDC75 /* bbbaseball.png */; };
+		02127C8A1ED4AAF4007FDC75 /* startbot.png in Resources */ = {isa = PBXBuildFile; fileRef = 02127C851ED4AAF4007FDC75 /* startbot.png */; };
 		A903B0251EB78B8600470B7C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A903B0241EB78B8600470B7C /* AppDelegate.swift */; };
 		A903B0271EB78B8600470B7C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A903B0261EB78B8600470B7C /* ViewController.swift */; };
 		A903B02A1EB78B8600470B7C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A903B0281EB78B8600470B7C /* Main.storyboard */; };
 		A903B02D1EB78B8600470B7C /* baseballRecord.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A903B02B1EB78B8600470B7C /* baseballRecord.xcdatamodeld */; };
 		A903B02F1EB78B8600470B7C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A903B02E1EB78B8600470B7C /* Assets.xcassets */; };
 		A903B0321EB78B8600470B7C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A903B0301EB78B8600470B7C /* LaunchScreen.storyboard */; };
-		A9FF2F841EB79DA6000E3FC5 /* baseballField.png in Resources */ = {isa = PBXBuildFile; fileRef = A9FF2F831EB79DA6000E3FC5 /* baseballField.png */; };
-		A9FF2F861EB79EEE000E3FC5 /* baseballField-2.png in Resources */ = {isa = PBXBuildFile; fileRef = A9FF2F851EB79EEE000E3FC5 /* baseballField-2.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		02127C7B1ED41E0D007FDC75 /* baseballField-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "baseballField-2.png"; sourceTree = SOURCE_ROOT; };
+		02127C7C1ED41E0D007FDC75 /* baseballField.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = baseballField.png; sourceTree = SOURCE_ROOT; };
+		02127C7F1ED423A0007FDC75 /* start.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = start.png; sourceTree = SOURCE_ROOT; };
+		02127C811ED4AAF4007FDC75 /* aboutus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = aboutus.png; sourceTree = SOURCE_ROOT; };
+		02127C821ED4AAF4007FDC75 /* baseball.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = baseball.png; sourceTree = SOURCE_ROOT; };
+		02127C831ED4AAF4007FDC75 /* baseballcourt.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = baseballcourt.png; sourceTree = SOURCE_ROOT; };
+		02127C841ED4AAF4007FDC75 /* bbbaseball.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bbbaseball.png; sourceTree = SOURCE_ROOT; };
+		02127C851ED4AAF4007FDC75 /* startbot.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = startbot.png; sourceTree = SOURCE_ROOT; };
 		A903B0211EB78B8600470B7C /* baseballRecord.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = baseballRecord.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A903B0241EB78B8600470B7C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A903B0261EB78B8600470B7C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -26,8 +40,6 @@
 		A903B02E1EB78B8600470B7C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A903B0311EB78B8600470B7C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A903B0331EB78B8600470B7C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		A9FF2F831EB79DA6000E3FC5 /* baseballField.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = baseballField.png; path = ../../baseballField.png; sourceTree = "<group>"; };
-		A9FF2F851EB79EEE000E3FC5 /* baseballField-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "baseballField-2.png"; path = "../../baseballField-2.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,11 +72,17 @@
 		A903B0231EB78B8600470B7C /* baseballRecord */ = {
 			isa = PBXGroup;
 			children = (
+				02127C7F1ED423A0007FDC75 /* start.png */,
 				A903B0241EB78B8600470B7C /* AppDelegate.swift */,
 				A903B0261EB78B8600470B7C /* ViewController.swift */,
+				02127C831ED4AAF4007FDC75 /* baseballcourt.png */,
 				A903B0281EB78B8600470B7C /* Main.storyboard */,
-				A9FF2F831EB79DA6000E3FC5 /* baseballField.png */,
-				A9FF2F851EB79EEE000E3FC5 /* baseballField-2.png */,
+				02127C7B1ED41E0D007FDC75 /* baseballField-2.png */,
+				02127C7C1ED41E0D007FDC75 /* baseballField.png */,
+				02127C811ED4AAF4007FDC75 /* aboutus.png */,
+				02127C821ED4AAF4007FDC75 /* baseball.png */,
+				02127C841ED4AAF4007FDC75 /* bbbaseball.png */,
+				02127C851ED4AAF4007FDC75 /* startbot.png */,
 				A903B02E1EB78B8600470B7C /* Assets.xcassets */,
 				A903B0301EB78B8600470B7C /* LaunchScreen.storyboard */,
 				A903B0331EB78B8600470B7C /* Info.plist */,
@@ -134,10 +152,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				A903B0321EB78B8600470B7C /* LaunchScreen.storyboard in Resources */,
+				02127C7D1ED41E0D007FDC75 /* baseballField-2.png in Resources */,
 				A903B02F1EB78B8600470B7C /* Assets.xcassets in Resources */,
-				A9FF2F841EB79DA6000E3FC5 /* baseballField.png in Resources */,
-				A9FF2F861EB79EEE000E3FC5 /* baseballField-2.png in Resources */,
+				02127C8A1ED4AAF4007FDC75 /* startbot.png in Resources */,
+				02127C7E1ED41E0D007FDC75 /* baseballField.png in Resources */,
+				02127C861ED4AAF4007FDC75 /* aboutus.png in Resources */,
+				02127C881ED4AAF4007FDC75 /* baseballcourt.png in Resources */,
+				02127C871ED4AAF4007FDC75 /* baseball.png in Resources */,
+				02127C801ED423A0007FDC75 /* start.png in Resources */,
 				A903B02A1EB78B8600470B7C /* Main.storyboard in Resources */,
+				02127C891ED4AAF4007FDC75 /* bbbaseball.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
