@@ -29,7 +29,7 @@ class ViewController: UIViewController{
     @IBOutlet var homePlayer3: UILabel!
     @IBOutlet var homePlayer2: UILabel!
     @IBOutlet var homePlayer1: UILabel!
-
+/*
     @IBOutlet var top1: UILabel!
     @IBOutlet var bottom1: UILabel!
     @IBOutlet var top2: UILabel!
@@ -48,7 +48,7 @@ class ViewController: UIViewController{
     @IBOutlet var bottom8: UILabel!
     @IBOutlet var top9: UILabel!
     @IBOutlet var bottom9: UILabel!
-
+*/
 
     @IBOutlet var outCount: UILabel!
     @IBOutlet var innings: UILabel!
@@ -155,8 +155,6 @@ class ViewController: UIViewController{
             homeScoring = homeScoring + 1
             homeScore.text = String (homeScoring)
         }
-        thisInningScore = thisInningScore + 1
-        inningScore[awayOrHome][inning].text = String (thisInningScore)
     }
     
     func runner(batter: Int, bases: Int){
@@ -193,7 +191,12 @@ class ViewController: UIViewController{
                 })
                 UIView.animate(withDuration: 1.0,delay: TimeInterval(j) ,animations: {
                     self.batters[self.awayOrHome][i].alpha = 0.0
-                    self.batters[self.awayOrHome][i].center.x = 100
+                    if self.awayOrHome == 0{
+                        self.batters[self.awayOrHome][i].center.x = 100
+                    }
+                    if self.awayOrHome == 1{
+                        self.batters[self.awayOrHome][i].center.x = 360
+                    }
                     self.batters[self.awayOrHome][i].center.y = 250
                 })
                 scoring(whichTeam: awayOrHome)
@@ -223,7 +226,6 @@ class ViewController: UIViewController{
             }
         }
             out = 0
-            thisInningScore = 0
             inningCheck(whichTeam: awayOrHome)
         }
     }
@@ -287,7 +289,9 @@ class ViewController: UIViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         batters = [[awayPlayer1,awayPlayer2,awayPlayer3,awayPlayer4,awayPlayer5,awayPlayer6,awayPlayer7,awayPlayer8,awayPlayer9] , [homePlayer1,homePlayer2,homePlayer3,homePlayer4,homePlayer5,homePlayer6,homePlayer7,homePlayer8,homePlayer9]]
+        /*
         inningScore = [[top1,top2,top3,top4,top5,top6,top7,top8,top9],[bottom1,bottom2,bottom3,bottom4,bottom5,bottom6,bottom7,bottom8,bottom9]]
+ */
         /*
         super.viewDidLoad()
         self.picker.delegate = self
