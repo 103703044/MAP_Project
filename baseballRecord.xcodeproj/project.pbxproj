@@ -19,6 +19,7 @@
 		A90E319D1ED4E256004D1704 /* bbbaseball.png in Resources */ = {isa = PBXBuildFile; fileRef = A90E319A1ED4E256004D1704 /* bbbaseball.png */; };
 		A90E319E1ED4E256004D1704 /* start.png in Resources */ = {isa = PBXBuildFile; fileRef = A90E319B1ED4E256004D1704 /* start.png */; };
 		A90E319F1ED4E256004D1704 /* startbot.png in Resources */ = {isa = PBXBuildFile; fileRef = A90E319C1ED4E256004D1704 /* startbot.png */; };
+		A90E31A11ED674AF004D1704 /* score.swift in Sources */ = {isa = PBXBuildFile; fileRef = A90E31A01ED674AE004D1704 /* score.swift */; };
 		A9FF2F841EB79DA6000E3FC5 /* baseballField.png in Resources */ = {isa = PBXBuildFile; fileRef = A9FF2F831EB79DA6000E3FC5 /* baseballField.png */; };
 		A9FF2F861EB79EEE000E3FC5 /* baseballField-2.png in Resources */ = {isa = PBXBuildFile; fileRef = A9FF2F851EB79EEE000E3FC5 /* baseballField-2.png */; };
 /* End PBXBuildFile section */
@@ -38,6 +39,7 @@
 		A90E319A1ED4E256004D1704 /* bbbaseball.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bbbaseball.png; sourceTree = SOURCE_ROOT; };
 		A90E319B1ED4E256004D1704 /* start.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = start.png; sourceTree = SOURCE_ROOT; };
 		A90E319C1ED4E256004D1704 /* startbot.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = startbot.png; sourceTree = SOURCE_ROOT; };
+		A90E31A01ED674AE004D1704 /* score.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = score.swift; sourceTree = "<group>"; };
 		A9FF2F831EB79DA6000E3FC5 /* baseballField.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = baseballField.png; path = ../../baseballField.png; sourceTree = "<group>"; };
 		A9FF2F851EB79EEE000E3FC5 /* baseballField-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "baseballField-2.png"; path = "../../baseballField-2.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -77,6 +79,7 @@
 				A903B0281EB78B8600470B7C /* Main.storyboard */,
 				A90E319A1ED4E256004D1704 /* bbbaseball.png */,
 				A90E319B1ED4E256004D1704 /* start.png */,
+				A90E31A01ED674AE004D1704 /* score.swift */,
 				A90E319C1ED4E256004D1704 /* startbot.png */,
 				A90E31961ED4E24F004D1704 /* baseball.png */,
 				A90E31971ED4E24F004D1704 /* baseballcourt.png */,
@@ -174,6 +177,7 @@
 			files = (
 				A903B0271EB78B8600470B7C /* ViewController.swift in Sources */,
 				A903B0251EB78B8600470B7C /* AppDelegate.swift in Sources */,
+				A90E31A11ED674AF004D1704 /* score.swift in Sources */,
 				A903B02D1EB78B8600470B7C /* baseballRecord.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -299,6 +303,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 9MJ5566875;
 				INFOPLIST_FILE = baseballRecord/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = lai.baseballRecord;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -312,6 +317,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 9MJ5566875;
 				INFOPLIST_FILE = baseballRecord/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = lai.baseballRecord;
 				PRODUCT_NAME = "$(TARGET_NAME)";
