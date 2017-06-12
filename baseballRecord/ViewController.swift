@@ -60,7 +60,8 @@ class ViewController: UIViewController{
     @IBOutlet var homeHit: UILabel!
     @IBOutlet var strikeCount: UILabel!
     @IBOutlet var ballCount: UILabel!
-    @IBOutlet var context: UILabel!
+    @IBOutlet var result: UILabel!
+    @IBOutlet var position: UILabel!
     
     var batters = [[UILabel]]()
     var inningScore = [[UILabel]]()
@@ -194,6 +195,7 @@ class ViewController: UIViewController{
     }
 
     func callStrike(count: Int){
+        result.text = "好球" + String (count)
         if count == 1{
             strikeCount.text = "● ○"
         }
@@ -201,11 +203,13 @@ class ViewController: UIViewController{
             strikeCount.text = "● ●"
         }
         else{
+            result.text = "三振"
             batterOutFunc()
             countReset()
         }
     }
     func callBall(count: Int){
+        result.text = "壞球" + String (count)
         if count == 1{
             ballCount.text = "● ○ ○"
         }
@@ -216,6 +220,7 @@ class ViewController: UIViewController{
             ballCount.text = "● ● ●"
         }
         else{
+            result.text = "四壞球保送"
             self.runner(batter: self.batterOn[self.awayOrHome], bases: 1)
             countReset()
         }
@@ -334,6 +339,8 @@ class ViewController: UIViewController{
  
     }
     @IBAction func callNextBatter(sender: AnyObject){
+        self.result.text = ""
+        self.position.text = ""
         UIView.animate(withDuration: 1.0,animations: {
             self.batterOn[self.awayOrHome] = self.batterOn[self.awayOrHome] + 1
             if self.batterOn[self.awayOrHome] == 9{
@@ -390,7 +397,8 @@ class ViewController: UIViewController{
                 strike = strike + 1
                 }
                 callStrike(count: strike)
-                self.context.text = "faul"
+                self.position.text = ""
+                self.result.text = "界外球"
                 baseball.center.x = CGFloat(hitBallX)
                 baseball.center.y = CGFloat(hitBallY)
             }
@@ -399,95 +407,287 @@ class ViewController: UIViewController{
             && baseball.center.x < CGFloat(pitcherX + 30)
             && baseball.center.y > CGFloat(pitcherY - 30)
             && baseball.center.y < CGFloat(pitcherY + 30){
-                self.context.text = "投手方向"
+                self.result.text = ""
+                self.position.text = "投手方向"
             }
             else if baseball.center.x > CGFloat(catcherX - 30)
                 && baseball.center.x < CGFloat(catcherX + 30)
                 && baseball.center.y > CGFloat(catcherY - 30)
                 && baseball.center.y < CGFloat(catcherY + 30){
-                self.context.text = "本壘方向"
+                self.result.text = ""
+                self.position.text = "本壘方向"
             }
             else if baseball.center.x > CGFloat(firstBaseX - 30)
                 && baseball.center.x < CGFloat(firstBaseX + 30)
                 && baseball.center.y > CGFloat(firstBaseY - 30)
                 && baseball.center.y < CGFloat(firstBaseY + 30){
-                self.context.text = "一壘方向"
+                self.result.text = ""
+                self.position.text = "一壘方向"
             }
             else if baseball.center.x > CGFloat(secondBaseX - 30)
                 && baseball.center.x < CGFloat(secondBaseX + 30)
                 && baseball.center.y > CGFloat(secondBaseY - 30)
                 && baseball.center.y < CGFloat(secondBaseY + 30){
-                self.context.text = "二壘方向"
+                self.result.text = ""
+                self.position.text = "二壘方向"
             }
             else if baseball.center.x > CGFloat(thirdBaseX - 30)
                 && baseball.center.x < CGFloat(thirdBaseX + 30)
                 && baseball.center.y > CGFloat(thirdBaseY - 30)
                 && baseball.center.y < CGFloat(thirdBaseY + 30){
-                self.context.text = "三壘方向"
+                self.result.text = ""
+                self.position.text = "三壘方向"
             }
             else if baseball.center.x > CGFloat(shortStopX - 30)
                 && baseball.center.x < CGFloat(shortStopX + 30)
                 && baseball.center.y > CGFloat(shortStopY - 30)
                 && baseball.center.y < CGFloat(shortStopY + 30){
-                self.context.text = "游擊方向"
+                self.result.text = ""
+                self.position.text = "游擊方向"
             }
             else if baseball.center.x > CGFloat(centerFielderX - 30)
                 && baseball.center.x < CGFloat(centerFielderX + 30)
                 && baseball.center.y > CGFloat(centerFielderY - 30)
                 && baseball.center.y < CGFloat(centerFielderY + 30){
-                self.context.text = "中外野方向"
+                self.result.text = ""
+                self.position.text = "中外野方向"
             }
             else if baseball.center.x > CGFloat(rightFielderX - 30)
                 && baseball.center.x < CGFloat(rightFielderX + 30)
                 && baseball.center.y > CGFloat(rightFielderY - 30)
                 && baseball.center.y < CGFloat(rightFielderY + 30){
-                self.context.text = "右外野方向"
+                self.result.text = ""
+                self.position.text = "右外野方向"
             }
             else if baseball.center.x > CGFloat(leftFielderX - 30)
                 && baseball.center.x < CGFloat(leftFielderX + 30)
                 && baseball.center.y > CGFloat(leftFielderY - 30)
                 && baseball.center.y < CGFloat(leftFielderY + 30){
-                self.context.text = "左外野方向"
+                self.result.text = ""
+                self.position.text = "左外野方向"
             }
+
+
+        }
+    }
+    
+    
+    func battingResult(){
+        var delay = 1
+        if  self.batters[self.awayOrHome][self.batterOn[self.awayOrHome]].center.x > CGFloat(base1X - 30)
+            && self.batters[self.awayOrHome][self.batterOn[self.awayOrHome]].center.x < CGFloat(base1X + 30)
+            && self.batters[self.awayOrHome][self.batterOn[self.awayOrHome]].center.y > CGFloat(base1Y - 30)
+            && self.batters[self.awayOrHome][self.batterOn[self.awayOrHome]].center.y < CGFloat(base1Y + 30){
+                delay = 1
+                self.result.text = "一壘安打"
+                self.batters[self.awayOrHome][self.batterOn[self.awayOrHome]].center.x = CGFloat(inBoxX)
+                self.batters[self.awayOrHome][self.batterOn[self.awayOrHome]].center.y = CGFloat(inBoxY)
+                self.runner(batter: self.batterOn[self.awayOrHome], bases: 1)
+                self.hitCheck(whichTeam: self.awayOrHome)
+        }
+        else if self.batters[self.awayOrHome][self.batterOn[self.awayOrHome]].center.x > CGFloat(base2X - 30)
+            && self.batters[self.awayOrHome][self.batterOn[self.awayOrHome]].center.x < CGFloat(base2X + 30)
+            && self.batters[self.awayOrHome][self.batterOn[self.awayOrHome]].center.y > CGFloat(base2Y - 30)
+            && self.batters[self.awayOrHome][self.batterOn[self.awayOrHome]].center.y < CGFloat(base2Y + 30){
+            delay = 2
+            self.result.text = "二壘安打"
+            self.batters[self.awayOrHome][self.batterOn[self.awayOrHome]].center.x = CGFloat(inBoxX)
+            self.batters[self.awayOrHome][self.batterOn[self.awayOrHome]].center.y = CGFloat(inBoxY)
+            self.runner(batter: self.batterOn[self.awayOrHome], bases: 2)
+            self.hitCheck(whichTeam: self.awayOrHome)
             
+        }
+        else if self.batters[self.awayOrHome][self.batterOn[self.awayOrHome]].center.x > CGFloat(base3X - 30)
+            && self.batters[self.awayOrHome][self.batterOn[self.awayOrHome]].center.x < CGFloat(base3X + 30)
+            && self.batters[self.awayOrHome][self.batterOn[self.awayOrHome]].center.y > CGFloat(base3Y - 30)
+            && self.batters[self.awayOrHome][self.batterOn[self.awayOrHome]].center.y < CGFloat(base3Y + 30){
+            delay = 3
+            self.result.text = "三壘安打"
+            self.batters[self.awayOrHome][self.batterOn[self.awayOrHome]].center.x = CGFloat(inBoxX)
+            self.batters[self.awayOrHome][self.batterOn[self.awayOrHome]].center.y = CGFloat(inBoxY)
+            self.runner(batter: self.batterOn[self.awayOrHome], bases: 3)
+            self.hitCheck(whichTeam: self.awayOrHome)
+            
+        }
+        else if self.batters[self.awayOrHome][self.batterOn[self.awayOrHome]].center.x > CGFloat(homeBaseX - 30)
+            && self.batters[self.awayOrHome][self.batterOn[self.awayOrHome]].center.x < CGFloat(homeBaseX + 30)
+            && self.batters[self.awayOrHome][self.batterOn[self.awayOrHome]].center.y > CGFloat(homeBaseY - 30)
+            && self.batters[self.awayOrHome][self.batterOn[self.awayOrHome]].center.y < CGFloat(homeBaseY + 30){
+            delay = 4
+            self.result.text = "全壘打"
+            self.batters[self.awayOrHome][self.batterOn[self.awayOrHome]].center.x = CGFloat(inBoxX)
+            self.batters[self.awayOrHome][self.batterOn[self.awayOrHome]].center.y = CGFloat(inBoxY)
+            self.runner(batter: self.batterOn[self.awayOrHome], bases: 4)
+            self.hitCheck(whichTeam: self.awayOrHome)
+        }
+            
+        else if (self.batters[self.awayOrHome][self.batterOn[self.awayOrHome]].center.x < 75
+                && self.batters[self.awayOrHome][self.batterOn[self.awayOrHome]].center.y > 170)
+                || (self.batters[self.awayOrHome][self.batterOn[self.awayOrHome]].center.x < 148
+                && self.batters[self.awayOrHome][self.batterOn[self.awayOrHome]].center.y > 210){
+                    batterOutFunc()
+            self.result.text = "出局"
 
         }
+        else{
+            self.batters[self.awayOrHome][self.batterOn[self.awayOrHome]].center.x = CGFloat(inBoxX)
+            self.batters[self.awayOrHome][self.batterOn[self.awayOrHome]].center.y = CGFloat(inBoxY)
+            
+        }
+        UIView.animate(withDuration: 1.0, delay: TimeInterval(delay) , animations: {
+            self.baseball.center.x = CGFloat(self.hitBallX)
+            self.baseball.center.y = CGFloat(self.hitBallY)
+        })
+
+        
     }
 
 
-    @IBAction func battingResult(sender: UIPanGestureRecognizer) {
-    let point = sender.location(in: awayPlayer1)
-    awayPlayer1.center.x = awayPlayer1.center.x + point.x
-    awayPlayer1.center.y = awayPlayer1.center.y + point.y
-    if sender.state == UIGestureRecognizerState.ended {
-        if awayPlayer1.center.x > CGFloat(base1X - 30)
-            && awayPlayer1.center.x < CGFloat(base1X + 30)
-            && awayPlayer1.center.y > CGFloat(base1Y - 30)
-            && awayPlayer1.center.y < CGFloat(base1Y + 30){
-            self.context.text = "一壘安打"
-        }
-        else if view.center.x > CGFloat(base2X - 30)
-            && view.center.x < CGFloat(base2X + 30)
-            && view.center.y > CGFloat(base2Y - 30)
-            && view.center.y < CGFloat(base2Y + 30){
-            self.context.text = "二壘安打"
-        }
-        else if view.center.x > CGFloat(base3X - 30)
-            && view.center.x < CGFloat(base3X + 30)
-            && view.center.y > CGFloat(base3Y - 30)
-            && view.center.y < CGFloat(base3Y + 30){
-            self.context.text = "三壘安打"
-        }
-        else if view.center.x > CGFloat(homeBaseX - 30)
-            && view.center.x < CGFloat(homeBaseX + 30)
-            && view.center.y > CGFloat(homeBaseY - 30)
-            && view.center.y < CGFloat(homeBaseY + 30){
-            self.context.text = "全壘打"
-        }
-        baseball.center.x = CGFloat(hitBallX)
-        baseball.center.y = CGFloat(hitBallY)
+    @IBAction func battingResultForAway1(sender: UIPanGestureRecognizer) {
+        let point = sender.location(in: awayPlayer1)
+        awayPlayer1.center.x = awayPlayer1.center.x + point.x
+        awayPlayer1.center.y = awayPlayer1.center.y + point.y
+        if sender.state == UIGestureRecognizerState.ended {
+            battingResult()
+            }
     }
+    @IBAction func battingResultForAway2( sender: UIPanGestureRecognizer) {
+        let point = sender.location(in: awayPlayer2)
+        awayPlayer2.center.x = awayPlayer2.center.x + point.x
+        awayPlayer2.center.y = awayPlayer2.center.y + point.y
+        if sender.state == UIGestureRecognizerState.ended {
+            battingResult()
+            }
     }
+    @IBAction func battingResultForAway3(sender: UIPanGestureRecognizer) {
+        let point = sender.location(in: awayPlayer3)
+        awayPlayer3.center.x = awayPlayer3.center.x + point.x
+        awayPlayer3.center.y = awayPlayer3.center.y + point.y
+        if sender.state == UIGestureRecognizerState.ended {
+            battingResult()
+        }
+    }
+    @IBAction func battingResultForAway4( sender: UIPanGestureRecognizer) {
+        let point = sender.location(in: awayPlayer4)
+        awayPlayer4.center.x = awayPlayer4.center.x + point.x
+        awayPlayer4.center.y = awayPlayer4.center.y + point.y
+        if sender.state == UIGestureRecognizerState.ended {
+            battingResult()
+        }
+    }
+    @IBAction func battingResultForAway5(sender: UIPanGestureRecognizer) {
+        let point = sender.location(in: awayPlayer5)
+        awayPlayer5.center.x = awayPlayer5.center.x + point.x
+        awayPlayer5.center.y = awayPlayer5.center.y + point.y
+        if sender.state == UIGestureRecognizerState.ended {
+            battingResult()
+        }
+    }
+    @IBAction func battingResultForAway6( sender: UIPanGestureRecognizer) {
+        let point = sender.location(in: awayPlayer6)
+        awayPlayer6.center.x = awayPlayer6.center.x + point.x
+        awayPlayer6.center.y = awayPlayer6.center.y + point.y
+        if sender.state == UIGestureRecognizerState.ended {
+            battingResult()
+        }
+    }
+    @IBAction func battingResultForAway7(sender: UIPanGestureRecognizer) {
+        let point = sender.location(in: awayPlayer7)
+        awayPlayer7.center.x = awayPlayer7.center.x + point.x
+        awayPlayer7.center.y = awayPlayer7.center.y + point.y
+        if sender.state == UIGestureRecognizerState.ended {
+            battingResult()
+        }
+    }
+    @IBAction func battingResultForAway8( sender: UIPanGestureRecognizer) {
+        let point = sender.location(in: awayPlayer8)
+        awayPlayer8.center.x = awayPlayer8.center.x + point.x
+        awayPlayer8.center.y = awayPlayer8.center.y + point.y
+        if sender.state == UIGestureRecognizerState.ended {
+            battingResult()
+        }
+    }
+    @IBAction func battingResultForAway9(sender: UIPanGestureRecognizer) {
+        let point = sender.location(in: awayPlayer9)
+        awayPlayer9.center.x = awayPlayer9.center.x + point.x
+        awayPlayer9.center.y = awayPlayer9.center.y + point.y
+        if sender.state == UIGestureRecognizerState.ended {
+            battingResult()
+        }
+    }
+    @IBAction func battingResultForHome1( sender: UIPanGestureRecognizer) {
+        let point = sender.location(in: homePlayer1)
+        homePlayer1.center.x = homePlayer1.center.x + point.x
+        homePlayer1.center.y = homePlayer1.center.y + point.y
+        if sender.state == UIGestureRecognizerState.ended {
+            battingResult()
+        }
+    }
+    @IBAction func battingResultForHome2( sender: UIPanGestureRecognizer) {
+        let point = sender.location(in: homePlayer2)
+        homePlayer2.center.x = homePlayer2.center.x + point.x
+        homePlayer2.center.y = homePlayer2.center.y + point.y
+        if sender.state == UIGestureRecognizerState.ended {
+            battingResult()
+        }
+    }
+    @IBAction func battingResultForHome3( sender: UIPanGestureRecognizer) {
+        let point = sender.location(in: homePlayer3)
+        homePlayer3.center.x = homePlayer3.center.x + point.x
+        homePlayer3.center.y = homePlayer3.center.y + point.y
+        if sender.state == UIGestureRecognizerState.ended {
+            battingResult()
+        }
+    }
+    @IBAction func battingResultForHome4( sender: UIPanGestureRecognizer) {
+        let point = sender.location(in: homePlayer4)
+        homePlayer4.center.x = homePlayer4.center.x + point.x
+        homePlayer4.center.y = homePlayer4.center.y + point.y
+        if sender.state == UIGestureRecognizerState.ended {
+            battingResult()
+        }
+    }
+    @IBAction func battingResultForHome5( sender: UIPanGestureRecognizer) {
+        let point = sender.location(in: homePlayer5)
+        homePlayer5.center.x = homePlayer5.center.x + point.x
+        homePlayer5.center.y = homePlayer5.center.y + point.y
+        if sender.state == UIGestureRecognizerState.ended {
+            battingResult()
+        }
+    }
+    @IBAction func battingResultForHome6( sender: UIPanGestureRecognizer) {
+        let point = sender.location(in: homePlayer6)
+        homePlayer6.center.x = homePlayer6.center.x + point.x
+        homePlayer6.center.y = homePlayer6.center.y + point.y
+        if sender.state == UIGestureRecognizerState.ended {
+            battingResult()
+        }
+    }
+    @IBAction func battingResultForHome7( sender: UIPanGestureRecognizer) {
+        let point = sender.location(in: homePlayer7)
+        homePlayer7.center.x = homePlayer7.center.x + point.x
+        homePlayer7.center.y = homePlayer7.center.y + point.y
+        if sender.state == UIGestureRecognizerState.ended {
+            battingResult()
+        }
+    }
+    @IBAction func battingResultForHome8( sender: UIPanGestureRecognizer) {
+        let point = sender.location(in: homePlayer8)
+        homePlayer8.center.x = homePlayer8.center.x + point.x
+        homePlayer8.center.y = homePlayer8.center.y + point.y
+        if sender.state == UIGestureRecognizerState.ended {
+            battingResult()
+        }
+    }
+    @IBAction func battingResultForHome9( sender: UIPanGestureRecognizer) {
+        let point = sender.location(in: homePlayer9)
+        homePlayer9.center.x = homePlayer9.center.x + point.x
+        homePlayer9.center.y = homePlayer9.center.y + point.y
+        if sender.state == UIGestureRecognizerState.ended {
+            battingResult()
+        }
+    }
+    
     @IBAction func pitch(sender: UIPanGestureRecognizer) {
         let point = sender.location(in: pitchingBall)
         pitchingBall.center.x = pitchingBall.center.x + point.x
@@ -496,17 +696,16 @@ class ViewController: UIViewController{
        if pitchingBall.center.x > 217 && pitchingBall.center.x < 287 && pitchingBall.center.y > 263 {
         strike = strike + 1
         callStrike(count: strike)
-        self.context.text = "strike" + String (strike)
             }
        else if pitchingBall.center.x > 167 && pitchingBall.center.x < 217 && pitchingBall.center.y > 243 && pitchingBall.center.y < 293 {
-        self.context.text = "HBP"
+        self.result.text = "觸身球保送"
+        self.position.text = ""
         countReset()
         self.runner(batter: self.batterOn[self.awayOrHome], bases: 1)
             }
        else {
         ball = ball + 1
         callBall(count: ball)
-        self.context.text = "Ball" + String (ball)
             }
             UIView.animate(withDuration: 0.5,animations: {
 
@@ -523,21 +722,18 @@ class ViewController: UIViewController{
         if detect > max {
             max = detect
         }
-        context.text = "WP" + String(max)
-
+        result.text = "暴投" + String(max)
         homePlayer2.center.x = homePlayer2.center.x + point.x
         homePlayer2.center.y = homePlayer2.center.y + point.y
         if sender.state == UIGestureRecognizerState.ended {
             if homePlayer2.center.y > 205 {
-
+            position.text = ""
             if max == 1{
-                    context.text = "WP" + String(max)
+                    result.text = "暴投" + String(max)
                 }
             else if max == 2{
-                   context.text = "PB"
+                   result.text = "捕逸"
                 }
-                
-                
             }
          homePlayer2.center.x = CGFloat(catcherX)
          homePlayer2.center.y = CGFloat(catcherY)
@@ -553,72 +749,88 @@ class ViewController: UIViewController{
         let panGestureRecognizerHit = UIPanGestureRecognizer(target: self, action: #selector(hit(sender:)))
         let panGestureRecognizerPBorWP = UIPanGestureRecognizer(target: self, action: #selector(PBorWP(sender:)))
         let panGestureRecognizerPitch = UIPanGestureRecognizer(target: self, action: #selector(pitch(sender:)))
-        let panGestureRecognizerBattingResult = UIPanGestureRecognizer(target: self, action: #selector(battingResult(sender:)))
-        
+        let panGestureRecognizerBattingResultAway1 = UIPanGestureRecognizer(target: self, action: #selector(battingResultForAway1(sender:)))
+        let panGestureRecognizerBattingResultAway2 = UIPanGestureRecognizer(target: self, action: #selector(battingResultForAway2(sender:)))
+        let panGestureRecognizerBattingResultAway3 = UIPanGestureRecognizer(target: self, action: #selector(battingResultForAway3(sender:)))
+        let panGestureRecognizerBattingResultAway4 = UIPanGestureRecognizer(target: self, action: #selector(battingResultForAway4(sender:)))
+        let panGestureRecognizerBattingResultAway5 = UIPanGestureRecognizer(target: self, action: #selector(battingResultForAway5(sender:)))
+        let panGestureRecognizerBattingResultAway6 = UIPanGestureRecognizer(target: self, action: #selector(battingResultForAway6(sender:)))
+        let panGestureRecognizerBattingResultAway7 = UIPanGestureRecognizer(target: self, action: #selector(battingResultForAway7(sender:)))
+        let panGestureRecognizerBattingResultAway8 = UIPanGestureRecognizer(target: self, action: #selector(battingResultForAway8(sender:)))
+        let panGestureRecognizerBattingResultAway9 = UIPanGestureRecognizer(target: self, action: #selector(battingResultForAway9(sender:)))
+        let panGestureRecognizerBattingResultHome1 = UIPanGestureRecognizer(target: self, action: #selector(battingResultForHome1(sender:)))
+        let panGestureRecognizerBattingResultHome2 = UIPanGestureRecognizer(target: self, action: #selector(battingResultForHome2(sender:)))
+        let panGestureRecognizerBattingResultHome3 = UIPanGestureRecognizer(target: self, action: #selector(battingResultForHome3(sender:)))
+        let panGestureRecognizerBattingResultHome4 = UIPanGestureRecognizer(target: self, action: #selector(battingResultForHome4(sender:)))
+        let panGestureRecognizerBattingResultHome5 = UIPanGestureRecognizer(target: self, action: #selector(battingResultForHome5(sender:)))
+        let panGestureRecognizerBattingResultHome6 = UIPanGestureRecognizer(target: self, action: #selector(battingResultForHome6(sender:)))
+        let panGestureRecognizerBattingResultHome7 = UIPanGestureRecognizer(target: self, action: #selector(battingResultForHome7(sender:)))
+        let panGestureRecognizerBattingResultHome8 = UIPanGestureRecognizer(target: self, action: #selector(battingResultForHome8(sender:)))
+        let panGestureRecognizerBattingResultHome9 = UIPanGestureRecognizer(target: self, action: #selector(battingResultForHome9(sender:)))
         // Attach it to a view of your choice. If it's a UIImageView, remember to enable user interaction
         baseball.isUserInteractionEnabled = true
         baseball.addGestureRecognizer(panGestureRecognizerHit)
         
         pitchingBall.isUserInteractionEnabled = true
         pitchingBall.addGestureRecognizer(panGestureRecognizerPitch)
-        
+
+
         homePlayer1.isUserInteractionEnabled = true
-        homePlayer1.addGestureRecognizer(panGestureRecognizerBattingResult)
+        homePlayer1.addGestureRecognizer(panGestureRecognizerBattingResultHome1)
 
         awayPlayer1.isUserInteractionEnabled = true
-        awayPlayer1.addGestureRecognizer(panGestureRecognizerBattingResult)
+        awayPlayer1.addGestureRecognizer(panGestureRecognizerBattingResultAway1)
 
         homePlayer2.isUserInteractionEnabled = true
         homePlayer2.addGestureRecognizer(panGestureRecognizerPBorWP)
-        homePlayer2.addGestureRecognizer(panGestureRecognizerBattingResult)
+        homePlayer2.addGestureRecognizer(panGestureRecognizerBattingResultHome2)
 
         awayPlayer2.isUserInteractionEnabled = true
-        awayPlayer2.addGestureRecognizer(panGestureRecognizerPBorWP)
-        awayPlayer2.addGestureRecognizer(panGestureRecognizerBattingResult)
+        awayPlayer2.addGestureRecognizer(panGestureRecognizerBattingResultAway2)
         
         
         homePlayer3.isUserInteractionEnabled = true
-        homePlayer3.addGestureRecognizer(panGestureRecognizerBattingResult)
+        homePlayer3.addGestureRecognizer(panGestureRecognizerBattingResultHome3)
         
         awayPlayer3.isUserInteractionEnabled = true
-        awayPlayer3.addGestureRecognizer(panGestureRecognizerBattingResult)
+        awayPlayer3.addGestureRecognizer(panGestureRecognizerBattingResultAway3)
         
         homePlayer4.isUserInteractionEnabled = true
-        homePlayer4.addGestureRecognizer(panGestureRecognizerBattingResult)
+        homePlayer4.addGestureRecognizer(panGestureRecognizerBattingResultHome4)
         
         awayPlayer4.isUserInteractionEnabled = true
-        awayPlayer4.addGestureRecognizer(panGestureRecognizerBattingResult)
+        awayPlayer4.addGestureRecognizer(panGestureRecognizerBattingResultAway4)
         
         homePlayer5.isUserInteractionEnabled = true
-        homePlayer5.addGestureRecognizer(panGestureRecognizerBattingResult)
+        homePlayer5.addGestureRecognizer(panGestureRecognizerBattingResultHome5)
         
         awayPlayer5.isUserInteractionEnabled = true
-        awayPlayer5.addGestureRecognizer(panGestureRecognizerBattingResult)
+        awayPlayer5.addGestureRecognizer(panGestureRecognizerBattingResultAway5)
         
         homePlayer6.isUserInteractionEnabled = true
-        homePlayer6.addGestureRecognizer(panGestureRecognizerBattingResult)
+        homePlayer6.addGestureRecognizer(panGestureRecognizerBattingResultHome6)
         
         awayPlayer6.isUserInteractionEnabled = true
-        awayPlayer6.addGestureRecognizer(panGestureRecognizerBattingResult)
+        awayPlayer6.addGestureRecognizer(panGestureRecognizerBattingResultAway6)
         
         homePlayer7.isUserInteractionEnabled = true
-        homePlayer7.addGestureRecognizer(panGestureRecognizerBattingResult)
+        homePlayer7.addGestureRecognizer(panGestureRecognizerBattingResultHome7)
         
         awayPlayer7.isUserInteractionEnabled = true
-        awayPlayer7.addGestureRecognizer(panGestureRecognizerBattingResult)
+        awayPlayer7.addGestureRecognizer(panGestureRecognizerBattingResultAway7)
         
         homePlayer8.isUserInteractionEnabled = true
-        homePlayer8.addGestureRecognizer(panGestureRecognizerBattingResult)
+        homePlayer8.addGestureRecognizer(panGestureRecognizerBattingResultHome8)
         
         awayPlayer8.isUserInteractionEnabled = true
-        awayPlayer8.addGestureRecognizer(panGestureRecognizerBattingResult)
+        awayPlayer8.addGestureRecognizer(panGestureRecognizerBattingResultAway8)
         
         homePlayer9.isUserInteractionEnabled = true
-        homePlayer9.addGestureRecognizer(panGestureRecognizerBattingResult)
+        homePlayer9.addGestureRecognizer(panGestureRecognizerBattingResultHome9)
         
         awayPlayer9.isUserInteractionEnabled = true
-        awayPlayer9.addGestureRecognizer(panGestureRecognizerBattingResult)
-        
+        awayPlayer9.addGestureRecognizer(panGestureRecognizerBattingResultAway9)
+  
   
         /*
         let panRecognizer = UIPanGestureRecognizer(target: self, action: (Selector("pan")))
