@@ -29,8 +29,10 @@ class ViewController: UIViewController{
     @IBOutlet var homePlayer3: UILabel!
     @IBOutlet var homePlayer2: UILabel!
     @IBOutlet var homePlayer1: UILabel!
+    
     @IBOutlet var baseball: UIView!
     @IBOutlet var pitchingBall: UIView!
+    @IBOutlet weak var baseballField: UIImageView!
 /*
     @IBOutlet var top1: UILabel!
     @IBOutlet var bottom1: UILabel!
@@ -64,7 +66,7 @@ class ViewController: UIViewController{
     @IBOutlet var position: UILabel!
     
     var batters = [[UILabel]]()
-    var inningScore = [[UILabel]]()
+ //   var inningScore = [[UILabel]]()
     var batterOn = [-1 , -1]
     var out = 0
     var strike = 0
@@ -74,8 +76,8 @@ class ViewController: UIViewController{
     var homeHits = 0
     var awayScoring = 0
     var homeScoring = 0
+    var scoringOfTheInning = 0
     var awayOrHome = 0
-    var thisInningScore = 0
     
     //base position
     let base1X = 327
@@ -175,6 +177,7 @@ class ViewController: UIViewController{
         }
     }
     func inningCheck(whichTeam: Int) {
+        scoringOfTheInning = 0
         if whichTeam == 0 {
             innings.text = String (inning) + "▼"
             awayOrHome = 1
@@ -227,13 +230,17 @@ class ViewController: UIViewController{
     }
     
     func scoring(whichTeam: Int) {
+        scoringOfTheInning = scoringOfTheInning + 1
         if whichTeam == 0 {
             awayScoring = awayScoring + 1
             awayScore.text = String (awayScoring)
+           // inningScore[0][inning - 1].text = String(scoringOfTheInning)
+            
         }
         else{
             homeScoring = homeScoring + 1
             homeScore.text = String (homeScoring)
+          //  inningScore[1][inning - 1].text = String(scoringOfTheInning)
         }
     }
     
@@ -338,6 +345,36 @@ class ViewController: UIViewController{
         }
  
     }
+    @IBAction func call(_ sender: UITapGestureRecognizer) {
+        self.result.text = ""
+        self.position.text = ""
+        UIView.animate(withDuration: 1.0,animations: {
+            self.batterOn[self.awayOrHome] = self.batterOn[self.awayOrHome] + 1
+            if self.batterOn[self.awayOrHome] == 9{
+                self.batterOn[self.awayOrHome] = 0
+            }
+            self.batters[self.awayOrHome][self.batterOn[self.awayOrHome]].alpha = 1.0
+            self.batters[self.awayOrHome][self.batterOn[self.awayOrHome]].center.x = CGFloat(self.inBoxX)
+            self.batters[self.awayOrHome][self.batterOn[self.awayOrHome]].center.y = CGFloat(self.inBoxY)
+        })
+    }
+    /*
+    @IBAction func callNextBatter(sender: UITapGestureRecognizer) {
+        self.result.text = ""
+        self.position.text = ""
+        UIView.animate(withDuration: 1.0,animations: {
+            self.batterOn[self.awayOrHome] = self.batterOn[self.awayOrHome] + 1
+            if self.batterOn[self.awayOrHome] == 9{
+                self.batterOn[self.awayOrHome] = 0
+            }
+            self.batters[self.awayOrHome][self.batterOn[self.awayOrHome]].alpha = 1.0
+            self.batters[self.awayOrHome][self.batterOn[self.awayOrHome]].center.x = CGFloat(self.inBoxX)
+            self.batters[self.awayOrHome][self.batterOn[self.awayOrHome]].center.y = CGFloat(self.inBoxY)
+        })
+
+    }
+ */
+    /*
     @IBAction func callNextBatter(sender: AnyObject){
         self.result.text = ""
         self.position.text = ""
@@ -351,7 +388,7 @@ class ViewController: UIViewController{
             self.batters[self.awayOrHome][self.batterOn[self.awayOrHome]].center.y = CGFloat(self.inBoxY)
          })
     }
-
+*/
     @IBAction func batterOut(sender: AnyObject){
         batterOutFunc()
     }
@@ -373,19 +410,6 @@ class ViewController: UIViewController{
         self.runner(batter: self.batterOn[self.awayOrHome], bases: 4)
         self.hitCheck(whichTeam: self.awayOrHome)
     }
-    /*
-    @IBOutlet var oneTapForSrike: UITapGestureRecognizer!
-
-    @IBAction func hit(_ sender: Any) {
-        
-    }
-    @IBOutlet weak var hitResult: UIView!
-    @IBOutlet weak var picker: UIPickerView!
-    var pickerData: [String] = [String]()
- 
-    @IBAction func buttonClicked(sender: AnyObject) {
-    }
- */
  
     @IBAction func hit(sender: UIPanGestureRecognizer) {
         let point = sender.location(in: baseball)
@@ -743,9 +767,16 @@ class ViewController: UIViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         batters = [[awayPlayer1,awayPlayer2,awayPlayer3,awayPlayer4,awayPlayer5,awayPlayer6,awayPlayer7,awayPlayer8,awayPlayer9] , [homePlayer1,homePlayer2,homePlayer3,homePlayer4,homePlayer5,homePlayer6,homePlayer7,homePlayer8,homePlayer9]]
-
-        
+  /*
+        inningScore = [[top1,top2,top3,top4,top5,top6,top7,top8,top9],[bottom1,bottom2,bottom3,bottom4,bottom5,bottom6,bottom7,bottom8,bottom9]]
+    */
         // Here we use the method didPan(sender:), which we defined in the previous step, as the action.
+        let tapGestureRecognizerCallNextBatter = UITapGestureRecognizer(target: self, action: #selector(call(_:)))
+        tapGestureRecognizerCallNextBatter.numberOfTapsRequired = 2
+        baseballField.isUserInteractionEnabled = true
+        baseballField.addGestureRecognizer(tapGestureRecognizerCallNextBatter)
+        
+        
         let panGestureRecognizerHit = UIPanGestureRecognizer(target: self, action: #selector(hit(sender:)))
         let panGestureRecognizerPBorWP = UIPanGestureRecognizer(target: self, action: #selector(PBorWP(sender:)))
         let panGestureRecognizerPitch = UIPanGestureRecognizer(target: self, action: #selector(pitch(sender:)))
@@ -838,9 +869,7 @@ class ViewController: UIViewController{
         addGestureRecognizer(panRecognizer)
 */
 
-        /*
-        inningScore = [[top1,top2,top3,top4,top5,top6,top7,top8,top9],[bottom1,bottom2,bottom3,bottom4,bottom5,bottom6,bottom7,bottom8,bottom9]]
- */
+ 
         /*
         super.viewDidLoad()
         self.picker.delegate = self

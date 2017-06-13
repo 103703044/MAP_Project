@@ -43,9 +43,12 @@
                                 <rect key="frame" x="0.0" y="0.0" width="464" height="320"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="PKF-5q-d24" appends="YES" id="BdU-Z5-5vs"/>
+                                </connections>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="❾" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="abg-QS-1G0">
-                                <rect key="frame" x="100" y="250" width="50" height="50"/>
+                                <rect key="frame" x="100" y="250" width="55" height="55"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <gestureRecognizers/>
                                 <fontDescription key="fontDescription" type="system" pointSize="50"/>
@@ -56,7 +59,7 @@
                                 </connections>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="❽" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cqh-Yd-xhl">
-                                <rect key="frame" x="100" y="250" width="50" height="50"/>
+                                <rect key="frame" x="100" y="250" width="55" height="55"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <gestureRecognizers/>
                                 <fontDescription key="fontDescription" type="system" pointSize="50"/>
@@ -67,7 +70,7 @@
                                 </connections>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="❼" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GpW-JH-nbc">
-                                <rect key="frame" x="100" y="250" width="50" height="50"/>
+                                <rect key="frame" x="100" y="250" width="55" height="55"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <gestureRecognizers/>
                                 <fontDescription key="fontDescription" type="system" pointSize="50"/>
@@ -78,7 +81,7 @@
                                 </connections>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="❻" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xtL-6R-t1k">
-                                <rect key="frame" x="100" y="250" width="50" height="50"/>
+                                <rect key="frame" x="100" y="250" width="55" height="55"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <gestureRecognizers/>
                                 <fontDescription key="fontDescription" type="system" pointSize="50"/>
@@ -89,7 +92,7 @@
                                 </connections>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="❺" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VgO-Ad-l8Q">
-                                <rect key="frame" x="100" y="250" width="50" height="50"/>
+                                <rect key="frame" x="100" y="250" width="55" height="55"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <gestureRecognizers/>
                                 <fontDescription key="fontDescription" type="system" pointSize="50"/>
@@ -100,7 +103,7 @@
                                 </connections>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="❷" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ir6-eq-4Ut">
-                                <rect key="frame" x="100" y="250" width="50" height="50"/>
+                                <rect key="frame" x="100" y="250" width="55" height="55"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="50"/>
                                 <color key="textColor" red="1" green="0.0" blue="0.0" alpha="0.80241331339999999" colorSpace="calibratedRGB"/>
@@ -110,7 +113,7 @@
                                 </connections>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="❶" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ceb-2V-f0o">
-                                <rect key="frame" x="100" y="250" width="50" height="50"/>
+                                <rect key="frame" x="100" y="250" width="55" height="55"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <gestureRecognizers/>
                                 <fontDescription key="fontDescription" type="system" pointSize="50"/>
@@ -121,7 +124,7 @@
                                 </connections>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="❹" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fMR-rq-eWa">
-                                <rect key="frame" x="100" y="250" width="50" height="50"/>
+                                <rect key="frame" x="100" y="250" width="55" height="55"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <gestureRecognizers/>
                                 <fontDescription key="fontDescription" type="system" pointSize="50"/>
@@ -132,7 +135,7 @@
                                 </connections>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="❸" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DmU-8h-07a">
-                                <rect key="frame" x="100" y="250" width="50" height="50"/>
+                                <rect key="frame" x="100" y="250" width="55" height="55"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="50"/>
                                 <color key="textColor" red="1" green="0.0" blue="0.0" alpha="0.80241331339999999" colorSpace="calibratedRGB"/>
@@ -142,7 +145,7 @@
                                 </connections>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="❹" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2eL-Lg-Ynv">
-                                <rect key="frame" x="259" y="66" width="50" height="50"/>
+                                <rect key="frame" x="259" y="66" width="55" height="55"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="50"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="1" alpha="0.79727632705479456" colorSpace="calibratedRGB"/>
@@ -152,7 +155,7 @@
                                 </connections>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="❻" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kV1-W9-t9I">
-                                <rect key="frame" x="160" y="66" width="50" height="50"/>
+                                <rect key="frame" x="160" y="66" width="55" height="55"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="50"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="1" alpha="0.79727632705479456" colorSpace="calibratedRGB"/>
@@ -162,7 +165,7 @@
                                 </connections>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="❼" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nMj-5T-Idb">
-                                <rect key="frame" x="73" y="58" width="50" height="50"/>
+                                <rect key="frame" x="73" y="58" width="55" height="55"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="50"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="1" alpha="0.79727632709999996" colorSpace="calibratedRGB"/>
@@ -172,7 +175,7 @@
                                 </connections>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="❽" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8GB-9Q-HeN">
-                                <rect key="frame" x="207" y="11" width="50" height="50"/>
+                                <rect key="frame" x="207" y="11" width="55" height="55"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="50"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="1" alpha="0.79727632709999996" colorSpace="calibratedRGB"/>
@@ -182,7 +185,7 @@
                                 </connections>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="❾" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mLI-aa-iEa">
-                                <rect key="frame" x="342" y="58" width="50" height="50"/>
+                                <rect key="frame" x="342" y="58" width="55" height="55"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="50"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="1" alpha="0.79727632709999996" colorSpace="calibratedRGB"/>
@@ -192,7 +195,7 @@
                                 </connections>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="❺" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LiW-P9-QTM">
-                                <rect key="frame" x="100" y="116" width="50" height="50"/>
+                                <rect key="frame" x="100" y="116" width="55" height="55"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="50"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="1" alpha="0.79727632705479456" colorSpace="calibratedRGB"/>
@@ -202,7 +205,7 @@
                                 </connections>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="❸" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8cf-Ia-VcU">
-                                <rect key="frame" x="317" y="116" width="50" height="50"/>
+                                <rect key="frame" x="317" y="116" width="55" height="55"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="50"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="1" alpha="0.79727632705479456" colorSpace="calibratedRGB"/>
@@ -212,7 +215,7 @@
                                 </connections>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="❷" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xUF-HG-wlq">
-                                <rect key="frame" x="207" y="262" width="50" height="50"/>
+                                <rect key="frame" x="207" y="262" width="55" height="55"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <gestureRecognizers/>
                                 <fontDescription key="fontDescription" type="system" pointSize="50"/>
@@ -224,7 +227,7 @@
                                 </connections>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="❶" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="miZ-y6-khV">
-                                <rect key="frame" x="207" y="126" width="50" height="50"/>
+                                <rect key="frame" x="207" y="126" width="55" height="55"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <gestureRecognizers/>
                                 <fontDescription key="fontDescription" type="system" pointSize="50"/>
@@ -313,6 +316,14 @@
                                         <rect key="frame" x="1" y="189" width="152" height="201"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OAi-E2-2G2">
+                                                <rect key="frame" x="0.0" y="0.0" width="104" height="117"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <connections>
+                                                    <segue destination="Cmh-e8-nWI" kind="show" id="Mj3-Eu-9N5"/>
+                                                </connections>
+                                            </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="AWAY" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c5T-Am-dyr">
                                                 <rect key="frame" x="0.0" y="19" width="46" height="21"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -653,6 +664,7 @@ Unicode: U+25B2、UTF-8: E2 96 B2</string>
                         <outlet property="awayScore" destination="KvN-JS-S5e" id="ZIA-bb-kB5"/>
                         <outlet property="ballCount" destination="VOf-uB-Hwc" id="urO-yC-m7F"/>
                         <outlet property="baseball" destination="ZoW-UD-8JA" id="lnu-x3-uyp"/>
+                        <outlet property="baseballField" destination="C9w-Ro-hu0" id="gFL-TI-bXW"/>
                         <outlet property="homeHit" destination="Gzx-al-P8O" id="WdN-Fw-QDd"/>
                         <outlet property="homePlayer1" destination="miZ-y6-khV" id="ips-ih-wA5"/>
                         <outlet property="homePlayer2" destination="xUF-HG-wlq" id="QGs-rm-8BJ"/>
@@ -726,8 +738,13 @@ Unicode: U+25B2、UTF-8: E2 96 B2</string>
                 <panGestureRecognizer minimumNumberOfTouches="1" id="AaB-9V-N18" userLabel="panForHome7"/>
                 <panGestureRecognizer minimumNumberOfTouches="1" id="NeW-XI-AGE" userLabel="panForHome8"/>
                 <panGestureRecognizer minimumNumberOfTouches="1" id="a1h-vn-wTL" userLabel="panForHome9"/>
+                <tapGestureRecognizer numberOfTapsRequired="2" id="PKF-5q-d24">
+                    <connections>
+                        <action selector="call:" destination="BYZ-38-t0r" id="ERu-ai-Yol"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="-489.08450704225351" y="-75"/>
+            <point key="canvasLocation" x="-550.35211267605632" y="-65.625"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="2Iy-2g-5f8">
@@ -1758,10 +1775,30 @@ Unicode: U+25B2、UTF-8: E2 96 B2</string>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="Wpg-9A-ZWL"/>
+                    <connections>
+                        <outlet property="bottom1" destination="azD-iq-0Mb" id="VTN-2f-ElG"/>
+                        <outlet property="bottom2" destination="zns-YT-g9q" id="Rlq-wS-byG"/>
+                        <outlet property="bottom3" destination="3Sb-bg-z4K" id="Qbx-UN-fsY"/>
+                        <outlet property="bottom4" destination="NAx-ME-PcQ" id="YKf-zi-62l"/>
+                        <outlet property="bottom5" destination="pVp-KC-S6g" id="khH-ds-0Uo"/>
+                        <outlet property="bottom6" destination="7uu-Se-uga" id="5FC-yE-ddv"/>
+                        <outlet property="bottom7" destination="mQY-cf-T2Z" id="789-jW-tPX"/>
+                        <outlet property="bottom8" destination="yXS-o3-ygx" id="31a-yw-I73"/>
+                        <outlet property="bottom9" destination="2HW-4N-dMs" id="xuo-c6-FcC"/>
+                        <outlet property="top1" destination="PT4-X7-y3j" id="If4-Vg-EDc"/>
+                        <outlet property="top2" destination="Bu2-6O-p9h" id="KGk-U4-v5F"/>
+                        <outlet property="top3" destination="ks4-MT-u3M" id="t83-0A-MEx"/>
+                        <outlet property="top4" destination="boK-t3-gzh" id="hcU-me-zII"/>
+                        <outlet property="top5" destination="Irn-Ee-V9t" id="Wzb-dR-5XD"/>
+                        <outlet property="top6" destination="rPV-pk-ZSN" id="cW5-gF-41S"/>
+                        <outlet property="top7" destination="EFb-EN-ZCD" id="tfs-VI-pe6"/>
+                        <outlet property="top8" destination="eeK-Zh-Sf6" id="9MI-Cy-nQK"/>
+                        <outlet property="top9" destination="Nmx-JN-HGn" id="nuj-ki-FIZ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Nsd-ug-N5d" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-510" y="641"/>
+            <point key="canvasLocation" x="-353" y="983"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="h4O-MZ-UUw">
