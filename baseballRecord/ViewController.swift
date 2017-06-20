@@ -164,6 +164,7 @@ class ViewController: UIViewController{
     @IBOutlet var ballCount: UILabel!
     @IBOutlet var result: UILabel!
     @IBOutlet var position: UILabel!
+    @IBOutlet var runnerOnBase: UILabel!
     @IBOutlet var playerBattingOrder: UILabel! //上場打者棒次
     @IBOutlet var playerHit: UILabel! //上場打者打擊紀錄
     @IBOutlet var playerName: UILabel! //上場打者名字
@@ -312,6 +313,7 @@ class ViewController: UIViewController{
     }
 
     func callStrike(count: Int){
+        self.runnerOnBase.text = ""
         result.text = "好球" + String (count)
         if count == 1{
             strikeCount.text = "● ○"
@@ -326,6 +328,7 @@ class ViewController: UIViewController{
         }
     }
     func callBall(count: Int){
+        self.runnerOnBase.text = ""
         result.text = "壞球" + String (count)
         if count == 1{
             ballCount.text = "● ○ ○"
@@ -516,6 +519,8 @@ class ViewController: UIViewController{
     @IBAction func call(_ sender: UITapGestureRecognizer) {
         self.result.text = ""
         self.position.text = ""
+        self.runnerOnBase.text = ""
+        getRunnerOnBase()
         UIView.animate(withDuration: 1.0,animations: {
             self.batterOn[self.awayOrHome] = self.batterOn[self.awayOrHome] + 1
             if self.batterOn[self.awayOrHome] == 9{
@@ -598,6 +603,7 @@ class ViewController: UIViewController{
             && baseball.center.y < CGFloat(pitcherY + 30){
                 self.result.text = ""
                 self.position.text = "投手方向"
+                self.runnerOnBase.text = ""
             }
             else if baseball.center.x > CGFloat(catcherX - 30)
                 && baseball.center.x < CGFloat(catcherX + 30)
@@ -605,6 +611,8 @@ class ViewController: UIViewController{
                 && baseball.center.y < CGFloat(catcherY + 30){
                 self.result.text = ""
                 self.position.text = "本壘方向"
+                self.runnerOnBase.text = ""
+
             }
             else if baseball.center.x > CGFloat(firstBaseX - 30)
                 && baseball.center.x < CGFloat(firstBaseX + 30)
@@ -612,6 +620,8 @@ class ViewController: UIViewController{
                 && baseball.center.y < CGFloat(firstBaseY + 30){
                 self.result.text = ""
                 self.position.text = "一壘方向"
+                self.runnerOnBase.text = ""
+
             }
             else if baseball.center.x > CGFloat(secondBaseX - 30)
                 && baseball.center.x < CGFloat(secondBaseX + 30)
@@ -619,6 +629,8 @@ class ViewController: UIViewController{
                 && baseball.center.y < CGFloat(secondBaseY + 30){
                 self.result.text = ""
                 self.position.text = "二壘方向"
+                self.runnerOnBase.text = ""
+
             }
             else if baseball.center.x > CGFloat(thirdBaseX - 30)
                 && baseball.center.x < CGFloat(thirdBaseX + 30)
@@ -626,6 +638,8 @@ class ViewController: UIViewController{
                 && baseball.center.y < CGFloat(thirdBaseY + 30){
                 self.result.text = ""
                 self.position.text = "三壘方向"
+                self.runnerOnBase.text = ""
+
             }
             else if baseball.center.x > CGFloat(shortStopX - 30)
                 && baseball.center.x < CGFloat(shortStopX + 30)
@@ -633,6 +647,8 @@ class ViewController: UIViewController{
                 && baseball.center.y < CGFloat(shortStopY + 30){
                 self.result.text = ""
                 self.position.text = "游擊方向"
+                self.runnerOnBase.text = ""
+
             }
             else if baseball.center.x > CGFloat(centerFielderX - 30)
                 && baseball.center.x < CGFloat(centerFielderX + 30)
@@ -640,6 +656,8 @@ class ViewController: UIViewController{
                 && baseball.center.y < CGFloat(centerFielderY + 30){
                 self.result.text = ""
                 self.position.text = "中外野方向"
+                self.runnerOnBase.text = ""
+
             }
             else if baseball.center.x > CGFloat(rightFielderX - 30)
                 && baseball.center.x < CGFloat(rightFielderX + 30)
@@ -647,6 +665,8 @@ class ViewController: UIViewController{
                 && baseball.center.y < CGFloat(rightFielderY + 30){
                 self.result.text = ""
                 self.position.text = "右外野方向"
+                self.runnerOnBase.text = ""
+
             }
             else if baseball.center.x > CGFloat(leftFielderX - 30)
                 && baseball.center.x < CGFloat(leftFielderX + 30)
@@ -654,6 +674,7 @@ class ViewController: UIViewController{
                 && baseball.center.y < CGFloat(leftFielderY + 30){
                 self.result.text = ""
                 self.position.text = "左外野方向"
+                self.runnerOnBase.text = ""
             }
             else if ((baseball.center.x < 75 && baseball.center.y > 170)||(baseball.center.x < 148 && baseball.center.y > 210 ))||((baseball.center.x > 389 && baseball.center.y > 170) || (baseball.center.x < 316 && baseball.center.y > 210 )){
                 if strike < 2 {
@@ -662,6 +683,7 @@ class ViewController: UIViewController{
                 callStrike(count: strike)
                 self.position.text = ""
                 self.result.text = "界外球"
+                self.runnerOnBase.text = ""
                 baseball.center.x = CGFloat(hitBallX)
                 baseball.center.y = CGFloat(hitBallY)
             }
@@ -670,7 +692,54 @@ class ViewController: UIViewController{
 
         }
     }
-    
+    func getRunnerOnBase(){
+        var check1 = false
+        var check2 = false
+        var check3 = false
+        for i in 0...8 {
+        if self.batters[awayOrHome][i].center.x == CGFloat(self.base1X) &&
+            self.batters[awayOrHome][i].center.y == CGFloat(self.base1Y){
+            check1 = true
+            }
+        else if self.batters[awayOrHome][i].center.x == CGFloat(self.base2X) &&
+            self.batters[awayOrHome][i].center.y == CGFloat(self.base2Y){
+            check2 = true
+            }
+        else if self.batters[awayOrHome][i].center.x == CGFloat(self.base3X) &&
+            self.batters[awayOrHome][i].center.y == CGFloat(self.base3Y){
+            check3 = true
+            }
+        }
+        if check1 == true && check2 == true && check3 == true {
+            self.runnerOnBase.text = "滿壘"
+        }
+        else if check1 == true && check2 == true{
+            self.runnerOnBase.text = "一二壘有人"
+        }
+        else if check1 == true && check3 == true{
+            self.runnerOnBase.text = "一三壘有人"
+        }
+        else if check2 == true && check3 == true{
+            self.runnerOnBase.text = "二三壘有人"
+        }
+        else if check1 == true{
+            self.runnerOnBase.text = "一壘有人"
+        }
+        else if check2 == true{
+            self.runnerOnBase.text = "二壘有人"
+        }
+        else if check3 == true{
+            self.runnerOnBase.text = "三壘有人"
+        }
+        else{
+            self.runnerOnBase.text = "無人在壘"
+        }
+
+
+
+        
+        
+    }
     
     func battingResult(){
         var delay = 1
@@ -680,6 +749,7 @@ class ViewController: UIViewController{
             && self.batters[self.awayOrHome][self.batterOn[self.awayOrHome]].center.y < CGFloat(base1Y + 30){
                 delay = 1
                 self.result.text = "一壘安打"
+                self.runnerOnBase.text = ""
                 self.batters[self.awayOrHome][self.batterOn[self.awayOrHome]].center.x = CGFloat(inBoxX)
                 self.batters[self.awayOrHome][self.batterOn[self.awayOrHome]].center.y = CGFloat(inBoxY)
             players[self.batters[self.awayOrHome][self.batterOn[self.awayOrHome]].text!]?.addHit()
@@ -708,6 +778,7 @@ class ViewController: UIViewController{
             && self.batters[self.awayOrHome][self.batterOn[self.awayOrHome]].center.y < CGFloat(base2Y + 30){
             delay = 2
             self.result.text = "二壘安打"
+            self.runnerOnBase.text = ""
             self.batters[self.awayOrHome][self.batterOn[self.awayOrHome]].center.x = CGFloat(inBoxX)
             self.batters[self.awayOrHome][self.batterOn[self.awayOrHome]].center.y = CGFloat(inBoxY)
             players[self.batters[self.awayOrHome][self.batterOn[self.awayOrHome]].text!]?.addHit()
@@ -737,6 +808,7 @@ class ViewController: UIViewController{
             && self.batters[self.awayOrHome][self.batterOn[self.awayOrHome]].center.y < CGFloat(base3Y + 30){
             delay = 3
             self.result.text = "三壘安打"
+            self.runnerOnBase.text = ""
             self.batters[self.awayOrHome][self.batterOn[self.awayOrHome]].center.x = CGFloat(inBoxX)
             self.batters[self.awayOrHome][self.batterOn[self.awayOrHome]].center.y = CGFloat(inBoxY)
             players[self.batters[self.awayOrHome][self.batterOn[self.awayOrHome]].text!]?.addHit()
@@ -766,6 +838,7 @@ class ViewController: UIViewController{
             && self.batters[self.awayOrHome][self.batterOn[self.awayOrHome]].center.y < CGFloat(homeBaseY + 30){
             delay = 4
             self.result.text = "全壘打"
+            self.runnerOnBase.text = ""
             self.batters[self.awayOrHome][self.batterOn[self.awayOrHome]].center.x = CGFloat(inBoxX)
             self.batters[self.awayOrHome][self.batterOn[self.awayOrHome]].center.y = CGFloat(inBoxY)
             players[self.batters[self.awayOrHome][self.batterOn[self.awayOrHome]].text!]?.addHit()
@@ -824,7 +897,6 @@ class ViewController: UIViewController{
             self.baseball.center.y = CGFloat(self.hitBallY)
         })
 
-        
     }
 
 
@@ -985,6 +1057,7 @@ class ViewController: UIViewController{
             }
        else if pitchingBall.center.x > 167 && pitchingBall.center.x < 217 && pitchingBall.center.y > 243 && pitchingBall.center.y < 293 {
         self.result.text = "觸身球保送"
+        self.runnerOnBase.text = ""
         self.position.text = ""
         countReset()
         self.runner(batter: self.batterOn[self.awayOrHome], bases: 1)
