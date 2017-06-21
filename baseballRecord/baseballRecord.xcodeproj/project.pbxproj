@@ -1,0 +1,365 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		A903B0251EB78B8600470B7C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A903B0241EB78B8600470B7C /* AppDelegate.swift */; };
+		A903B0271EB78B8600470B7C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A903B0261EB78B8600470B7C /* ViewController.swift */; };
+		A903B02A1EB78B8600470B7C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A903B0281EB78B8600470B7C /* Main.storyboard */; };
+		A903B02D1EB78B8600470B7C /* baseballRecord.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A903B02B1EB78B8600470B7C /* baseballRecord.xcdatamodeld */; };
+		A903B02F1EB78B8600470B7C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A903B02E1EB78B8600470B7C /* Assets.xcassets */; };
+		A903B0321EB78B8600470B7C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A903B0301EB78B8600470B7C /* LaunchScreen.storyboard */; };
+		A90E31951ED4E242004D1704 /* aboutus.png in Resources */ = {isa = PBXBuildFile; fileRef = A90E31941ED4E242004D1704 /* aboutus.png */; };
+		A90E31981ED4E24F004D1704 /* baseball.png in Resources */ = {isa = PBXBuildFile; fileRef = A90E31961ED4E24F004D1704 /* baseball.png */; };
+		A90E31991ED4E24F004D1704 /* baseballcourt.png in Resources */ = {isa = PBXBuildFile; fileRef = A90E31971ED4E24F004D1704 /* baseballcourt.png */; };
+		A90E319D1ED4E256004D1704 /* bbbaseball.png in Resources */ = {isa = PBXBuildFile; fileRef = A90E319A1ED4E256004D1704 /* bbbaseball.png */; };
+		A90E319E1ED4E256004D1704 /* start.png in Resources */ = {isa = PBXBuildFile; fileRef = A90E319B1ED4E256004D1704 /* start.png */; };
+		A90E319F1ED4E256004D1704 /* startbot.png in Resources */ = {isa = PBXBuildFile; fileRef = A90E319C1ED4E256004D1704 /* startbot.png */; };
+		A90E31A11ED674AF004D1704 /* score.swift in Sources */ = {isa = PBXBuildFile; fileRef = A90E31A01ED674AE004D1704 /* score.swift */; };
+		A9FF2F841EB79DA6000E3FC5 /* baseballField.png in Resources */ = {isa = PBXBuildFile; fileRef = A9FF2F831EB79DA6000E3FC5 /* baseballField.png */; };
+		A9FF2F861EB79EEE000E3FC5 /* baseballField-2.png in Resources */ = {isa = PBXBuildFile; fileRef = A9FF2F851EB79EEE000E3FC5 /* baseballField-2.png */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		A903B0211EB78B8600470B7C /* baseballRecord.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = baseballRecord.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A903B0241EB78B8600470B7C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		A903B0261EB78B8600470B7C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		A903B0291EB78B8600470B7C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		A903B02C1EB78B8600470B7C /* baseballRecord.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = baseballRecord.xcdatamodel; sourceTree = "<group>"; };
+		A903B02E1EB78B8600470B7C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		A903B0311EB78B8600470B7C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		A903B0331EB78B8600470B7C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A90E31941ED4E242004D1704 /* aboutus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = aboutus.png; sourceTree = SOURCE_ROOT; };
+		A90E31961ED4E24F004D1704 /* baseball.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = baseball.png; sourceTree = SOURCE_ROOT; };
+		A90E31971ED4E24F004D1704 /* baseballcourt.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = baseballcourt.png; sourceTree = SOURCE_ROOT; };
+		A90E319A1ED4E256004D1704 /* bbbaseball.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bbbaseball.png; sourceTree = SOURCE_ROOT; };
+		A90E319B1ED4E256004D1704 /* start.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = start.png; sourceTree = SOURCE_ROOT; };
+		A90E319C1ED4E256004D1704 /* startbot.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = startbot.png; sourceTree = SOURCE_ROOT; };
+		A90E31A01ED674AE004D1704 /* score.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = score.swift; sourceTree = "<group>"; };
+		A9FF2F831EB79DA6000E3FC5 /* baseballField.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = baseballField.png; path = ../../baseballField.png; sourceTree = "<group>"; };
+		A9FF2F851EB79EEE000E3FC5 /* baseballField-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "baseballField-2.png"; path = "../../baseballField-2.png"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		A903B01E1EB78B8600470B7C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		A903B0181EB78B8600470B7C = {
+			isa = PBXGroup;
+			children = (
+				A903B0231EB78B8600470B7C /* baseballRecord */,
+				A903B0221EB78B8600470B7C /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		A903B0221EB78B8600470B7C /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A903B0211EB78B8600470B7C /* baseballRecord.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		A903B0231EB78B8600470B7C /* baseballRecord */ = {
+			isa = PBXGroup;
+			children = (
+				A903B0241EB78B8600470B7C /* AppDelegate.swift */,
+				A903B0261EB78B8600470B7C /* ViewController.swift */,
+				A903B0281EB78B8600470B7C /* Main.storyboard */,
+				A90E319A1ED4E256004D1704 /* bbbaseball.png */,
+				A90E319B1ED4E256004D1704 /* start.png */,
+				A90E31A01ED674AE004D1704 /* score.swift */,
+				A90E319C1ED4E256004D1704 /* startbot.png */,
+				A90E31961ED4E24F004D1704 /* baseball.png */,
+				A90E31971ED4E24F004D1704 /* baseballcourt.png */,
+				A9FF2F831EB79DA6000E3FC5 /* baseballField.png */,
+				A90E31941ED4E242004D1704 /* aboutus.png */,
+				A9FF2F851EB79EEE000E3FC5 /* baseballField-2.png */,
+				A903B02E1EB78B8600470B7C /* Assets.xcassets */,
+				A903B0301EB78B8600470B7C /* LaunchScreen.storyboard */,
+				A903B0331EB78B8600470B7C /* Info.plist */,
+				A903B02B1EB78B8600470B7C /* baseballRecord.xcdatamodeld */,
+			);
+			path = baseballRecord;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		A903B0201EB78B8600470B7C /* baseballRecord */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A903B0361EB78B8600470B7C /* Build configuration list for PBXNativeTarget "baseballRecord" */;
+			buildPhases = (
+				A903B01D1EB78B8600470B7C /* Sources */,
+				A903B01E1EB78B8600470B7C /* Frameworks */,
+				A903B01F1EB78B8600470B7C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = baseballRecord;
+			productName = baseballRecord;
+			productReference = A903B0211EB78B8600470B7C /* baseballRecord.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		A903B0191EB78B8600470B7C /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0830;
+				LastUpgradeCheck = 0830;
+				ORGANIZATIONNAME = "賴昱榮";
+				TargetAttributes = {
+					A903B0201EB78B8600470B7C = {
+						CreatedOnToolsVersion = 8.3.2;
+						DevelopmentTeam = 9MJ5566875;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = A903B01C1EB78B8600470B7C /* Build configuration list for PBXProject "baseballRecord" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = A903B0181EB78B8600470B7C;
+			productRefGroup = A903B0221EB78B8600470B7C /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				A903B0201EB78B8600470B7C /* baseballRecord */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		A903B01F1EB78B8600470B7C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A903B0321EB78B8600470B7C /* LaunchScreen.storyboard in Resources */,
+				A90E319D1ED4E256004D1704 /* bbbaseball.png in Resources */,
+				A90E319E1ED4E256004D1704 /* start.png in Resources */,
+				A90E319F1ED4E256004D1704 /* startbot.png in Resources */,
+				A903B02F1EB78B8600470B7C /* Assets.xcassets in Resources */,
+				A9FF2F841EB79DA6000E3FC5 /* baseballField.png in Resources */,
+				A9FF2F861EB79EEE000E3FC5 /* baseballField-2.png in Resources */,
+				A903B02A1EB78B8600470B7C /* Main.storyboard in Resources */,
+				A90E31981ED4E24F004D1704 /* baseball.png in Resources */,
+				A90E31951ED4E242004D1704 /* aboutus.png in Resources */,
+				A90E31991ED4E24F004D1704 /* baseballcourt.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		A903B01D1EB78B8600470B7C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A903B0271EB78B8600470B7C /* ViewController.swift in Sources */,
+				A903B0251EB78B8600470B7C /* AppDelegate.swift in Sources */,
+				A90E31A11ED674AF004D1704 /* score.swift in Sources */,
+				A903B02D1EB78B8600470B7C /* baseballRecord.xcdatamodeld in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		A903B0281EB78B8600470B7C /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A903B0291EB78B8600470B7C /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		A903B0301EB78B8600470B7C /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A903B0311EB78B8600470B7C /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		A903B0341EB78B8600470B7C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		A903B0351EB78B8600470B7C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		A903B0371EB78B8600470B7C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 9MJ5566875;
+				INFOPLIST_FILE = baseballRecord/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = lai.baseballRecord;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		A903B0381EB78B8600470B7C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 9MJ5566875;
+				INFOPLIST_FILE = baseballRecord/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = lai.baseballRecord;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		A903B01C1EB78B8600470B7C /* Build configuration list for PBXProject "baseballRecord" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A903B0341EB78B8600470B7C /* Debug */,
+				A903B0351EB78B8600470B7C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A903B0361EB78B8600470B7C /* Build configuration list for PBXNativeTarget "baseballRecord" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A903B0371EB78B8600470B7C /* Debug */,
+				A903B0381EB78B8600470B7C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		A903B02B1EB78B8600470B7C /* baseballRecord.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				A903B02C1EB78B8600470B7C /* baseballRecord.xcdatamodel */,
+			);
+			currentVersion = A903B02C1EB78B8600470B7C /* baseballRecord.xcdatamodel */;
+			path = baseballRecord.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = A903B0191EB78B8600470B7C /* Project object */;
+}
