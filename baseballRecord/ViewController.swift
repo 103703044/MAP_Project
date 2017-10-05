@@ -11,6 +11,7 @@
 
 //----------------function-------------------
 import UIKit
+
 class Player{
     var name = ""
     var battingOrder = ""
@@ -264,9 +265,47 @@ class ViewController: UIViewController{
                     self.batters[self.awayOrHome][i].center.x = CGFloat(self.homeBenchX)
                     self.batters[self.awayOrHome][i].center.y = CGFloat(self.homeBenchY)
                 }
+                self.panGestureRecognizerBattingResultHome1.isEnabled = false
+                self.panGestureRecognizerBattingResultHome2.isEnabled = false
+                self.panGestureRecognizerBattingResultHome3.isEnabled = false
+                self.panGestureRecognizerBattingResultHome4.isEnabled = false
+                self.panGestureRecognizerBattingResultHome5.isEnabled = false
+                self.panGestureRecognizerBattingResultHome6.isEnabled = false
+                self.panGestureRecognizerBattingResultHome7.isEnabled = false
+                self.panGestureRecognizerBattingResultHome8.isEnabled = false
+                self.panGestureRecognizerBattingResultHome9.isEnabled = false
+                self.panGestureRecognizerBattingResultAway1.isEnabled = true
+                self.panGestureRecognizerBattingResultAway2.isEnabled = true
+                self.panGestureRecognizerBattingResultAway3.isEnabled = true
+                self.panGestureRecognizerBattingResultAway4.isEnabled = true
+                self.panGestureRecognizerBattingResultAway5.isEnabled = true
+                self.panGestureRecognizerBattingResultAway6.isEnabled = true
+                self.panGestureRecognizerBattingResultAway7.isEnabled = true
+                self.panGestureRecognizerBattingResultAway8.isEnabled = true
+                self.panGestureRecognizerBattingResultAway9.isEnabled = true
+
+                
             }
             else{
                 //主隊進攻
+                self.panGestureRecognizerBattingResultHome1.isEnabled = true
+                self.panGestureRecognizerBattingResultHome2.isEnabled = true
+                self.panGestureRecognizerBattingResultHome3.isEnabled = true
+                self.panGestureRecognizerBattingResultHome4.isEnabled = true
+                self.panGestureRecognizerBattingResultHome5.isEnabled = true
+                self.panGestureRecognizerBattingResultHome6.isEnabled = true
+                self.panGestureRecognizerBattingResultHome7.isEnabled = true
+                self.panGestureRecognizerBattingResultHome8.isEnabled = true
+                self.panGestureRecognizerBattingResultHome9.isEnabled = true
+                self.panGestureRecognizerBattingResultAway1.isEnabled = false
+                self.panGestureRecognizerBattingResultAway2.isEnabled = false
+                self.panGestureRecognizerBattingResultAway3.isEnabled = false
+                self.panGestureRecognizerBattingResultAway4.isEnabled = false
+                self.panGestureRecognizerBattingResultAway5.isEnabled = false
+                self.panGestureRecognizerBattingResultAway6.isEnabled = false
+                self.panGestureRecognizerBattingResultAway7.isEnabled = false
+                self.panGestureRecognizerBattingResultAway8.isEnabled = false
+                self.panGestureRecognizerBattingResultAway9.isEnabled = false
                 for i in 0 ... 8 {
                     self.batters[self.awayOrHome][i].alpha = 0.0
                     self.batters[self.awayOrHome][i].center.x = CGFloat(self.awayBenchX)
@@ -909,6 +948,7 @@ class ViewController: UIViewController{
         self.awayPlayer1.center.x = self.awayPlayer1.center.x + point.x
         self.awayPlayer1.center.y = self.awayPlayer1.center.y + point.y
         if sender.state == UIGestureRecognizerState.ended {
+         //   awayPlayer1.isUserInteractionEnabled = false
             self.battingResult()
             }
         }
@@ -1098,14 +1138,43 @@ class ViewController: UIViewController{
     @IBAction func errorMode(sender: UITapGestureRecognizer){
         if(baseballFieldOfError.alpha == 0){
         baseballFieldOfError.alpha = 1.0
+    
+        self.result.text = "發生失誤"
+        
+        if sender.view!.tag == 1 || sender.view!.tag == 11{
+            self.position.text = "投手"
         }
+        else if sender.view!.tag == 2 || sender.view!.tag == 12 {
+             self.position.text = "捕手"
+        }
+        else if sender.view!.tag == 3 || sender.view!.tag == 13 {
+            self.position.text = "一壘手"
+        }
+        else if sender.view!.tag == 4 || sender.view!.tag == 14 {
+            self.position.text = "二壘手"
+        }
+        else if sender.view!.tag == 5 || sender.view!.tag == 15 {
+            self.position.text = "三壘手"
+        }
+        else if sender.view!.tag == 6 || sender.view!.tag == 16 {
+            self.position.text = "游擊手"
+        }
+        else if sender.view!.tag == 7 || sender.view!.tag == 17 {
+            self.position.text = "左外野手"
+        }
+        else if sender.view!.tag == 8 || sender.view!.tag == 18 {
+            self.position.text = "中外野手"
+        }
+        else if sender.view!.tag == 9 || sender.view!.tag == 19 {
+            self.position.text = "右外野手"
+        }
+        }
+         //   self.runnerOnBase.text = "三壘有人"
         else{
             baseballFieldOfError.alpha = 0
+            self.result.text = ""
+            self.position.text = ""
         }
-        self.result.text = "發生失誤"
-        self.position.text = "投手"
-        self.runnerOnBase.text = "三壘有人"
-        
     }
     
     //拖曳捕手，決定暴投或捕逸(待測試)
@@ -1134,7 +1203,29 @@ class ViewController: UIViewController{
         }
     }
     
-    override func viewDidLoad() {
+    let panGestureRecognizerHit = UIPanGestureRecognizer(target: self, action: #selector(hit(sender:)))
+    let panGestureRecognizerPBorWP = UIPanGestureRecognizer(target: self, action: #selector(PBorWP(sender:)))
+    let panGestureRecognizerPitch = UIPanGestureRecognizer(target: self, action: #selector(pitch(sender:)))
+    let panGestureRecognizerBattingResultAway1 = UIPanGestureRecognizer(target: self, action: #selector(battingResultForAway1(sender:)))
+    let panGestureRecognizerBattingResultAway2 = UIPanGestureRecognizer(target: self, action: #selector(battingResultForAway2(sender:)))
+    let panGestureRecognizerBattingResultAway3 = UIPanGestureRecognizer(target: self, action: #selector(battingResultForAway3(sender:)))
+    let panGestureRecognizerBattingResultAway4 = UIPanGestureRecognizer(target: self, action: #selector(battingResultForAway4(sender:)))
+    let panGestureRecognizerBattingResultAway5 = UIPanGestureRecognizer(target: self, action: #selector(battingResultForAway5(sender:)))
+    let panGestureRecognizerBattingResultAway6 = UIPanGestureRecognizer(target: self, action: #selector(battingResultForAway6(sender:)))
+    let panGestureRecognizerBattingResultAway7 = UIPanGestureRecognizer(target: self, action: #selector(battingResultForAway7(sender:)))
+    let panGestureRecognizerBattingResultAway8 = UIPanGestureRecognizer(target: self, action: #selector(battingResultForAway8(sender:)))
+    let panGestureRecognizerBattingResultAway9 = UIPanGestureRecognizer(target: self, action: #selector(battingResultForAway9(sender:)))
+    let panGestureRecognizerBattingResultHome1 = UIPanGestureRecognizer(target: self, action: #selector(battingResultForHome1(sender:)))
+    let panGestureRecognizerBattingResultHome2 = UIPanGestureRecognizer(target: self, action: #selector(battingResultForHome2(sender:)))
+    let panGestureRecognizerBattingResultHome3 = UIPanGestureRecognizer(target: self, action: #selector(battingResultForHome3(sender:)))
+    let panGestureRecognizerBattingResultHome4 = UIPanGestureRecognizer(target: self, action: #selector(battingResultForHome4(sender:)))
+    let panGestureRecognizerBattingResultHome5 = UIPanGestureRecognizer(target: self, action: #selector(battingResultForHome5(sender:)))
+    let panGestureRecognizerBattingResultHome6 = UIPanGestureRecognizer(target: self, action: #selector(battingResultForHome6(sender:)))
+    let panGestureRecognizerBattingResultHome7 = UIPanGestureRecognizer(target: self, action: #selector(battingResultForHome7(sender:)))
+    let panGestureRecognizerBattingResultHome8 = UIPanGestureRecognizer(target: self, action: #selector(battingResultForHome8(sender:)))
+    let panGestureRecognizerBattingResultHome9 = UIPanGestureRecognizer(target: self, action: #selector(battingResultForHome9(sender:)))
+    
+       override func viewDidLoad() {
         super.viewDidLoad()
         batters = [[awayPlayer1,awayPlayer2,awayPlayer3,awayPlayer4,awayPlayer5,awayPlayer6,awayPlayer7,awayPlayer8,awayPlayer9] , [homePlayer1,homePlayer2,homePlayer3,homePlayer4,homePlayer5,homePlayer6,homePlayer7,homePlayer8,homePlayer9]]
         //初始化選手資料
@@ -1226,10 +1317,44 @@ class ViewController: UIViewController{
         baseballField.isUserInteractionEnabled = true
         baseballField.addGestureRecognizer(tapGestureRecognizerCallNextBatter)
         
-        let tapGestureRecognizerErrorMode = UITapGestureRecognizer(target: self, action: #selector (errorMode(sender:)))
-        tapGestureRecognizerErrorMode.numberOfTapsRequired = 3
-        
-        
+        let tapGestureRecognizerErrorModeHome1 = UITapGestureRecognizer(target: self, action: #selector (errorMode(sender:)))
+        tapGestureRecognizerErrorModeHome1.numberOfTapsRequired = 3
+        let tapGestureRecognizerErrorModeHome2 = UITapGestureRecognizer(target: self, action: #selector (errorMode(sender:)))
+        tapGestureRecognizerErrorModeHome2.numberOfTapsRequired = 3
+        let tapGestureRecognizerErrorModeHome3 = UITapGestureRecognizer(target: self, action: #selector (errorMode(sender:)))
+        tapGestureRecognizerErrorModeHome3.numberOfTapsRequired = 3
+        let tapGestureRecognizerErrorModeHome4 = UITapGestureRecognizer(target: self, action: #selector (errorMode(sender:)))
+        tapGestureRecognizerErrorModeHome4.numberOfTapsRequired = 3
+        let tapGestureRecognizerErrorModeHome5 = UITapGestureRecognizer(target: self, action: #selector (errorMode(sender:)))
+        tapGestureRecognizerErrorModeHome5.numberOfTapsRequired = 3
+        let tapGestureRecognizerErrorModeHome6 = UITapGestureRecognizer(target: self, action: #selector (errorMode(sender:)))
+        tapGestureRecognizerErrorModeHome6.numberOfTapsRequired = 3
+        let tapGestureRecognizerErrorModeHome7 = UITapGestureRecognizer(target: self, action: #selector (errorMode(sender:)))
+        tapGestureRecognizerErrorModeHome7.numberOfTapsRequired = 3
+        let tapGestureRecognizerErrorModeHome8 = UITapGestureRecognizer(target: self, action: #selector (errorMode(sender:)))
+        tapGestureRecognizerErrorModeHome8.numberOfTapsRequired = 3
+        let tapGestureRecognizerErrorModeHome9 = UITapGestureRecognizer(target: self, action: #selector (errorMode(sender:)))
+        tapGestureRecognizerErrorModeHome9.numberOfTapsRequired = 3
+        let tapGestureRecognizerErrorModeAway1 = UITapGestureRecognizer(target: self, action: #selector (errorMode(sender:)))
+        tapGestureRecognizerErrorModeAway1.numberOfTapsRequired = 3
+        let tapGestureRecognizerErrorModeAway2 = UITapGestureRecognizer(target: self, action: #selector (errorMode(sender:)))
+        tapGestureRecognizerErrorModeAway2.numberOfTapsRequired = 3
+        let tapGestureRecognizerErrorModeAway3 = UITapGestureRecognizer(target: self, action: #selector (errorMode(sender:)))
+        tapGestureRecognizerErrorModeAway3.numberOfTapsRequired = 3
+        let tapGestureRecognizerErrorModeAway4 = UITapGestureRecognizer(target: self, action: #selector (errorMode(sender:)))
+        tapGestureRecognizerErrorModeAway4.numberOfTapsRequired = 3
+        let tapGestureRecognizerErrorModeAway5 = UITapGestureRecognizer(target: self, action: #selector (errorMode(sender:)))
+        tapGestureRecognizerErrorModeAway5.numberOfTapsRequired = 3
+        let tapGestureRecognizerErrorModeAway6 = UITapGestureRecognizer(target: self, action: #selector (errorMode(sender:)))
+        tapGestureRecognizerErrorModeAway6.numberOfTapsRequired = 3
+        let tapGestureRecognizerErrorModeAway7 = UITapGestureRecognizer(target: self, action: #selector (errorMode(sender:)))
+        tapGestureRecognizerErrorModeAway7.numberOfTapsRequired = 3
+        let tapGestureRecognizerErrorModeAway8 = UITapGestureRecognizer(target: self, action: #selector (errorMode(sender:)))
+        tapGestureRecognizerErrorModeAway8.numberOfTapsRequired = 3
+        let tapGestureRecognizerErrorModeAway9 = UITapGestureRecognizer(target: self, action: #selector (errorMode(sender:)))
+        tapGestureRecognizerErrorModeAway9.numberOfTapsRequired = 3
+    
+
         let panGestureRecognizerHit = UIPanGestureRecognizer(target: self, action: #selector(hit(sender:)))
         let panGestureRecognizerPBorWP = UIPanGestureRecognizer(target: self, action: #selector(PBorWP(sender:)))
         let panGestureRecognizerPitch = UIPanGestureRecognizer(target: self, action: #selector(pitch(sender:)))
@@ -1251,6 +1376,7 @@ class ViewController: UIViewController{
         let panGestureRecognizerBattingResultHome7 = UIPanGestureRecognizer(target: self, action: #selector(battingResultForHome7(sender:)))
         let panGestureRecognizerBattingResultHome8 = UIPanGestureRecognizer(target: self, action: #selector(battingResultForHome8(sender:)))
         let panGestureRecognizerBattingResultHome9 = UIPanGestureRecognizer(target: self, action: #selector(battingResultForHome9(sender:)))
+ 
         // Attach it to a view of your choice. If it's a UIImageView, remember to enable user interaction
         
 
@@ -1263,60 +1389,78 @@ class ViewController: UIViewController{
 
         homePlayer1.isUserInteractionEnabled = true
         homePlayer1.addGestureRecognizer(panGestureRecognizerBattingResultHome1)
-        homePlayer1.addGestureRecognizer(tapGestureRecognizerErrorMode)
+        homePlayer1.addGestureRecognizer(tapGestureRecognizerErrorModeHome1)
+        panGestureRecognizerBattingResultHome1.isEnabled = false
 
         awayPlayer1.isUserInteractionEnabled = true
         awayPlayer1.addGestureRecognizer(panGestureRecognizerBattingResultAway1)
+        awayPlayer1.addGestureRecognizer(tapGestureRecognizerErrorModeAway1)
 
         homePlayer2.isUserInteractionEnabled = true
         homePlayer2.addGestureRecognizer(panGestureRecognizerPBorWP)
         homePlayer2.addGestureRecognizer(panGestureRecognizerBattingResultHome2)
+        homePlayer2.addGestureRecognizer(tapGestureRecognizerErrorModeHome2)
 
         awayPlayer2.isUserInteractionEnabled = true
         awayPlayer2.addGestureRecognizer(panGestureRecognizerBattingResultAway2)
+        awayPlayer2.addGestureRecognizer(tapGestureRecognizerErrorModeAway2)
         
         
         homePlayer3.isUserInteractionEnabled = true
         homePlayer3.addGestureRecognizer(panGestureRecognizerBattingResultHome3)
-        
+        homePlayer3.addGestureRecognizer(tapGestureRecognizerErrorModeHome3)
+
         awayPlayer3.isUserInteractionEnabled = true
         awayPlayer3.addGestureRecognizer(panGestureRecognizerBattingResultAway3)
-        
+        awayPlayer3.addGestureRecognizer(tapGestureRecognizerErrorModeAway3)
+
         homePlayer4.isUserInteractionEnabled = true
         homePlayer4.addGestureRecognizer(panGestureRecognizerBattingResultHome4)
-        
+        homePlayer4.addGestureRecognizer(tapGestureRecognizerErrorModeHome4)
+
         awayPlayer4.isUserInteractionEnabled = true
         awayPlayer4.addGestureRecognizer(panGestureRecognizerBattingResultAway4)
-        
+        awayPlayer4.addGestureRecognizer(tapGestureRecognizerErrorModeAway4)
+
         homePlayer5.isUserInteractionEnabled = true
         homePlayer5.addGestureRecognizer(panGestureRecognizerBattingResultHome5)
+        homePlayer5.addGestureRecognizer(tapGestureRecognizerErrorModeHome5)
         
         awayPlayer5.isUserInteractionEnabled = true
         awayPlayer5.addGestureRecognizer(panGestureRecognizerBattingResultAway5)
+        awayPlayer5.addGestureRecognizer(tapGestureRecognizerErrorModeAway5)
         
         homePlayer6.isUserInteractionEnabled = true
         homePlayer6.addGestureRecognizer(panGestureRecognizerBattingResultHome6)
+        homePlayer6.addGestureRecognizer(tapGestureRecognizerErrorModeHome6)
         
         awayPlayer6.isUserInteractionEnabled = true
         awayPlayer6.addGestureRecognizer(panGestureRecognizerBattingResultAway6)
+        awayPlayer6.addGestureRecognizer(tapGestureRecognizerErrorModeAway6)
         
         homePlayer7.isUserInteractionEnabled = true
         homePlayer7.addGestureRecognizer(panGestureRecognizerBattingResultHome7)
+        homePlayer7.addGestureRecognizer(tapGestureRecognizerErrorModeHome7)
         
         awayPlayer7.isUserInteractionEnabled = true
         awayPlayer7.addGestureRecognizer(panGestureRecognizerBattingResultAway7)
-        
+        awayPlayer7.addGestureRecognizer(tapGestureRecognizerErrorModeAway7)
+    
         homePlayer8.isUserInteractionEnabled = true
         homePlayer8.addGestureRecognizer(panGestureRecognizerBattingResultHome8)
+        homePlayer8.addGestureRecognizer(tapGestureRecognizerErrorModeHome8)
         
         awayPlayer8.isUserInteractionEnabled = true
         awayPlayer8.addGestureRecognizer(panGestureRecognizerBattingResultAway8)
+        awayPlayer8.addGestureRecognizer(tapGestureRecognizerErrorModeAway8)
         
         homePlayer9.isUserInteractionEnabled = true
         homePlayer9.addGestureRecognizer(panGestureRecognizerBattingResultHome9)
+        homePlayer9.addGestureRecognizer(tapGestureRecognizerErrorModeHome9)
         
         awayPlayer9.isUserInteractionEnabled = true
         awayPlayer9.addGestureRecognizer(panGestureRecognizerBattingResultAway9)
+        awayPlayer9.addGestureRecognizer(tapGestureRecognizerErrorModeAway9)
   
         
         
