@@ -191,6 +191,15 @@
                                     <outletCollection property="gestureRecognizers" destination="a1h-vn-wTL" appends="YES" id="7N2-k4-3bi"/>
                                 </connections>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xOf-Sw-iam">
+                                <rect key="frame" x="166" y="54" width="42" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="42" id="5Ra-HU-c68"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="❺" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LiW-P9-QTM">
                                 <rect key="frame" x="100" y="116" width="55" height="55"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -601,11 +610,20 @@ Unicode: U+25B2、UTF-8: E2 96 B2</string>
                                     <outletCollection property="gestureRecognizers" destination="Ika-U5-BEJ" appends="YES" id="tWf-6a-MHE"/>
                                 </connections>
                             </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y8b-8f-51r">
+                                <rect key="frame" x="389" y="230" width="62" height="58"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.77851498126983643" green="0.87281131744384766" blue="0.3803427517414093" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <gestureRecognizers/>
                     </view>
                     <connections>
+                        <outlet property="AwayTeam" destination="c5T-Am-dyr" id="F2n-Y4-QJl"/>
+                        <outlet property="HomeTeam" destination="iWV-dL-HO7" id="TNI-a1-OAR"/>
                         <outlet property="awayHit" destination="9VM-W5-e2L" id="xfK-MN-eXL"/>
                         <outlet property="awayPlayer1" destination="ceb-2V-f0o" id="TdK-iJ-Zez"/>
                         <outlet property="awayPlayer2" destination="ir6-eq-4Ut" id="KZ1-p2-GN0"/>
@@ -628,6 +646,7 @@ Unicode: U+25B2、UTF-8: E2 96 B2</string>
                         <outlet property="homePlayer4" destination="2eL-Lg-Ynv" id="Yts-C7-g8g"/>
                         <outlet property="homePlayer5" destination="LiW-P9-QTM" id="76s-CZ-rgD"/>
                         <outlet property="homePlayer6" destination="kV1-W9-t9I" id="PF3-Vq-aP8"/>
+                        <outlet property="homePlayer6Name" destination="xOf-Sw-iam" id="O2R-LJ-s4R"/>
                         <outlet property="homePlayer7" destination="nMj-5T-Idb" id="1jt-nr-ajV"/>
                         <outlet property="homePlayer8" destination="8GB-9Q-HeN" id="IUX-vq-1be"/>
                         <outlet property="homePlayer9" destination="mLI-aa-iEa" id="GnY-oJ-4Y3"/>
@@ -648,6 +667,7 @@ Unicode: U+25B2、UTF-8: E2 96 B2</string>
                         <outlet property="result" destination="X9t-jt-Xvj" id="Emq-Vp-6SZ"/>
                         <outlet property="runnerOnBase" destination="BR2-Ix-upZ" id="Qdh-NT-zN0"/>
                         <outlet property="strikeCount" destination="QhY-Ya-3eI" id="9K6-G9-nRf"/>
+                        <outlet property="test" destination="y8b-8f-51r" id="zxl-cd-img"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

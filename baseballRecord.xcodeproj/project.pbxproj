@@ -13,6 +13,7 @@
 		A903B02D1EB78B8600470B7C /* baseballRecord.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A903B02B1EB78B8600470B7C /* baseballRecord.xcdatamodeld */; };
 		A903B02F1EB78B8600470B7C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A903B02E1EB78B8600470B7C /* Assets.xcassets */; };
 		A903B0321EB78B8600470B7C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A903B0301EB78B8600470B7C /* LaunchScreen.storyboard */; };
+		A90DA14C1F9002ED00448F1D /* Function.swift in Sources */ = {isa = PBXBuildFile; fileRef = A90DA14B1F9002ED00448F1D /* Function.swift */; };
 		A90E31951ED4E242004D1704 /* aboutus.png in Resources */ = {isa = PBXBuildFile; fileRef = A90E31941ED4E242004D1704 /* aboutus.png */; };
 		A90E31981ED4E24F004D1704 /* baseball.png in Resources */ = {isa = PBXBuildFile; fileRef = A90E31961ED4E24F004D1704 /* baseball.png */; };
 		A90E31991ED4E24F004D1704 /* baseballcourt.png in Resources */ = {isa = PBXBuildFile; fileRef = A90E31971ED4E24F004D1704 /* baseballcourt.png */; };
@@ -20,12 +21,15 @@
 		A90E319E1ED4E256004D1704 /* start.png in Resources */ = {isa = PBXBuildFile; fileRef = A90E319B1ED4E256004D1704 /* start.png */; };
 		A90E319F1ED4E256004D1704 /* startbot.png in Resources */ = {isa = PBXBuildFile; fileRef = A90E319C1ED4E256004D1704 /* startbot.png */; };
 		A90E31A11ED674AF004D1704 /* score.swift in Sources */ = {isa = PBXBuildFile; fileRef = A90E31A01ED674AE004D1704 /* score.swift */; };
+		A9B8E47F1F86BE320014515A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A9B8E47E1F86BE320014515A /* GoogleService-Info.plist */; };
 		A9F603C11F51699300284B1B /* baseballField-3.png in Resources */ = {isa = PBXBuildFile; fileRef = A9F603BF1F51699300284B1B /* baseballField-3.png */; };
 		A9F603C61F516B8C00284B1B /* baseballField-1.png in Resources */ = {isa = PBXBuildFile; fileRef = A9F603C51F516B8C00284B1B /* baseballField-1.png */; };
 		A9FF2F841EB79DA6000E3FC5 /* baseballField.png in Resources */ = {isa = PBXBuildFile; fileRef = A9FF2F831EB79DA6000E3FC5 /* baseballField.png */; };
+		C198134059919B1B45E32CE3 /* Pods_baseballRecord.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 494A9C97D22F5C69E8325BF5 /* Pods_baseballRecord.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		494A9C97D22F5C69E8325BF5 /* Pods_baseballRecord.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_baseballRecord.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A903B0211EB78B8600470B7C /* baseballRecord.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = baseballRecord.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A903B0241EB78B8600470B7C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A903B0261EB78B8600470B7C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -34,6 +38,7 @@
 		A903B02E1EB78B8600470B7C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A903B0311EB78B8600470B7C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A903B0331EB78B8600470B7C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A90DA14B1F9002ED00448F1D /* Function.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Function.swift; sourceTree = "<group>"; };
 		A90E31941ED4E242004D1704 /* aboutus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = aboutus.png; sourceTree = SOURCE_ROOT; };
 		A90E31961ED4E24F004D1704 /* baseball.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = baseball.png; sourceTree = SOURCE_ROOT; };
 		A90E31971ED4E24F004D1704 /* baseballcourt.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = baseballcourt.png; sourceTree = SOURCE_ROOT; };
@@ -41,9 +46,12 @@
 		A90E319B1ED4E256004D1704 /* start.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = start.png; sourceTree = SOURCE_ROOT; };
 		A90E319C1ED4E256004D1704 /* startbot.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = startbot.png; sourceTree = SOURCE_ROOT; };
 		A90E31A01ED674AE004D1704 /* score.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = score.swift; sourceTree = "<group>"; };
+		A9B8E47E1F86BE320014515A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
 		A9F603BF1F51699300284B1B /* baseballField-3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "baseballField-3.png"; path = "../baseballField-3.png"; sourceTree = "<group>"; };
 		A9F603C51F516B8C00284B1B /* baseballField-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "baseballField-1.png"; sourceTree = "<group>"; };
 		A9FF2F831EB79DA6000E3FC5 /* baseballField.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = baseballField.png; path = ../../baseballField.png; sourceTree = "<group>"; };
+		D8BF1C9A66B37D4DE2AF6CD9 /* Pods-baseballRecord.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-baseballRecord.debug.xcconfig"; path = "Pods/Target Support Files/Pods-baseballRecord/Pods-baseballRecord.debug.xcconfig"; sourceTree = "<group>"; };
+		E9E19E7DA478E2A658EBEF4A /* Pods-baseballRecord.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-baseballRecord.release.xcconfig"; path = "Pods/Target Support Files/Pods-baseballRecord/Pods-baseballRecord.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,18 +59,30 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C198134059919B1B45E32CE3 /* Pods_baseballRecord.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7778D2FB3275C69EAFA1CAA5 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				D8BF1C9A66B37D4DE2AF6CD9 /* Pods-baseballRecord.debug.xcconfig */,
+				E9E19E7DA478E2A658EBEF4A /* Pods-baseballRecord.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		A903B0181EB78B8600470B7C = {
 			isa = PBXGroup;
 			children = (
 				A9F603C51F516B8C00284B1B /* baseballField-1.png */,
 				A903B0231EB78B8600470B7C /* baseballRecord */,
 				A903B0221EB78B8600470B7C /* Products */,
+				7778D2FB3275C69EAFA1CAA5 /* Pods */,
+				E9CD901ECDF1B0EEB4112B57 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -79,6 +99,7 @@
 			children = (
 				A903B0241EB78B8600470B7C /* AppDelegate.swift */,
 				A903B0261EB78B8600470B7C /* ViewController.swift */,
+				A90DA14B1F9002ED00448F1D /* Function.swift */,
 				A903B0281EB78B8600470B7C /* Main.storyboard */,
 				A90E319A1ED4E256004D1704 /* bbbaseball.png */,
 				A90E319B1ED4E256004D1704 /* start.png */,
@@ -92,9 +113,18 @@
 				A903B02E1EB78B8600470B7C /* Assets.xcassets */,
 				A903B0301EB78B8600470B7C /* LaunchScreen.storyboard */,
 				A903B0331EB78B8600470B7C /* Info.plist */,
+				A9B8E47E1F86BE320014515A /* GoogleService-Info.plist */,
 				A903B02B1EB78B8600470B7C /* baseballRecord.xcdatamodeld */,
 			);
 			path = baseballRecord;
+			sourceTree = "<group>";
+		};
+		E9CD901ECDF1B0EEB4112B57 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				494A9C97D22F5C69E8325BF5 /* Pods_baseballRecord.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -104,9 +134,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = A903B0361EB78B8600470B7C /* Build configuration list for PBXNativeTarget "baseballRecord" */;
 			buildPhases = (
+				BF06ADEF5B4F8452A782D46A /* [CP] Check Pods Manifest.lock */,
 				A903B01D1EB78B8600470B7C /* Sources */,
 				A903B01E1EB78B8600470B7C /* Frameworks */,
 				A903B01F1EB78B8600470B7C /* Resources */,
+				E3CE1DE3AEE077D2DE2E0ADD /* [CP] Embed Pods Frameworks */,
+				BDA6B2FB6A9426643D7773E4 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -161,6 +194,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A9B8E47F1F86BE320014515A /* GoogleService-Info.plist in Resources */,
 				A9F603C11F51699300284B1B /* baseballField-3.png in Resources */,
 				A903B0321EB78B8600470B7C /* LaunchScreen.storyboard in Resources */,
 				A90E319D1ED4E256004D1704 /* bbbaseball.png in Resources */,
@@ -178,6 +212,54 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		BDA6B2FB6A9426643D7773E4 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-baseballRecord/Pods-baseballRecord-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		BF06ADEF5B4F8452A782D46A /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		E3CE1DE3AEE077D2DE2E0ADD /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-baseballRecord/Pods-baseballRecord-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		A903B01D1EB78B8600470B7C /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -187,6 +269,7 @@
 				A903B0251EB78B8600470B7C /* AppDelegate.swift in Sources */,
 				A90E31A11ED674AF004D1704 /* score.swift in Sources */,
 				A903B02D1EB78B8600470B7C /* baseballRecord.xcdatamodeld in Sources */,
+				A90DA14C1F9002ED00448F1D /* Function.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -307,6 +390,7 @@
 		};
 		A903B0371EB78B8600470B7C /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D8BF1C9A66B37D4DE2AF6CD9 /* Pods-baseballRecord.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 9MJ5566875;
@@ -321,6 +405,7 @@
 		};
 		A903B0381EB78B8600470B7C /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E9E19E7DA478E2A658EBEF4A /* Pods-baseballRecord.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 9MJ5566875;

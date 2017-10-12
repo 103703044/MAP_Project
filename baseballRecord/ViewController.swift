@@ -11,6 +11,7 @@
 
 //----------------function-------------------
 import UIKit
+import Firebase
 
 class Player{
     var name = ""
@@ -113,11 +114,21 @@ class Player{
 
 //---------------IBoutlet&varible number-------------------------
 
+
 class ViewController: UIViewController{
+    
+    @IBOutlet weak var test: UILabel!
+    var ref:FIRDatabaseReference?
+  //  let rootRef = FIRDatabase.database().reference()
+    
+    
     var players = [String: Player]()
     var playerClassList = [Player]()
     
+    @IBOutlet weak var homePlayer6Name: UILabel!
     //客場球員1~9
+    @IBOutlet weak var HomeTeam: UILabel!
+    @IBOutlet weak var AwayTeam: UILabel!
     @IBOutlet var awayPlayer9: UILabel!
     @IBOutlet var awayPlayer8: UILabel!
     @IBOutlet var awayPlayer7: UILabel!
@@ -237,6 +248,8 @@ class ViewController: UIViewController{
     let thirdBaseY = 141
     let shortStopX = 185
     let shortStopY = 91
+    let shortStopNameX = 179
+    let shortStopNameY = 79
     let leftFielderX = 98
     let leftFielderY = 83
     let rightFielderX = 367
@@ -1227,6 +1240,25 @@ class ViewController: UIViewController{
     
        override func viewDidLoad() {
         super.viewDidLoad()
+        //let playerRef = rootRef.child("player")
+        ref = FIRDatabase.database().reference()
+        let playerRef = ref?.child("player")
+        let myTeamRef = ref?.child("teams").child("Yankees")
+        let fieldingOrderRef = myTeamRef?.child("Fielding")
+        playerRef?.observe(FIRDataEventType.value,with:{(snap: FIRDataSnapshot)in
+            self.test.text = (snap.value as AnyObject).description
+        })
+        myTeamRef?.child("Abbreviation").observe(FIRDataEventType.value, with:{(snap:FIRDataSnapshot)in
+            self.AwayTeam.text = (snap.value as AnyObject).description
+        })
+        fieldingOrderRef?.child("SS").observe(FIRDataEventType.value, with: {(snap:FIRDataSnapshot)in
+            self.homePlayer6Name.text = (snap.value as AnyObject).description
+            self.homePlayer6Name.center.x = CGFloat(self.shortStopNameX)
+            self.homePlayer6Name.center.y = CGFloat(self.shortStopNameY)
+        })
+        
+        
+        
         batters = [[awayPlayer1,awayPlayer2,awayPlayer3,awayPlayer4,awayPlayer5,awayPlayer6,awayPlayer7,awayPlayer8,awayPlayer9] , [homePlayer1,homePlayer2,homePlayer3,homePlayer4,homePlayer5,homePlayer6,homePlayer7,homePlayer8,homePlayer9]]
         //初始化選手資料
         awayPlayer1.text? = "①"
