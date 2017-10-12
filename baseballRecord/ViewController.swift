@@ -14,17 +14,29 @@ import UIKit
 import Firebase
 
 class Player{
-    var name = ""
-    var battingOrder = ""
-    var atBat = 0 //打擊次數
-    var hit = 0 //安打數
-    var ip:Float = 0.0 //投球局數
-    var position = "" //守備位置
-    var ER:Float = 0 //自責分
-    var pitchH = 0 //被安打數
-    init(as name: String ,position pos: String,battingOrder : String) {
+    var name: String //名字
+    var battingOrder: Int //棒次
+    var number: Int? //背號
+    var position: String //守備位置
+    var team: String? //所屬隊伍
+    
+    var atBat:Int = 0 //打擊次數
+    var Run:Int = 0 //得分數
+    var hit:Int = 0 //安打數
+    var RBI:Int = 0 //打點數
+    var BB:Int = 0 //保送數
+    var SO:Int = 0 //三振數
+    
+    
+    var IP:Float = 0.0 //投球局數
+    var ER:Int = 0 //自責分
+    var pitcherH:Int = 0 //被安打數
+    var pitcherBB:Int = 0//保送數
+    var pitcherSO:Int = 0//三振數
+    
+    init(as name: String ,position: String ,battingOrder : Int) {
         self.name = name
-        self.position = pos
+        self.position = position
         self.battingOrder = battingOrder
     }
     //設定打者名字
@@ -46,13 +58,13 @@ class Player{
     }
     //增加被安打數
     func addPitchH(){
-        self.pitchH += 1
+        self.pitcherH += 1
     }
     //增加投球局數
     func addIP(){
-        self.ip += 0.1
-        if self.ip.truncatingRemainder(dividingBy: 1) == 0.3 {
-            self.ip +=  -0.3 + 1
+        self.IP += 0.1
+        if self.IP.truncatingRemainder(dividingBy: 1) == 0.3 {
+            self.IP +=  -0.3 + 1
         }
     }
     //增加自責失分
@@ -82,28 +94,31 @@ class Player{
         return self.position
     }
     //取得棒次
-    func getBattingOrder() -> String{
+    func getBattingOrder() -> Int{
         return self.battingOrder
     }
     //取得投手被打擊數
     func getPitchH() -> String{
-        return String(self.pitchH)
+        return String(self.pitcherH)
     }
     //取得投球局數
     func getPitchIP() -> String{
-        return String(self.ip)
+        return String(self.IP)
     }
     //取得防禦率
     func getERA() -> String{
         var ERA:Float
+        var batterOutCount:Int
         if self.ER == 0{
             ERA = 0
         }
-        else if self.ER > 0 && self.ip == 0{
+        else if self.ER > 0 && self.IP == 0{
             ERA = 999.99
         }
         else{
-            ERA = Float(self.ER / ((Float(Int(self.ip / 1)*3) + self.ip.truncatingRemainder(dividingBy: 1)*10)/27))
+            batterOutCount = Int(self.IP / 1)*3 + Int(self.IP.truncatingRemainder(dividingBy: 1))*10
+            
+            ERA = Float(self.ER / batterOutCount * 27)
         }
 
         return String(format:"%.2f", ERA)
@@ -614,7 +629,7 @@ class ViewController: UIViewController{
         playerPosition.text? = (players[self.batters[self.awayOrHome][self.batterOn[self.awayOrHome]].text!]?.getPosition())!
         playerBA.text? = (players[self.batters[self.awayOrHome][self.batterOn[self.awayOrHome]].text!]?.getBA())!
         playerHit.text? = "\((players[self.batters[self.awayOrHome][self.batterOn[self.awayOrHome]].text!]?.getAtBat())!)-\((players[self.batters[self.awayOrHome][self.batterOn[self.awayOrHome]].text!]?.getHit())!)"
-        playerBattingOrder.text? = (players[self.batters[self.awayOrHome][self.batterOn[self.awayOrHome]].text!]?.getBattingOrder())!
+        playerBattingOrder.text? = "\((players[self.batters[self.awayOrHome][self.batterOn[self.awayOrHome]].text!]?.getBattingOrder())!)"
     }
     //func-getRunnerOnBase:文字提示更新目前壘上狀況
     func getRunnerOnBase(){
@@ -1240,6 +1255,9 @@ class ViewController: UIViewController{
     
        override func viewDidLoad() {
         super.viewDidLoad()
+        print(self.players)
+        print(self.playerClassList)
+        print("12345")
         //let playerRef = rootRef.child("player")
         ref = FIRDatabase.database().reference()
         let playerRef = ref?.child("player")
@@ -1262,75 +1280,75 @@ class ViewController: UIViewController{
         batters = [[awayPlayer1,awayPlayer2,awayPlayer3,awayPlayer4,awayPlayer5,awayPlayer6,awayPlayer7,awayPlayer8,awayPlayer9] , [homePlayer1,homePlayer2,homePlayer3,homePlayer4,homePlayer5,homePlayer6,homePlayer7,homePlayer8,homePlayer9]]
         //初始化選手資料
         awayPlayer1.text? = "①"
-        let kevin = Player(as: "Kevin" ,position: "P" ,battingOrder: "1st")
+        let kevin = Player(as: "Kevin" ,position: "P" ,battingOrder: 1)
         players.updateValue(kevin, forKey: "①")
         
         awayPlayer2.text? = "②"
-        let robber = Player(as: "Robber" ,position: "C" ,battingOrder: "2nd")
+        let robber = Player(as: "Robber" ,position: "C" ,battingOrder: 2)
         players.updateValue(robber, forKey: "②")
         
         awayPlayer3.text? = "③"
-        let green = Player(as: "Green" ,position: "1B" ,battingOrder: "3rd")
+        let green = Player(as: "Green" ,position: "1B" ,battingOrder: 3)
         players.updateValue(green, forKey: "③")
         
         awayPlayer4.text? = "④"
-        let anderson = Player(as: "Anderson" ,position: "2B" ,battingOrder: "4th")
+        let anderson = Player(as: "Anderson" ,position: "2B" ,battingOrder: 4)
         players.updateValue(anderson, forKey: "④")
         
         awayPlayer5.text? = "⑤"
-        let bob = Player(as: "Bob" ,position: "3B" ,battingOrder: "5th")
+        let bob = Player(as: "Bob" ,position: "3B" ,battingOrder: 5)
         players.updateValue(bob, forKey: "⑤")
         
         awayPlayer6.text? = "⑥"
-        let gray = Player(as: "Gray" ,position: "SS" ,battingOrder: "6th")
+        let gray = Player(as: "Gray" ,position: "SS" ,battingOrder: 6)
         players.updateValue(gray, forKey: "⑥")
         
         awayPlayer7.text? = "⑦"
-        let john = Player(as: "John" ,position: "LF" ,battingOrder: "7th")
+        let john = Player(as: "John" ,position: "LF" ,battingOrder: 7)
         players.updateValue(john, forKey: "⑦")
         
         awayPlayer8.text? = "⑧"
-        let wright = Player(as: "Wright" ,position: "CF" ,battingOrder: "8th")
+        let wright = Player(as: "Wright" ,position: "CF" ,battingOrder: 8)
         players.updateValue(wright, forKey: "⑧")
         
         awayPlayer9.text? = "⑨"
-        let denny = Player(as: "Denny" ,position: "RF" ,battingOrder: "9th")
+        let denny = Player(as: "Denny" ,position: "RF" ,battingOrder: 9)
         players.updateValue(denny, forKey: "⑨")
         
         homePlayer1.text? = "❶"
-        let ann = Player(as: "Ann" ,position: "P", battingOrder: "1st")
+        let ann = Player(as: "Ann" ,position: "P", battingOrder: 1)
         players.updateValue(ann, forKey: "❶")
         
         homePlayer2.text? = "❷"
-        let young = Player(as: "Young" ,position: "C", battingOrder: "2nd")
+        let young = Player(as: "Young" ,position: "C", battingOrder: 2)
         players.updateValue(young, forKey: "❷")
         
         homePlayer3.text? = "❸"
-        let money = Player(as: "Money" ,position: "1B", battingOrder: "3rd")
+        let money = Player(as: "Money" ,position: "1B", battingOrder: 3)
         players.updateValue(money, forKey: "❸")
         
         homePlayer4.text? = "❹"
-        let fry = Player(as: "Fry" ,position: "2B", battingOrder: "4th")
+        let fry = Player(as: "Fry" ,position: "2B", battingOrder: 4)
         players.updateValue(fry, forKey: "❹")
         
         homePlayer5.text? = "❺"
-        let carter = Player(as: "Carter" ,position: "3B", battingOrder: "5th")
+        let carter = Player(as: "Carter" ,position: "3B", battingOrder: 5)
         players.updateValue(carter, forKey: "❺")
         
         homePlayer6.text? = "❻"
-        let penny = Player(as: "Penny" ,position: "SS", battingOrder: "6th")
+        let penny = Player(as: "Penny" ,position: "SS", battingOrder: 6)
         players.updateValue(penny, forKey: "❻")
         
         homePlayer7.text? = "❼"
-        let len = Player(as: "Len" ,position: "LF", battingOrder: "7th")
+        let len = Player(as: "Len" ,position: "LF", battingOrder: 7)
         players.updateValue(len, forKey: "❼")
         
         homePlayer8.text? = "❽"
-        let rose = Player(as: "Rose" ,position: "CF", battingOrder: "8th")
+        let rose = Player(as: "Rose" ,position: "CF", battingOrder: 8)
         players.updateValue(rose, forKey: "❽")
         
         homePlayer9.text? = "❾"
-        let ted = Player(as: "Ted" ,position: "RF", battingOrder: "9th")
+        let ted = Player(as: "Ted" ,position: "RF", battingOrder: 9)
         players.updateValue(ted, forKey: "❾")
         
         //開局投手資訊
@@ -1551,6 +1569,9 @@ class ViewController: UIViewController{
         if awayPlayer9.center.x == CGFloat(rightFielderX) && awayPlayer9.center.y == CGFloat(rightFielderY){
             panGestureRecognizerBattingResultAway9.isEnabled = false
         }
+        print(self.players)
+        print(self.playerClassList)
+        print("12345")
   
         /*
         let panRecognizer = UIPanGestureRecognizer(target: self, action: (Selector("pan")))
