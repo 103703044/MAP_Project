@@ -52,7 +52,8 @@
                                 <color key="textColor" red="1" green="0.0" blue="0.0" alpha="0.80241331339999999" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                                 <connections>
-                                    <outletCollection property="gestureRecognizers" destination="Gdz-Gv-6E9" appends="YES" id="NxK-Mk-Hfa"/>
+                                    <outletCollection property="gestureRecognizers" destination="my2-Fd-khl" appends="YES" id="cpu-EX-l0W"/>
+                                    <outletCollection property="gestureRecognizers" destination="nef-Ei-KqS" appends="YES" id="U8r-nq-VSF"/>
                                 </connections>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="❽" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cqh-Yd-xhl">
@@ -63,7 +64,8 @@
                                 <color key="textColor" red="1" green="0.0" blue="0.0" alpha="0.80241331339999999" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                                 <connections>
-                                    <outletCollection property="gestureRecognizers" destination="JL2-zE-cyy" appends="YES" id="JK2-ef-3hO"/>
+                                    <outletCollection property="gestureRecognizers" destination="my2-Fd-khl" appends="YES" id="4yu-Zz-3e1"/>
+                                    <outletCollection property="gestureRecognizers" destination="nef-Ei-KqS" appends="YES" id="vL8-1w-FMA"/>
                                 </connections>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="❼" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GpW-JH-nbc">
@@ -74,7 +76,8 @@
                                 <color key="textColor" red="1" green="0.0" blue="0.0" alpha="0.80241331339999999" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                                 <connections>
-                                    <outletCollection property="gestureRecognizers" destination="bZE-cQ-wAm" appends="YES" id="bQS-sh-pZ4"/>
+                                    <outletCollection property="gestureRecognizers" destination="my2-Fd-khl" appends="YES" id="nTK-PI-FbY"/>
+                                    <outletCollection property="gestureRecognizers" destination="nef-Ei-KqS" appends="YES" id="32u-Bc-owr"/>
                                 </connections>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="❻" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xtL-6R-t1k">
@@ -85,7 +88,8 @@
                                 <color key="textColor" red="1" green="0.0" blue="0.0" alpha="0.80241331339999999" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                                 <connections>
-                                    <outletCollection property="gestureRecognizers" destination="MfJ-Cf-QcQ" appends="YES" id="xNl-nd-XhT"/>
+                                    <outletCollection property="gestureRecognizers" destination="my2-Fd-khl" appends="YES" id="Wde-1K-3Yk"/>
+                                    <outletCollection property="gestureRecognizers" destination="nef-Ei-KqS" appends="YES" id="uJR-6x-2X7"/>
                                 </connections>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="❺" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VgO-Ad-l8Q">
@@ -96,7 +100,8 @@
                                 <color key="textColor" red="1" green="0.0" blue="0.0" alpha="0.80241331339999999" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                                 <connections>
-                                    <outletCollection property="gestureRecognizers" destination="AAD-NC-ilY" appends="YES" id="aeC-gm-KJs"/>
+                                    <outletCollection property="gestureRecognizers" destination="my2-Fd-khl" appends="YES" id="YaG-VK-wxP"/>
+                                    <outletCollection property="gestureRecognizers" destination="nef-Ei-KqS" appends="YES" id="WSU-XP-h36"/>
                                 </connections>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" tag="12" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="❷" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ir6-eq-4Ut">
@@ -106,7 +111,8 @@
                                 <color key="textColor" red="1" green="0.0" blue="0.0" alpha="0.80241331339999999" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                                 <connections>
-                                    <outletCollection property="gestureRecognizers" destination="aOZ-Kt-ksL" appends="YES" id="yfk-Mw-SP7"/>
+                                    <outletCollection property="gestureRecognizers" destination="my2-Fd-khl" appends="YES" id="PkH-yh-AYq"/>
+                                    <outletCollection property="gestureRecognizers" destination="nef-Ei-KqS" appends="YES" id="RPi-y5-Ie1"/>
                                 </connections>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" tag="11" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="❶" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ceb-2V-f0o">
@@ -117,7 +123,8 @@
                                 <color key="textColor" red="1" green="0.0" blue="0.0" alpha="0.80241331335616439" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                                 <connections>
-                                    <outletCollection property="gestureRecognizers" destination="YGT-J0-qXl" appends="YES" id="iHc-eN-2Sh"/>
+                                    <outletCollection property="gestureRecognizers" destination="my2-Fd-khl" appends="YES" id="byU-Qi-jta"/>
+                                    <outletCollection property="gestureRecognizers" destination="nef-Ei-KqS" appends="YES" id="emC-36-pWe"/>
                                 </connections>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="❹" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fMR-rq-eWa">
@@ -128,7 +135,8 @@
                                 <color key="textColor" red="1" green="0.0" blue="0.0" alpha="0.80241331339999999" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                                 <connections>
-                                    <outletCollection property="gestureRecognizers" destination="shr-Ec-1wp" appends="YES" id="nlY-1A-rXf"/>
+                                    <outletCollection property="gestureRecognizers" destination="my2-Fd-khl" appends="YES" id="ef5-do-yc3"/>
+                                    <outletCollection property="gestureRecognizers" destination="nef-Ei-KqS" appends="YES" id="GlR-eZ-Vc9"/>
                                 </connections>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="❸" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DmU-8h-07a">
@@ -138,7 +146,8 @@
                                 <color key="textColor" red="1" green="0.0" blue="0.0" alpha="0.80241331339999999" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                                 <connections>
-                                    <outletCollection property="gestureRecognizers" destination="Koa-ZV-c9b" appends="YES" id="oa9-Gy-fqs"/>
+                                    <outletCollection property="gestureRecognizers" destination="my2-Fd-khl" appends="YES" id="Bjz-cg-rwz"/>
+                                    <outletCollection property="gestureRecognizers" destination="nef-Ei-KqS" appends="YES" id="3Jm-7W-wnb"/>
                                 </connections>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="❹" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2eL-Lg-Ynv">
@@ -148,7 +157,8 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="1" alpha="0.79727632705479456" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                                 <connections>
-                                    <outletCollection property="gestureRecognizers" destination="VJC-EW-p40" appends="YES" id="T2i-8n-Szg"/>
+                                    <outletCollection property="gestureRecognizers" destination="my2-Fd-khl" appends="YES" id="VKG-7R-CfR"/>
+                                    <outletCollection property="gestureRecognizers" destination="nef-Ei-KqS" appends="YES" id="AfP-rL-tEm"/>
                                 </connections>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="❻" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kV1-W9-t9I">
@@ -158,7 +168,8 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="1" alpha="0.79727632705479456" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                                 <connections>
-                                    <outletCollection property="gestureRecognizers" destination="HNV-Hh-3zf" appends="YES" id="x2O-qg-dGd"/>
+                                    <outletCollection property="gestureRecognizers" destination="my2-Fd-khl" appends="YES" id="Q9L-CR-tch"/>
+                                    <outletCollection property="gestureRecognizers" destination="nef-Ei-KqS" appends="YES" id="A0z-yl-BCr"/>
                                 </connections>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="❼" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nMj-5T-Idb">
@@ -168,7 +179,8 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="1" alpha="0.79727632709999996" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                                 <connections>
-                                    <outletCollection property="gestureRecognizers" destination="AaB-9V-N18" appends="YES" id="hTj-vX-cSm"/>
+                                    <outletCollection property="gestureRecognizers" destination="my2-Fd-khl" appends="YES" id="Qyg-2x-7Lr"/>
+                                    <outletCollection property="gestureRecognizers" destination="nef-Ei-KqS" appends="YES" id="flb-LF-dgW"/>
                                 </connections>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="❽" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8GB-9Q-HeN">
@@ -178,7 +190,8 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="1" alpha="0.79727632709999996" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                                 <connections>
-                                    <outletCollection property="gestureRecognizers" destination="NeW-XI-AGE" appends="YES" id="i6b-bT-1FZ"/>
+                                    <outletCollection property="gestureRecognizers" destination="my2-Fd-khl" appends="YES" id="ZOu-pd-hy1"/>
+                                    <outletCollection property="gestureRecognizers" destination="nef-Ei-KqS" appends="YES" id="bQl-Yd-KUT"/>
                                 </connections>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="❾" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mLI-aa-iEa">
@@ -188,7 +201,8 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="1" alpha="0.79727632709999996" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                                 <connections>
-                                    <outletCollection property="gestureRecognizers" destination="a1h-vn-wTL" appends="YES" id="7N2-k4-3bi"/>
+                                    <outletCollection property="gestureRecognizers" destination="my2-Fd-khl" appends="YES" id="Nmf-Eq-fMz"/>
+                                    <outletCollection property="gestureRecognizers" destination="nef-Ei-KqS" appends="YES" id="JDN-6v-wcX"/>
                                 </connections>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xOf-Sw-iam">
@@ -207,7 +221,8 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="1" alpha="0.79727632705479456" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                                 <connections>
-                                    <outletCollection property="gestureRecognizers" destination="iLu-ZJ-GEr" appends="YES" id="D6T-qR-Yzl"/>
+                                    <outletCollection property="gestureRecognizers" destination="my2-Fd-khl" appends="YES" id="UQu-wn-Q1T"/>
+                                    <outletCollection property="gestureRecognizers" destination="nef-Ei-KqS" appends="YES" id="vnN-J0-eFz"/>
                                 </connections>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" tag="3" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="❸" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8cf-Ia-VcU">
@@ -217,7 +232,8 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="1" alpha="0.79727632705479456" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                                 <connections>
-                                    <outletCollection property="gestureRecognizers" destination="h8x-sv-1bP" appends="YES" id="uYb-Rx-UoQ"/>
+                                    <outletCollection property="gestureRecognizers" destination="my2-Fd-khl" appends="YES" id="WNm-mo-NIh"/>
+                                    <outletCollection property="gestureRecognizers" destination="nef-Ei-KqS" appends="YES" id="cdx-d2-tK3"/>
                                 </connections>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="❶" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="miZ-y6-khV">
@@ -228,7 +244,8 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="1" alpha="0.79727632705479456" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                                 <connections>
-                                    <outletCollection property="gestureRecognizers" destination="W43-ZR-nsV" appends="YES" id="3XU-Xo-ZuE"/>
+                                    <outletCollection property="gestureRecognizers" destination="my2-Fd-khl" appends="YES" id="t6M-Xc-nwT"/>
+                                    <outletCollection property="gestureRecognizers" destination="nef-Ei-KqS" appends="YES" id="825-kt-w36"/>
                                 </connections>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="❷" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xUF-HG-wlq">
@@ -240,7 +257,8 @@
                                 <nil key="highlightedColor"/>
                                 <connections>
                                     <outletCollection property="gestureRecognizers" destination="EZ1-oO-uBR" appends="YES" id="wvZ-Ob-L85"/>
-                                    <outletCollection property="gestureRecognizers" destination="ghs-A3-hbP" appends="YES" id="JJ1-cc-P2b"/>
+                                    <outletCollection property="gestureRecognizers" destination="my2-Fd-khl" appends="YES" id="xi1-CE-DQC"/>
+                                    <outletCollection property="gestureRecognizers" destination="nef-Ei-KqS" appends="YES" id="a5l-5W-5Pm"/>
                                 </connections>
                             </label>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="16S-Sn-vTw">
@@ -526,21 +544,21 @@ Unicode: U+25B2、UTF-8: E2 96 B2</string>
                                         <rect key="frame" x="1" y="61" width="102" height="55"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="1st" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AuD-NA-Gxg">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AuD-NA-Gxg">
                                                 <rect key="frame" x="0.0" y="0.0" width="30" height="21"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" red="0.80000001190000003" green="0.40000000600000002" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="B's name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jpH-yw-LPu">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jpH-yw-LPu">
                                                 <rect key="frame" x="31" y="0.0" width="70" height="21"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0-0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UWV-dB-v13">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UWV-dB-v13">
                                                 <rect key="frame" x="0.0" y="37" width="29" height="21"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -554,14 +572,14 @@ Unicode: U+25B2、UTF-8: E2 96 B2</string>
                                                 <color key="textColor" red="0.0" green="0.50196081400000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0.000" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VOa-n5-QJ1">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VOa-n5-QJ1">
                                                 <rect key="frame" x="40" y="18" width="43" height="21"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                 <color key="textColor" red="0.0" green="0.50196081400000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="P" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SJZ-7S-5Py">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SJZ-7S-5Py">
                                                 <rect key="frame" x="75" y="36" width="22" height="21"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
@@ -698,35 +716,19 @@ Unicode: U+25B2、UTF-8: E2 96 B2</string>
                         <action selector="PBorWP:" destination="BYZ-38-t0r" id="0fm-JR-YnM"/>
                     </connections>
                 </panGestureRecognizer>
-                <panGestureRecognizer minimumNumberOfTouches="1" id="YGT-J0-qXl" userLabel="panForAway1">
+                <panGestureRecognizer minimumNumberOfTouches="1" id="my2-Fd-khl" userLabel="BattingResult">
                     <connections>
-                        <action selector="battingResultWithSender:" destination="BYZ-38-t0r" id="3Gt-Pb-LaO"/>
+                        <action selector="battingResultFunctionWithSender:" destination="BYZ-38-t0r" id="ifN-GS-LDr"/>
                     </connections>
                 </panGestureRecognizer>
-                <panGestureRecognizer minimumNumberOfTouches="1" id="aOZ-Kt-ksL" userLabel="panForAway2">
-                    <connections>
-                        <action selector="battingResultForAway2:" destination="BYZ-38-t0r" id="byW-bB-e5A"/>
-                    </connections>
-                </panGestureRecognizer>
-                <panGestureRecognizer minimumNumberOfTouches="1" id="Koa-ZV-c9b" userLabel="panForAway3"/>
-                <panGestureRecognizer minimumNumberOfTouches="1" id="shr-Ec-1wp" userLabel="panForAway4"/>
-                <panGestureRecognizer minimumNumberOfTouches="1" id="AAD-NC-ilY" userLabel="panForAway5"/>
-                <panGestureRecognizer minimumNumberOfTouches="1" id="MfJ-Cf-QcQ" userLabel="panForAway6"/>
-                <panGestureRecognizer minimumNumberOfTouches="1" id="bZE-cQ-wAm" userLabel="panForAway7"/>
-                <panGestureRecognizer minimumNumberOfTouches="1" id="JL2-zE-cyy" userLabel="panForAway8"/>
-                <panGestureRecognizer minimumNumberOfTouches="1" id="Gdz-Gv-6E9" userLabel="panForAway9"/>
-                <panGestureRecognizer minimumNumberOfTouches="1" id="W43-ZR-nsV" userLabel="panForHome1"/>
-                <panGestureRecognizer minimumNumberOfTouches="1" id="ghs-A3-hbP" userLabel="panForHome2"/>
-                <panGestureRecognizer minimumNumberOfTouches="1" id="h8x-sv-1bP" userLabel="panForHome3"/>
-                <panGestureRecognizer minimumNumberOfTouches="1" id="VJC-EW-p40" userLabel="panForHome4"/>
-                <panGestureRecognizer minimumNumberOfTouches="1" id="iLu-ZJ-GEr" userLabel="panForHome5"/>
-                <panGestureRecognizer minimumNumberOfTouches="1" id="HNV-Hh-3zf" userLabel="panForHome6"/>
-                <panGestureRecognizer minimumNumberOfTouches="1" id="AaB-9V-N18" userLabel="panForHome7"/>
-                <panGestureRecognizer minimumNumberOfTouches="1" id="NeW-XI-AGE" userLabel="panForHome8"/>
-                <panGestureRecognizer minimumNumberOfTouches="1" id="a1h-vn-wTL" userLabel="panForHome9"/>
-                <tapGestureRecognizer numberOfTapsRequired="2" id="PKF-5q-d24">
+                <tapGestureRecognizer numberOfTapsRequired="2" id="PKF-5q-d24" userLabel="CallingBatter">
                     <connections>
                         <action selector="call:" destination="BYZ-38-t0r" id="ERu-ai-Yol"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer numberOfTapsRequired="3" id="nef-Ei-KqS" userLabel="ErrorMode">
+                    <connections>
+                        <action selector="errorModeWithSender:" destination="BYZ-38-t0r" id="fEF-R7-xvt"/>
                     </connections>
                 </tapGestureRecognizer>
             </objects>
