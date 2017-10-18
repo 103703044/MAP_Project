@@ -25,6 +25,7 @@ class ViewController: UIViewController{
     
     var players = [String: Player]()
     var playerClassList = [Player]()
+    var playerTest = [Player]()
 
     //客場球員1~9
     @IBOutlet weak var HomeTeam: UILabel!
@@ -464,6 +465,7 @@ class ViewController: UIViewController{
     
     //點擊背景觸發func-call:讓下一位打者上打擊區
 @IBAction func call(_ sender: UITapGestureRecognizer) {
+    print(players)
         callingCount += 1
         if callingCount == 1{
         for i in 0...8{
@@ -961,7 +963,6 @@ class ViewController: UIViewController{
          homePlayer2.center.y = CGFloat(catcherY)
         }
         
-        
     }
 
        override func viewDidLoad() {
@@ -972,18 +973,24 @@ class ViewController: UIViewController{
         //let playerRef = rootRef.child("player")
         ref = FIRDatabase.database().reference()
         let playerRef = ref?.child("player")
+        let PlayerRef = ref?.child("Player")
         let awayTeamRef = ref?.child("teams").child("Yankees")
         let homeTeamRef = ref?.child("teams").child("Phillies")
         let awayBattingOrderRef = awayTeamRef?.child("order")
         let homeBattingOrderRef = homeTeamRef?.child("order")
-        
+        let gameKey = ref?.child("Game").childByAutoId().key
+
+   /*
         playerRef?.observe(FIRDataEventType.value,with:{(snap: FIRDataSnapshot)in
             self.test.text = (snap.value as AnyObject).description
         })
+ */
         awayTeamRef?.child("Abbreviation").observe(FIRDataEventType.value, with:{(snap:FIRDataSnapshot)in
+            self.ref?.child("posts").child(gameKey!).child("Away").setValue(snap.value)
             self.AwayTeam.text = (snap.value as AnyObject).description
         })
         homeTeamRef?.child("Abbreviation").observe(FIRDataEventType.value, with:{(snap:FIRDataSnapshot)in
+            self.ref?.child("posts").child(gameKey!).child("Home").setValue(snap.value)
             self.HomeTeam.text = (snap.value as AnyObject).description
         })
 
@@ -995,6 +1002,8 @@ class ViewController: UIViewController{
         awayBattingOrderRef?.child("1/Name").observe(FIRDataEventType.value, with: {(name)in
             awayBattingOrderRef?.child("1/Position").observe(FIRDataEventType.value,with:{(position)in
                 let player11 = Player(as:name.value as! String , position:position.value as! String , battingOrder: 1)
+                self.playerTest.append(player11)
+                print (self.playerTest[0].name)
                 self.players.updateValue(player11, forKey: "①")
                 /*
                 playerRef?.child("PlayerID3/BattingStatic/AB").observe(FIRDataEventType.value, with: {(AB)in
@@ -1015,6 +1024,8 @@ class ViewController: UIViewController{
         awayBattingOrderRef?.child("2/Name").observe(FIRDataEventType.value, with: {(name)in
             awayBattingOrderRef?.child("2/Position").observe(FIRDataEventType.value,with:{(position)in
                 let player12 = Player(as:name.value as! String , position:position.value as! String , battingOrder: 2)
+                self.playerTest.append(player12)
+                print (self.playerTest[1].name)
                 self.players.updateValue(player12, forKey: "②")
             })
         })
@@ -1023,6 +1034,8 @@ class ViewController: UIViewController{
         awayBattingOrderRef?.child("3/Name").observe(FIRDataEventType.value, with: {(name)in
             awayBattingOrderRef?.child("3/Position").observe(FIRDataEventType.value,with:{(position)in
                 let player13 = Player(as:name.value as! String , position:position.value as! String , battingOrder: 3)
+                self.playerTest.append(player13)
+   //             print (self.playerTest[2].name)
                 self.players.updateValue(player13, forKey: "③")
             })
         })
@@ -1294,6 +1307,36 @@ class ViewController: UIViewController{
         baseball.isUserInteractionEnabled = true
         pitchingBall.isUserInteractionEnabled = true
         
+        for i in 1 ... 3{
+            PlayerRef?.child("PlayerList").child("\(i)").observe(FIRDataEventType.value,with:{(snap: FIRDataSnapshot)in
+            print((snap.value as AnyObject).description)
+        })
+        }
+
+
+/*
+        var userID = "aaa"
+        var username = "bbb"
+        var title = "CCC"
+        var body = "DDD"
+        let key = ref?.child("test").childByAutoId().key
+        let post = ["uid": userID,
+                    "author": username,
+                    "title": title,
+                    "body": body]
+        let childUpdates = ["/test/\(key)": post,
+                            "/user-test/\(userID)/\(key)/": post]
+        ref?.updateChildValues(childUpdates)
+ */
+ 
+ //       print(awayTeamRef?.child("Abbreviation").value(forKey: "Abbreviation"))
+        /*
+        let gameLog = ["Away" : awayTeamName,
+                       "Home" : homeTeamName,
+                       "Location" : "default"]
+        let childUpdateEX = ["/Game/\(gameKey)":gameLog]
+        ref?.updateChildValues(childUpdateEX)
+ */
    }
 /*
     override func didReceiveMemoryWarning() {
