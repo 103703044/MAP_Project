@@ -6,9 +6,6 @@
 //  Copyright © 2017年 賴昱榮. All rights reserved.
 //
 
-
-
-
 //----------------function-------------------
 import UIKit
 import Firebase
@@ -25,8 +22,9 @@ class ViewController: UIViewController{
     
     var players = [String: Player]()
     var playerClassList = [Player]()
-    var playerTest = [Player]()
-
+    var playerTest = [Int:Player]()
+    var playTest = [Player]()
+    
     //客場球員1~9
     @IBOutlet weak var HomeTeam: UILabel!
     @IBOutlet weak var AwayTeam: UILabel!
@@ -168,70 +166,77 @@ class ViewController: UIViewController{
     let awayBenchX = 100
     let awayBenchY = 250
     
+    var player11 :Player!
+    var player12 :Player!
+    var player13 :Player!
+    var player14 :Player!
+    var player15 :Player!
+    var player16 :Player!
+    var player17 :Player!
+    var player18 :Player!
+    var player19 :Player!
+    var player31 :Player!
+    var player32 :Player!
+    var player33 :Player!
+    var player34 :Player!
+    var player35 :Player!
+    var player36 :Player!
+    var player37 :Player!
+    var player38 :Player!
+    var player39 :Player!
+    
+
+    
+
+    
     //---------------IBoutlet&varible number ended-------------------------
 
     
     
     //-----setDefence------
     //func-setDefence: 讓進攻方球員回到休息區並透明化，讓守備方球員到各自的守備位置並顯示
-    func setDefence(){
-        var whichTeamDefence = 1
+    func setDefence(setPlayers : [[UILabel]] , whichTeamBatting : Int , awayP : Int , homeP : Int){
+        var fieldingTeam = 1
         playerName.text = ""
         playerPosition.text = ""
         playerBA.text = ""
         playerHit.text = ""
         playerBattingOrder.text = ""
-        UIView.animate(withDuration: 1.0, delay: 1.0, animations: {
-            if self.awayOrHome == 1 {
+        UIView.animate(withDuration: 0.5 , delay: 0.5 , animations: {
+            if whichTeamBatting == 1 {
                 //主隊進攻
-                whichTeamDefence = 0
+                fieldingTeam = 0
                 for i in 0 ... 8 {
-                    self.batters[1][i].alpha = 0.0
-                    self.batters[1][i].center.x = CGFloat(self.homeBenchX)
-                    self.batters[1][i].center.y = CGFloat(self.homeBenchY)
+                    setPlayers[1][i].alpha = 0.0
+                    setPlayers[1][i].center.x = CGFloat(self.homeBenchX)
+                    setPlayers[1][i].center.y = CGFloat(self.homeBenchY)
                     //投手資訊
-                    self.pitchName.text? = (self.players[self.batters[0][self.awayPitcher].text!]?.getName())!
-                    self.pitchIP.text? = (self.players[self.batters[0][self.awayPitcher].text!]?.getPitchIP())!
-                    self.pitchERA.text? = (self.players[self.batters[0][self.awayPitcher].text!]?.getERA())!
-                    self.pitchH.text? = (self.players[self.batters[0][self.awayPitcher].text!]?.getPitchH())!
+                    self.pitchName.text? = (self.players[setPlayers[0][awayP].text!]?.getName())!
+                    self.pitchIP.text? = (self.players[setPlayers[0][awayP].text!]?.getPitchIP())!
+                    self.pitchERA.text? = (self.players[setPlayers[0][awayP].text!]?.getERA())!
+                    self.pitchH.text? = (self.players[setPlayers[0][awayP].text!]?.getPitchH())!
                 }
             }
             else{
                 //客隊進攻
                 for i in 0 ... 8 {
-                    self.batters[0][i].alpha = 0.0
-                    self.batters[0][i].center.x = CGFloat(self.awayBenchX)
-                    self.batters[0][i].center.y = CGFloat(self.awayBenchY)
+                    setPlayers[0][i].alpha = 0.0
+                    setPlayers[0][i].center.x = CGFloat(self.awayBenchX)
+                    setPlayers[0][i].center.y = CGFloat(self.awayBenchY)
                     //投手資訊
-                    self.pitchName.text? = (self.players[self.batters[1][self.homePitcher].text!]?.getName())!
-                    self.pitchIP.text? = (self.players[self.batters[1][self.homePitcher].text!]?.getPitchIP())!
-                    self.pitchERA.text? = (self.players[self.batters[1][self.homePitcher].text!]?.getERA())!
-                    self.pitchH.text? = (self.players[self.batters[1][self.homePitcher].text!]?.getPitchH())!
+                    self.pitchName.text? = (self.players[setPlayers[1][homeP].text!]?.getName())!
+                    self.pitchIP.text? = (self.players[setPlayers[1][homeP].text!]?.getPitchIP())!
+                    self.pitchERA.text? = (self.players[setPlayers[1][homeP].text!]?.getERA())!
+                    self.pitchH.text? = (self.players[setPlayers[1][homeP].text!]?.getPitchH())!
                 }
             }
         })
-        UIView.animate(withDuration: 1.0, delay: 2.0, animations: {
+        UIView.animate(withDuration: 0.5 , delay: 1.0, animations: {
             for i in 0 ... 8{
-                self.batters[whichTeamDefence][i].alpha = 1.0
+                setPlayers[fieldingTeam][i].alpha = 1.0
+                setPlayers[fieldingTeam][i].center.x = (self.players[setPlayers[fieldingTeam][i].text!]?.locationX)!
+                setPlayers[fieldingTeam][i].center.y = (self.players[setPlayers[fieldingTeam][i].text!]?.locationY)!
             }
-            self.batters[whichTeamDefence][0].center.x = CGFloat(self.pitcherX)
-            self.batters[whichTeamDefence][0].center.y = CGFloat(self.pitcherY)
-            self.batters[whichTeamDefence][1].center.x = CGFloat(self.catcherX)
-            self.batters[whichTeamDefence][1].center.y = CGFloat(self.catcherY)
-            self.batters[whichTeamDefence][2].center.x = CGFloat(self.firstBaseX)
-            self.batters[whichTeamDefence][2].center.y = CGFloat(self.firstBaseY)
-            self.batters[whichTeamDefence][3].center.x = CGFloat(self.secondBaseX)
-            self.batters[whichTeamDefence][3].center.y = CGFloat(self.secondBaseY)
-            self.batters[whichTeamDefence][4].center.x = CGFloat(self.thirdBaseX)
-            self.batters[whichTeamDefence][4].center.y = CGFloat(self.thirdBaseY)
-            self.batters[whichTeamDefence][5].center.x = CGFloat(self.shortStopX)
-            self.batters[whichTeamDefence][5].center.y = CGFloat(self.shortStopY)
-            self.batters[whichTeamDefence][6].center.x = CGFloat(self.leftFielderX)
-            self.batters[whichTeamDefence][6].center.y = CGFloat(self.leftFielderY)
-            self.batters[whichTeamDefence][7].center.x = CGFloat(self.centerFielderX)
-            self.batters[whichTeamDefence][7].center.y = CGFloat(self.centerFielderY)
-            self.batters[whichTeamDefence][8].center.x = CGFloat(self.rightFielderX)
-            self.batters[whichTeamDefence][8].center.y = CGFloat(self.rightFielderY)
     })
 
     }
@@ -249,9 +254,9 @@ class ViewController: UIViewController{
         }
     }
     //func-inningCheck(0 = 上換下 1 = 下換上):上半局換成下半局，或下半局換到下局的上半局，並setDefence
-    func inningCheck(whichTeam: Int) {
+    func inningCheck(whichTeamBattingEnded: Int) {
         scoringOfTheInning = 0
-        if whichTeam == 0 {
+        if whichTeamBattingEnded == 0 {
             innings.text = String (inning) + "▼"
             awayOrHome = 1
         }
@@ -260,7 +265,7 @@ class ViewController: UIViewController{
             innings.text = String (inning) + "▲"
             awayOrHome = 0
         }
-        setDefence()
+        setDefence(setPlayers: batters, whichTeamBatting: awayOrHome, awayP: awayPitcher, homeP: homePitcher)
     }
     
     //func-countReset:球數重置
@@ -458,16 +463,27 @@ class ViewController: UIViewController{
         
         if Count >= 3 {
             out = 0
-            inningCheck(whichTeam: awayOrHome)
+            inningCheck(whichTeamBattingEnded: awayOrHome)
         }
  
     }
     
     //點擊背景觸發func-call:讓下一位打者上打擊區
 @IBAction func call(_ sender: UITapGestureRecognizer) {
-    print(players)
+
         callingCount += 1
         if callingCount == 1{
+            
+            
+            Player.arrayOfPlayer[0].reverse()
+            Player.arrayOfPlayer[1].reverse()
+            for i in 0 ... 8 {
+                print(Player.arrayOfPlayer[0][i].name)
+                print(Player.arrayOfPlayer[1][i].name)
+                print("//")
+            }
+            
+        setDefence(setPlayers: batters, whichTeamBatting: awayOrHome, awayP: awayPitcher, homeP: homePitcher)
         for i in 0...8{
             if players[batters[1][i].text!]?.position == "P"{
                 homePitcher = i
@@ -489,6 +505,7 @@ class ViewController: UIViewController{
             pitchH.text? = (players[self.batters[0][awayPitcher].text!]?.getPitchH())!
             }
     }
+        else{
         self.result.text = ""
         self.position.text = ""
         self.runnerOnBase.text = ""
@@ -512,6 +529,7 @@ class ViewController: UIViewController{
         playerBA.text? = (players[self.batters[self.awayOrHome][self.batterOn[self.awayOrHome]].text!]?.getBA())!
         playerHit.text? = "\((players[self.batters[self.awayOrHome][self.batterOn[self.awayOrHome]].text!]?.getAtBat())!)-\((players[self.batters[self.awayOrHome][self.batterOn[self.awayOrHome]].text!]?.getHit())!)"
         playerBattingOrder.text? = "\((players[self.batters[self.awayOrHome][self.batterOn[self.awayOrHome]].text!]?.getBattingOrder())!)"
+    }
     }
     //func-getRunnerOnBase:文字提示更新目前壘上狀況
     func getRunnerOnBase(){
@@ -964,28 +982,26 @@ class ViewController: UIViewController{
         }
         
     }
-
-       override func viewDidLoad() {
-        super.viewDidLoad()
-        print(self.players)
-        print(self.playerClassList)
-        print("12345")
+    
+    
+    
+    
+    
+    override func loadView(){
+        super.loadView()
+  //      print(self.players)
+  //      print(self.playerClassList)
+  //      print("12345")
         //let playerRef = rootRef.child("player")
         ref = FIRDatabase.database().reference()
-        let playerRef = ref?.child("player")
+      //let playerRef = ref?.child("player")
         let PlayerRef = ref?.child("Player")
         let awayTeamRef = ref?.child("teams").child("Yankees")
         let homeTeamRef = ref?.child("teams").child("Phillies")
         let awayBattingOrderRef = awayTeamRef?.child("order")
         let homeBattingOrderRef = homeTeamRef?.child("order")
         let gameKey = ref?.child("Game").childByAutoId().key
-
-   /*
-        playerRef?.observe(FIRDataEventType.value,with:{(snap: FIRDataSnapshot)in
-            self.test.text = (snap.value as AnyObject).description
-        })
- */
-        awayTeamRef?.child("Abbreviation").observe(FIRDataEventType.value, with:{(snap:FIRDataSnapshot)in
+              awayTeamRef?.child("Abbreviation").observe(FIRDataEventType.value, with:{(snap:FIRDataSnapshot)in
             self.ref?.child("posts").child(gameKey!).child("Away").setValue(snap.value)
             self.AwayTeam.text = (snap.value as AnyObject).description
         })
@@ -993,74 +1009,92 @@ class ViewController: UIViewController{
             self.ref?.child("posts").child(gameKey!).child("Home").setValue(snap.value)
             self.HomeTeam.text = (snap.value as AnyObject).description
         })
-
+        
         
         batters = [[awayPlayer1,awayPlayer2,awayPlayer3,awayPlayer4,awayPlayer5,awayPlayer6,awayPlayer7,awayPlayer8,awayPlayer9] , [homePlayer1,homePlayer2,homePlayer3,homePlayer4,homePlayer5,homePlayer6,homePlayer7,homePlayer8,homePlayer9]]
-        //初始化選手資料
         
+        for i in 0 ... 1 {
+            for j in 0 ... 8{
+                batters[i][j].tag = i*100 + j
+                batters[i][j].isUserInteractionEnabled = true
+            }
+        }
+        //初始化選手資料
+        // print(playTest)
         awayPlayer1.text? = "①"
         awayBattingOrderRef?.child("1/Name").observe(FIRDataEventType.value, with: {(name)in
             awayBattingOrderRef?.child("1/Position").observe(FIRDataEventType.value,with:{(position)in
-                let player11 = Player(as:name.value as! String , position:position.value as! String , battingOrder: 1)
-                self.playerTest.append(player11)
-                print (self.playerTest[0].name)
-                self.players.updateValue(player11, forKey: "①")
+                
+                self.player11 = Player(as:name.value as! String , position:position.value as! String , battingOrder: 1, awayOrHome: 0)
+                self.players.updateValue(self.player11, forKey: "①")
+                self.playerTest.updateValue(self.player11, forKey: self.batters[0][0].tag)
                 /*
-                playerRef?.child("PlayerID3/BattingStatic/AB").observe(FIRDataEventType.value, with: {(AB)in
-                    player10.atBatOverall = AB.value as? Int
-                    let atbat = AB.value
-                    print(atbat!)
-                    print(AB.value!)
-                    print(AB.key)
-                    print(player10.atBatOverall!)
-                })
- */
+                 playerRef?.child("PlayerID3/BattingStatic/AB").observe(FIRDataEventType.value, with: {(AB)in
+                 player10.atBatOverall = AB.value as? Int
+                 let atbat = AB.value
+                 print(atbat!)
+                 print(AB.value!)
+                 print(AB.key)
+                 print(player10.atBatOverall!)
+                 })
+                 */
+            })
         })
-        })
-
+        
         
         
         awayPlayer2.text? = "②"
         awayBattingOrderRef?.child("2/Name").observe(FIRDataEventType.value, with: {(name)in
             awayBattingOrderRef?.child("2/Position").observe(FIRDataEventType.value,with:{(position)in
-                let player12 = Player(as:name.value as! String , position:position.value as! String , battingOrder: 2)
-                self.playerTest.append(player12)
-                print (self.playerTest[1].name)
-                self.players.updateValue(player12, forKey: "②")
-            })
-        })
+                self.player12 = Player(as:name.value as! String , position:position.value as! String , battingOrder: 2, awayOrHome: 0)
+                self.players.updateValue(self.player12, forKey: "②")
+                self.playerTest.updateValue(self.player12, forKey: self.batters[0][1].tag)
+        //        self.playTest[0][1] = (self.player12)
 
-        awayPlayer3.text? = "③"
-        awayBattingOrderRef?.child("3/Name").observe(FIRDataEventType.value, with: {(name)in
-            awayBattingOrderRef?.child("3/Position").observe(FIRDataEventType.value,with:{(position)in
-                let player13 = Player(as:name.value as! String , position:position.value as! String , battingOrder: 3)
-                self.playerTest.append(player13)
-   //             print (self.playerTest[2].name)
-                self.players.updateValue(player13, forKey: "③")
             })
         })
         
+        awayPlayer3.text? = "③"
+        awayBattingOrderRef?.child("3/Name").observe(FIRDataEventType.value, with: {(name)in
+            awayBattingOrderRef?.child("3/Position").observe(FIRDataEventType.value,with:{(position)in
+                self.player13 = Player(as:name.value as! String , position:position.value as! String , battingOrder: 3, awayOrHome: 0)
+                self.players.updateValue(self.player13, forKey: "③")
+               self.playerTest.updateValue(self.player13, forKey: self.batters[0][2].tag)
+       //         self.playTest[0][2] = (self.player13)
+
+            })
+        })
+    
         awayPlayer4.text? = "④"
         awayBattingOrderRef?.child("4/Name").observe(FIRDataEventType.value, with: {(name)in
             awayBattingOrderRef?.child("4/Position").observe(FIRDataEventType.value,with:{(position)in
-                let player14 = Player(as:name.value as! String , position:position.value as! String , battingOrder: 4)
-                self.players.updateValue(player14, forKey: "④")
+                self.player14 = Player(as:name.value as! String , position:position.value as! String , battingOrder: 4, awayOrHome: 0)
+                self.players.updateValue(self.player14, forKey: "④")
+                self.playerTest.updateValue(self.player14, forKey: self.batters[0][3].tag)
+       //         self.playTest[0][3] = (self.player14)
+
             })
         })
         
         awayPlayer5.text? = "⑤"
         awayBattingOrderRef?.child("5/Name").observe(FIRDataEventType.value, with: {(name)in
             awayBattingOrderRef?.child("5/Position").observe(FIRDataEventType.value,with:{(position)in
-                let player15 = Player(as:name.value as! String , position:position.value as! String , battingOrder: 5)
-                self.players.updateValue(player15, forKey: "⑤")
+                self.player15 = Player(as:name.value as! String , position:position.value as! String , battingOrder: 5, awayOrHome: 0)
+                self.players.updateValue(self.player15, forKey: "⑤")
+                self.playerTest.updateValue(self.player15, forKey: self.batters[0][4].tag)
+     //           self.playTest[0][4] = (self.player15)
+
             })
         })
         
         awayPlayer6.text? = "⑥"
         awayBattingOrderRef?.child("6/Name").observe(FIRDataEventType.value, with: {(name)in
             awayBattingOrderRef?.child("6/Position").observe(FIRDataEventType.value,with:{(position)in
-                let player16 = Player(as:name.value as! String , position:position.value as! String , battingOrder: 6)
-                self.players.updateValue(player16, forKey: "⑥")
+                self.player16 = Player(as:name.value as! String , position:position.value as! String , battingOrder: 6, awayOrHome: 0)
+                self.players.updateValue(self.player16, forKey: "⑥")
+                self.playerTest.updateValue(self.player16, forKey: self.batters[0][5].tag)
+       //         self.playTest[0][5] = (self.player16)
+
             })
         })
         
@@ -1068,16 +1102,22 @@ class ViewController: UIViewController{
         awayPlayer7.text? = "⑦"
         awayBattingOrderRef?.child("7/Name").observe(FIRDataEventType.value, with: {(name)in
             awayBattingOrderRef?.child("7/Position").observe(FIRDataEventType.value,with:{(position)in
-                let player17 = Player(as:name.value as! String , position:position.value as! String , battingOrder: 7)
-                self.players.updateValue(player17, forKey: "⑦")
+                self.player17 = Player(as:name.value as! String , position:position.value as! String , battingOrder: 7, awayOrHome: 0)
+                self.players.updateValue(self.player17, forKey: "⑦")
+                self.playerTest.updateValue(self.player17, forKey: self.batters[0][6].tag)
+          //      self.playTest[0][6] = (self.player17)
+
             })
         })
         
         awayPlayer8.text? = "⑧"
         awayBattingOrderRef?.child("8/Name").observe(FIRDataEventType.value, with: {(name)in
             awayBattingOrderRef?.child("8/Position").observe(FIRDataEventType.value,with:{(position)in
-                let player18 = Player(as:name.value as! String , position:position.value as! String , battingOrder: 8)
-                self.players.updateValue(player18, forKey: "⑧")
+                self.player18 = Player(as:name.value as! String , position:position.value as! String , battingOrder: 8, awayOrHome: 0)
+                self.players.updateValue(self.player18, forKey: "⑧")
+                self.playerTest.updateValue(self.player18, forKey: self.batters[0][7].tag)
+  //              self.playTest[0][7] = (self.player18)
+
             })
         })
         
@@ -1085,91 +1125,102 @@ class ViewController: UIViewController{
         awayPlayer9.text? = "⑨"
         awayBattingOrderRef?.child("9/Name").observe(FIRDataEventType.value, with: {(name)in
             awayBattingOrderRef?.child("9/Position").observe(FIRDataEventType.value,with:{(position)in
-                let player19 = Player(as:name.value as! String , position:position.value as! String , battingOrder: 9)
-                self.players.updateValue(player19, forKey: "⑨")
+                self.player19 = Player(as:name.value as! String , position:position.value as! String , battingOrder: 9, awayOrHome: 0)
+                self.players.updateValue(self.player19, forKey: "⑨")
+                self.playerTest.updateValue(self.player19, forKey: self.batters[0][8].tag)
             })
         })
         
         homePlayer1.text? = "❶"
         homeBattingOrderRef?.child("1/Name").observe(FIRDataEventType.value, with: {(name)in
             homeBattingOrderRef?.child("1/Position").observe(FIRDataEventType.value,with:{(position)in
-                let player31 = Player(as:name.value as! String , position:position.value as! String , battingOrder: 1)
-                self.players.updateValue(player31, forKey: "❶")
+                self.player31 = Player(as:name.value as! String , position:position.value as! String , battingOrder: 1, awayOrHome: 1)
+                self.players.updateValue(self.player31, forKey: "❶")
+                self.playerTest.updateValue(self.player31, forKey: self.batters[1][0].tag)
             })
         })
         
         homePlayer2.text? = "❷"
         homeBattingOrderRef?.child("2/Name").observe(FIRDataEventType.value, with: {(name)in
             homeBattingOrderRef?.child("2/Position").observe(FIRDataEventType.value,with:{(position)in
-                let player32 = Player(as:name.value as! String , position:position.value as! String , battingOrder: 2)
-                self.players.updateValue(player32, forKey: "❷")
+                self.player32 = Player(as:name.value as! String , position:position.value as! String , battingOrder: 2, awayOrHome: 1)
+                self.players.updateValue(self.player32, forKey: "❷")
+                self.playerTest.updateValue(self.player32, forKey: self.batters[1][1].tag)
             })
         })
         
         homePlayer3.text? = "❸"
         homeBattingOrderRef?.child("3/Name").observe(FIRDataEventType.value, with: {(name)in
             homeBattingOrderRef?.child("3/Position").observe(FIRDataEventType.value,with:{(position)in
-                let player33 = Player(as:name.value as! String , position:position.value as! String , battingOrder: 3)
-                self.players.updateValue(player33, forKey: "❸")
+                self.player33 = Player(as:name.value as! String , position:position.value as! String , battingOrder: 3, awayOrHome: 1)
+                self.players.updateValue(self.player33, forKey: "❸")
+                self.playerTest.updateValue(self.player33, forKey: self.batters[1][2].tag)
             })
         })
         
         homePlayer4.text? = "❹"
         homeBattingOrderRef?.child("4/Name").observe(FIRDataEventType.value, with: {(name)in
             homeBattingOrderRef?.child("4/Position").observe(FIRDataEventType.value,with:{(position)in
-                let player34 = Player(as:name.value as! String , position:position.value as! String , battingOrder: 4)
-                self.players.updateValue(player34, forKey: "❹")
+                self.player34 = Player(as:name.value as! String , position:position.value as! String , battingOrder: 4, awayOrHome: 1)
+                self.players.updateValue(self.player34, forKey: "❹")
+                self.playerTest.updateValue(self.player34, forKey: self.batters[1][3].tag)
             })
         })
         
         homePlayer5.text? = "❺"
         homeBattingOrderRef?.child("5/Name").observe(FIRDataEventType.value, with: {(name)in
             homeBattingOrderRef?.child("5/Position").observe(FIRDataEventType.value,with:{(position)in
-                let player35 = Player(as:name.value as! String , position:position.value as! String , battingOrder: 5)
-                self.players.updateValue(player35, forKey: "❺")
+                self.player35 = Player(as:name.value as! String , position:position.value as! String , battingOrder: 5, awayOrHome: 1)
+                self.players.updateValue(self.player35, forKey: "❺")
+                self.playerTest.updateValue(self.player35, forKey: self.batters[1][4].tag)
             })
         })
         
         homePlayer6.text? = "❻"
         homeBattingOrderRef?.child("6/Name").observe(FIRDataEventType.value, with: {(name)in
             homeBattingOrderRef?.child("6/Position").observe(FIRDataEventType.value,with:{(position)in
-                let player36 = Player(as:name.value as! String , position:position.value as! String , battingOrder: 6)
-                self.players.updateValue(player36, forKey: "❻")
+                self.player36 = Player(as:name.value as! String , position:position.value as! String , battingOrder: 6, awayOrHome: 1)
+                self.players.updateValue(self.player36, forKey: "❻")
+                self.playerTest.updateValue(self.player36, forKey: self.batters[1][5].tag)
             })
         })
         
         homePlayer7.text? = "❼"
         homeBattingOrderRef?.child("7/Name").observe(FIRDataEventType.value, with: {(name)in
             homeBattingOrderRef?.child("7/Position").observe(FIRDataEventType.value,with:{(position)in
-                let player37 = Player(as:name.value as! String , position:position.value as! String , battingOrder: 7)
-                self.players.updateValue(player37, forKey: "❼")
+                self.player37 = Player(as:name.value as! String , position:position.value as! String , battingOrder: 7, awayOrHome: 1)
+                self.players.updateValue(self.player37, forKey: "❼")
+                self.playerTest.updateValue(self.player37, forKey: self.batters[1][6].tag)
             })
         })
         
         homePlayer8.text? = "❽"
         homeBattingOrderRef?.child("8/Name").observe(FIRDataEventType.value, with: {(name)in
             homeBattingOrderRef?.child("8/Position").observe(FIRDataEventType.value,with:{(position)in
-                let player38 = Player(as:name.value as! String , position:position.value as! String , battingOrder: 8)
-                self.players.updateValue(player38, forKey: "❽")
+                self.player38 = Player(as:name.value as! String , position:position.value as! String , battingOrder: 8, awayOrHome: 1)
+                self.players.updateValue(self.player38, forKey: "❽")
+                self.playerTest.updateValue(self.player38, forKey: self.batters[1][7].tag)
             })
         })
         
         homePlayer9.text? = "❾"
         homeBattingOrderRef?.child("9/Name").observe(FIRDataEventType.value, with: {(name)in
             homeBattingOrderRef?.child("9/Position").observe(FIRDataEventType.value,with:{(position)in
-                let player39 = Player(as:name.value as! String , position:position.value as! String , battingOrder: 9)
-                self.players.updateValue(player39, forKey: "❾")
+                self.player39 = Player(as:name.value as! String , position:position.value as! String , battingOrder: 9, awayOrHome: 1)
+                self.players.updateValue(self.player39, forKey: "❾")
+                self.playerTest.updateValue(self.player39, forKey: self.batters[1][8].tag)
             })
         })
+        
+    }
+    
 
-        //開局投手資訊
 
-        
-  /*
-        inningScore = [[top1,top2,top3,top4,top5,top6,top7,top8,top9],[bottom1,bottom2,bottom3,bottom4,bottom5,bottom6,bottom7,bottom8,bottom9]]
-    */
-        
-        
+       override func viewDidLoad() {
+        super.viewDidLoad()
+/*
+        playTest = [[player11,player12,player13,player14,player15,player16,player17,player18,player19],[player31,player32,player33,player34,player35,player36,player37,player38,player39]]
+ */
         //----------------------Gesture-------------------
         //點兩下觸發叫下一位打者
         let tapGestureRecognizerCallNextBatter = UITapGestureRecognizer(target: self, action: #selector(call(_:)))
@@ -1296,23 +1347,17 @@ class ViewController: UIViewController{
         batters[1][8].addGestureRecognizer(tapErrorModeHP9)
         batters[1][8].addGestureRecognizer(panBattingResultHP9)
 
-        
-        for i in 0 ... 1 {
-            for j in 0 ... 8{
-                batters[i][j].tag = i*100 + j+1+500
-                batters[i][j].isUserInteractionEnabled = true
-            }
-        }
+
         baseballField.isUserInteractionEnabled = true
         baseball.isUserInteractionEnabled = true
         pitchingBall.isUserInteractionEnabled = true
-        
+   /*
         for i in 1 ... 3{
             PlayerRef?.child("PlayerList").child("\(i)").observe(FIRDataEventType.value,with:{(snap: FIRDataSnapshot)in
             print((snap.value as AnyObject).description)
         })
         }
-
+*/
 
 /*
         var userID = "aaa"
@@ -1338,6 +1383,8 @@ class ViewController: UIViewController{
         ref?.updateChildValues(childUpdateEX)
  */
    }
+    
+
 /*
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

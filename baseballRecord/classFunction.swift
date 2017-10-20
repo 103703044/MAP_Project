@@ -19,7 +19,6 @@ class Player{
     var number: Int? //背號
     var position: String //守備位置
     var team: String? //所屬隊伍
-    
     var atBatOverall:Int?
     var atBat:Int = 0 //打擊次數
     var Run:Int = 0 //得分數
@@ -34,12 +33,63 @@ class Player{
     var pitcherH:Int = 0 //被安打數
     var pitcherBB:Int = 0//保送數
     var pitcherSO:Int = 0//三振數
+    var locationX:CGFloat = 0
+    var locationY:CGFloat = 0
+    var benchX:CGFloat = 0
+    var benchY:CGFloat = 0
+    var awayOrHome:Int = 0
     
-    init(as name: String ,position: String ,battingOrder : Int) {
+    static var arrayOfPlayer : [[Player]] = [[],[]]
+    
+    init(as name: String ,position: String ,battingOrder : Int ,awayOrHome: Int) {
         self.name = name
         self.position = position
         self.battingOrder = battingOrder
+        self.awayOrHome = awayOrHome
+        switch position {
+        case "P":
+            locationX = 232
+            locationY = 143
+        case "C":
+            locationX = 232
+            locationY = 299
+        case "1B":
+            locationX = 342
+            locationY = 141
+        case "2B":
+            locationX = 284
+            locationY = 91
+        case "3B":
+            locationX = 125
+            locationY = 141
+        case "SS":
+            locationX = 185
+            locationY = 91
+        case "LF":
+            locationX = 98
+            locationY = 83
+        case "RF":
+            locationX = 367
+            locationY = 83
+        case "CF":
+            locationX = 232
+            locationY = 36
+        default:
+            locationX = 0
+            locationY = 0
+        }
+        if awayOrHome == 0 {
+            benchX = 100
+            benchY = 250
+            Player.arrayOfPlayer[0].append(self)
+        }
+        else{
+            benchX = 360
+            benchY = 250
+            Player.arrayOfPlayer[1].append(self)
+        }
     }
+
     //取得打者名字
     func getName() -> String {
         return self.name
@@ -123,6 +173,7 @@ class Player{
         
         return String(format:"%.2f", ERA)
     }
+
 }
 
 //--------------function ended--------------------
