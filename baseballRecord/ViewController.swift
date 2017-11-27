@@ -10,21 +10,55 @@
 import UIKit
 import Firebase
 
+var awayNP = 0
+var homeNP = 0
+var awayPitcher = 0
+var homePitcher = 0
+var awayOrHome = 0 //0 = 客場進攻 1 = 主場進攻
+var gameKey: String!
+var careerAB = 0
+var careerSO = 0
+var careerBB = 0
+var careerH = 0
+var career2B = 0
+var career3B = 0
+var careerHR = 0
+var careerPitchBB = 0
+var careerIP = 0.0
+var careerPitchSO = 0
+var careerPitchH = 0
+var careerCount = 0
+var careerERA = 0.00
+var careerPitchER = 0
+var batterOn = [-1 , -1]
+var out = 0 //出局數
+var strike = 0 //好球數
+var ball = 0 //壞球數
+var inning = 1 //局數
+var awayHits = 0 //客場安打數
+var homeHits = 0 //主場安打數
+var awayScoring = 0 //客場得分數
+var homeScoring = 0 //主場得分數
+var scoringOfTheInning = 0 //該局得分數
+var callingCount = 0
+
+var eachPitchCount = 1
+var eachBatterCount = 0
+var topOrBot = "Top"
+var battingPosition : String!
+
 //---------------IBoutlet&varible number-------------------------
 
 
 class ViewController: UIViewController{
-    
-    @IBOutlet weak var test: UILabel!
     var ref:FIRDatabaseReference?
   //  let rootRef = FIRDatabase.database().reference()
-    
-    
+    let date = Date()
+    let formatter = DateFormatter()
     var players = [String: Player]()
     var playerClassList = [Player]()
     var playerTest = [Int:Player]()
     var playTest = [Player]()
-    var gameKey: String!
     
     //客場球員1~9
     @IBOutlet weak var HomeTeam: UILabel!
@@ -205,7 +239,9 @@ class ViewController: UIViewController{
     @IBOutlet var pitchIP: UILabel! //投球局數
     @IBOutlet var pitchERA: UILabel! //投手防禦率
     @IBOutlet var pitchH: UILabel! //投手被安打數
-
+    @IBOutlet weak var pitchBB: UILabel!
+    @IBOutlet weak var pitchSO: UILabel!
+    @IBOutlet weak var pitchCount: UILabel!
     @IBAction func checkScoreboard(_ sender: Any) {
         if scoreboard.alpha != 0{
             scoreboard.alpha = 0
@@ -220,21 +256,10 @@ class ViewController: UIViewController{
     var tapErrorGesture = [[UITapGestureRecognizer]]()
     var panRunnerGesture = [[UIPanGestureRecognizer]]()
     //
-    var awayPitcher = 0
-    var homePitcher = 0
  //   var inningScore = [[UILabel]]()
-    var batterOn = [-1 , -1]
-    var out = 0 //出局數
-    var strike = 0 //好球數
-    var ball = 0 //壞球數
-    var inning = 1 //局數
-    var awayHits = 0 //客場安打數
-    var homeHits = 0 //主場安打數
-    var awayScoring = 0 //客場得分數
-    var homeScoring = 0 //主場得分數
-    var scoringOfTheInning = 0 //該局得分數
-    var awayOrHome = 0 //0 = 客場進攻 1 = 主場進攻
-    var callingCount = 0
+
+    
+
     
     //base & item position
     let base1X:CGFloat = 327
@@ -299,32 +324,29 @@ class ViewController: UIViewController{
     var player37 :Player!
     var player38 :Player!
     var player39 :Player!
-    
-    var eachPitchCount = 1
-    var eachBatterCount = 0
-    var topOrBot = "Top"
-    var battingPosition : String!
- 
+
     
     //---------------IBoutlet&varible number ended-------------------------
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         ref = FIRDatabase.database().reference()
         //let playerRef = ref?.child("player")
-        let playerLogRef = FIRDatabase.database().reference().child("Player").child("PlayerList")
-        let awayTeamRef = ref?.child("teams").child("Yankees")
-        let homeTeamRef = ref?.child("teams").child("Phillies")
+        let awayTeamRef = ref?.child("teams").child(awayTeamInput!)
+        let homeTeamRef = ref?.child("teams").child(homeTeamInput!)
         let awayBattingOrderRef = awayTeamRef?.child("order")
         let homeBattingOrderRef = homeTeamRef?.child("order")
         gameKey = ref?.child("Game").childByAutoId().key
+         self.ref?.child("newPosts").child(gameKey!).child("Date").setValue(dateInput)
+        self.ref?.child("newPosts").child(gameKey!).child("Time").setValue(timeInput)
+        self.ref?.child("newPosts").child(gameKey!).child("Avenue").setValue(avenueInput)
         awayTeamRef?.child("Abbreviation").observe(FIRDataEventType.value, with:{(snap:FIRDataSnapshot)in
-            self.ref?.child("posts").child(self.gameKey!).child("Away").setValue(snap.value)
+            self.ref?.child("newPosts").child(gameKey!).child("Away").setValue(snap.value)
             self.AwayTeam.text = (snap.value as AnyObject).description
             self.awayNameOrder.text = (snap.value as AnyObject).description
             self.awayNameOnboard.text = (snap.value as AnyObject).description
         })
         homeTeamRef?.child("Abbreviation").observe(FIRDataEventType.value, with:{(snap:FIRDataSnapshot)in
-            self.ref?.child("posts").child(self.gameKey!).child("Home").setValue(snap.value)
+            self.ref?.child("newPosts").child(gameKey!).child("Home").setValue(snap.value)
             self.HomeTeam.text = (snap.value as AnyObject).description
             self.homeNameOrder.text = (snap.value as AnyObject).description
             self.homeNameOnboard.text = (snap.value as AnyObject).description
@@ -512,7 +534,7 @@ class ViewController: UIViewController{
         })
         scores = [[top1,top2,top3,top4,top5,top6,top7,top8,top9],[bottom1,bottom2,bottom3,bottom4,bottom5,bottom6,bottom7,bottom8,bottom9]]
         
-        let scoreboardRef = FIRDatabase.database().reference().child("posts").child(gameKey!).child("scoreboard")
+        let scoreboardRef = FIRDatabase.database().reference().child("newPosts").child(gameKey!).child("scoreboard")
         
         
         for i in 1...9 {
@@ -529,10 +551,10 @@ class ViewController: UIViewController{
         
         for i in 0 ... 8{
             scoreboardRef.child("\(i+1)").child("Top").observe(FIRDataEventType.value,with:{(score)in
-                self.scores[0][i].text = String(describing: score.value as! AnyObject)
+                self.scores[0][i].text = String(describing: score.value as AnyObject)
             })
             scoreboardRef.child("\(i+1)").child("Bot").observe(FIRDataEventType.value,with:{(score)in
-                self.scores[1][i].text = String(describing: score.value as! AnyObject)
+                self.scores[1][i].text = String(describing: score.value as AnyObject)
             })
         }
         scoreboardRef.child("awayTotalHits").observe(FIRDataEventType.value,with:{(score)in
@@ -552,6 +574,8 @@ class ViewController: UIViewController{
         baseball.isUserInteractionEnabled = true
         pitchingBall.isUserInteractionEnabled = true
     }
+
+
     //-----setDefence------
     //func-setDefence: 讓進攻方球員回到休息區並透明化，讓守備方球員到各自的守備位置並顯示
     func setDefence(setPlayers : [[UILabel]] , whichTeamBatting : Int , awayP : Int , homeP : Int){
@@ -582,6 +606,9 @@ class ViewController: UIViewController{
                     self.pitchIP.text? = Player.arrayOfPlayer[0][awayP].getPitchIP()
                     self.pitchERA.text? = Player.arrayOfPlayer[0][awayP].getERA()
                     self.pitchH.text? = Player.arrayOfPlayer[0][awayP].getPitchH()
+                    self.pitchBB.text? = Player.arrayOfPlayer[0][awayP].getPitchBB()
+                    self.pitchSO.text? = Player.arrayOfPlayer[0][awayP].getPitchSO()
+                    self.pitchCount.text? = Player.arrayOfPlayer[0][awayP].getPitchCount()
             }//end if
             else{
                 //客隊進攻
@@ -601,6 +628,10 @@ class ViewController: UIViewController{
                     self.pitchIP.text? = Player.arrayOfPlayer[1][homeP].getPitchIP()
                     self.pitchERA.text? = Player.arrayOfPlayer[1][homeP].getERA()
                     self.pitchH.text? = Player.arrayOfPlayer[1][homeP].getPitchH()
+                self.pitchBB.text? = Player.arrayOfPlayer[1][homeP].getPitchBB()
+                self.pitchSO.text? = Player.arrayOfPlayer[1][homeP].getPitchSO()
+                self.pitchCount.text? = Player.arrayOfPlayer[1][homeP].getPitchCount()
+
             }//end for
         })//end animation
         UIView.animate(withDuration: 0.5 , delay: 1.0, animations: {
@@ -616,7 +647,7 @@ class ViewController: UIViewController{
 
     //func-hitcheck(0 = 客隊打擊 1 = 主隊打擊):讓攻擊方的安打數+1
     func hitCheck(whichTeam: Int) {
-        let scoreboardRef = FIRDatabase.database().reference().child("posts").child(gameKey!).child("scoreboard")
+        let scoreboardRef = FIRDatabase.database().reference().child("newPosts").child(gameKey!).child("scoreboard")
         if whichTeam == 0 {
             awayHits = awayHits + 1
             awayHit.text = String (awayHits)
@@ -631,7 +662,7 @@ class ViewController: UIViewController{
     //func-inningCheck(0 = 上換下 1 = 下換上):上半局換成下半局，或下半局換到下局的上半局，並setDefence
     
     func inningCheck(whichTeamBattingEnded: Int) {
-        let scoreboardRef = FIRDatabase.database().reference().child("posts").child(gameKey!).child("scoreboard")
+        let scoreboardRef = FIRDatabase.database().reference().child("newPosts").child(gameKey!).child("scoreboard")
         if scoringOfTheInning == 0 {
             scoreboardRef.child("\(inning)").child("\(topOrBot)").setValue(scoringOfTheInning)
         }
@@ -667,67 +698,107 @@ class ViewController: UIViewController{
     
     //func-callStrike(本來的好球數):投出好球
     func callStrike(count: Int){
-        let gameLogRef = FIRDatabase.database().reference().child("posts").child(gameKey!).child("\(inning)").child("\(topOrBot)").child("\(eachBatterCount)").child(Player.arrayOfPlayer[awayOrHome][batterOn[awayOrHome]].getName()).child("\(eachPitchCount)")
-        let playerLogRef = FIRDatabase.database().reference().child("Player").child("PlayerList").child(Player.arrayOfPlayer[awayOrHome][batterOn[awayOrHome]].getName()).child("gamelog").child(gameKey!)
-
+     //   let gameLogRef = FIRDatabase.database().reference().child("posts").child(gameKey!).child("\(inning)").child("\(topOrBot)").child("\(eachBatterCount)").child(Player.arrayOfPlayer[awayOrHome][batterOn[awayOrHome]].getName()).child("\(eachPitchCount)")
+//        let playerLogRef = FIRDatabase.database().reference().child("Player").child("PlayerList").child(Player.arrayOfPlayer[awayOrHome][batterOn[awayOrHome]].getName()).child("gamelog").child(gameKey!)
         self.runnerOnBase.text = ""
         result.text = "好球" + String (count)
         if count == 1{
             strikeCount.text = "● ○"
-            gameLogRef.setValue("好球")
+ //           gameLogRef.setValue("好球")
+            setRecordPByP(input: "好球")
         }
         else if count == 2{
             strikeCount.text = "● ●"
-            gameLogRef.setValue("好球")
-
+//            gameLogRef.setValue("好球")
+            setRecordPByP(input: "好球")
         }
         else{
             result.text = "三振"
-            gameLogRef.setValue("三振")
+//            gameLogRef.setValue("三振")
+            setRecordPByP(input: "三振")
+            setRecordResult(input: "三振")
             HitChangingRecord(bases: -1)
-            playerLogRef.child("SO").setValue(Player.arrayOfPlayer[self.awayOrHome][self.batterOn[self.awayOrHome]].getSO())
-            playerLogRef.child("AB").setValue(Player.arrayOfPlayer[self.awayOrHome][self.batterOn[self.awayOrHome]].getAtBat())
-            self.outChecking(Count: self.out)
+            saveResult(input: "SO")
+            //        投手紀錄
+            if awayOrHome == 0{
+                pitchIP.text? = Player.arrayOfPlayer[1][homePitcher].getPitchIP()
+                pitchERA.text? = Player.arrayOfPlayer[1][homePitcher].getERA()
+                pitchH.text? = Player.arrayOfPlayer[1][homePitcher].getPitchH()
+                pitchBB.text? = Player.arrayOfPlayer[1][homePitcher].getPitchBB()
+
+            }
+            if awayOrHome == 1{
+                pitchIP.text? = Player.arrayOfPlayer[0][awayPitcher].getPitchIP()
+                pitchERA.text? = Player.arrayOfPlayer[0][awayPitcher].getERA()
+                pitchH.text? = Player.arrayOfPlayer[0][awayPitcher].getPitchH()
+                self.pitchBB.text? = Player.arrayOfPlayer[0][awayPitcher].getPitchBB()
+
+                
+            }
+//          playerLogRef.child("SO").setValue(Player.arrayOfPlayer[awayOrHome][batterOn[awayOrHome]].getSO())
+//            playerLogRef.child("AB").setValue(Player.arrayOfPlayer[awayOrHome][batterOn[awayOrHome]].getAtBat())
+            self.outChecking(Count: out)
+            
             countReset()
         }
         eachPitchCount += 1
     }
     //func-callBall(本來的壞球數):投出壞球
     func callBall(count: Int){
-          let gameLogRef = FIRDatabase.database().reference().child("posts").child(gameKey!).child("\(inning)").child("\(topOrBot)").child("\(eachBatterCount)").child(Player.arrayOfPlayer[awayOrHome][batterOn[awayOrHome]].getName()).child("\(eachPitchCount)")
-        let playerLogRef = FIRDatabase.database().reference().child("Player").child("PlayerList").child(Player.arrayOfPlayer[awayOrHome][batterOn[awayOrHome]].getName()).child("gamelog").child(gameKey!)
+//          let gameLogRef = FIRDatabase.database().reference().child("posts").child(gameKey!).child("\(inning)").child("\(topOrBot)").child("\(eachBatterCount)").child(Player.arrayOfPlayer[awayOrHome][batterOn[awayOrHome]].getName()).child("\(eachPitchCount)")
+//        let playerLogRef = FIRDatabase.database().reference().child("Player").child("PlayerList").child(Player.arrayOfPlayer[awayOrHome][batterOn[awayOrHome]].getName()).child("gamelog").child(gameKey!)
         
         self.runnerOnBase.text = ""
         result.text = "壞球" + String (count)
         if count == 1{
             ballCount.text = "● ○ ○"
-            gameLogRef.setValue("壞球")
+//            gameLogRef.setValue("壞球")
+            setRecordPByP(input: "壞球")
         }
         else if count == 2{
             ballCount.text = "● ● ○"
-            gameLogRef.setValue("壞球")
-
+//            gameLogRef.setValue("壞球")
+            setRecordPByP(input: "壞球")
         }
         else if count == 3{
             ballCount.text = "● ● ●"
-            gameLogRef.setValue("壞球")
-
+//            gameLogRef.setValue("壞球")
+            setRecordPByP(input: "壞球")
         }
         else{
             result.text = "四壞球保送"
-            gameLogRef.setValue("四壞球保送")
-            Player.arrayOfPlayer[self.awayOrHome][self.batterOn[self.awayOrHome]].addBattingRecord(Record: "BB")
-            Player.arrayOfPlayer[self.awayOrHome][self.batterOn[self.awayOrHome]].addBB()
-            playerBattingRecord.text = Player.arrayOfPlayer[self.awayOrHome][self.batterOn[self.awayOrHome]].getbattingRecord()
-            playerLogRef.child("BB").setValue( Player.arrayOfPlayer[self.awayOrHome][self.batterOn[self.awayOrHome]].getBB())
-            self.runner(batter: self.batterOn[self.awayOrHome], bases: 1)
+//            gameLogRef.setValue("四壞球保送")
+            setRecordPByP(input: "四壞球保送")
+            setRecordResult(input: "四壞球保送")
+            Player.arrayOfPlayer[awayOrHome][batterOn[awayOrHome]].addBattingRecord(Record: "BB")
+            Player.arrayOfPlayer[awayOrHome][batterOn[awayOrHome]].addBB()
+//            addPitcherRecord(whichTeamBatting: awayOrHome, Record: "BB")
+            playerBattingRecord.text = Player.arrayOfPlayer[awayOrHome][batterOn[awayOrHome]].getbattingRecord()
+//            playerLogRef.child("BB").setValue( Player.arrayOfPlayer[awayOrHome][batterOn[awayOrHome]].getBB())
+            saveResult(input: "BB")
+            //        投手紀錄
+            if awayOrHome == 0{
+                pitchIP.text? = Player.arrayOfPlayer[1][homePitcher].getPitchIP()
+                pitchERA.text? = Player.arrayOfPlayer[1][homePitcher].getERA()
+                pitchH.text? = Player.arrayOfPlayer[1][homePitcher].getPitchH()
+                self.pitchBB.text? = Player.arrayOfPlayer[1][homePitcher].getPitchBB()
+
+            }
+            if awayOrHome == 1{
+                pitchIP.text? = Player.arrayOfPlayer[0][awayPitcher].getPitchIP()
+                pitchERA.text? = Player.arrayOfPlayer[0][awayPitcher].getERA()
+                pitchH.text? = Player.arrayOfPlayer[0][awayPitcher].getPitchH()
+                self.pitchBB.text? = Player.arrayOfPlayer[0][awayPitcher].getPitchBB()
+                
+            }
+            self.runner(batter: batterOn[awayOrHome], bases: 1)
             countReset()
         }
         eachPitchCount += 1
     }
     //func-scoring(0 = 客場得分 1 = 主場得分):增加得分方一分，並增加投手的自責分(率)
     func scoring(whichTeam: Int) {
-        let scoreboardRef = FIRDatabase.database().reference().child("posts").child(gameKey!).child("scoreboard")
+        let scoreboardRef = FIRDatabase.database().reference().child("newPosts").child(gameKey!).child("scoreboard")
         scoringOfTheInning = scoringOfTheInning + 1
         if whichTeam == 0 {
             awayScoring = awayScoring + 1
@@ -741,15 +812,19 @@ class ViewController: UIViewController{
             scoreboardRef.child("homeTotalScore").setValue(homeScoring)
           //  inningScore[1][inning - 1].text = String(scoringOfTheInning)
         }
-        if awayOrHome == 1{
-            Player.arrayOfPlayer[0][awayPitcher].addER()
-            pitchERA.text? = Player.arrayOfPlayer[0][awayPitcher].getERA()
-            
-        }else{
-            Player.arrayOfPlayer[1][homePitcher].addER()
+        saveResult(input: "R")
+        //        投手紀錄
+        if awayOrHome == 0{
+            pitchIP.text? = Player.arrayOfPlayer[1][homePitcher].getPitchIP()
             pitchERA.text? = Player.arrayOfPlayer[1][homePitcher].getERA()
+            pitchH.text? = Player.arrayOfPlayer[1][homePitcher].getPitchH()
         }
-
+        if awayOrHome == 1{
+            pitchIP.text? = Player.arrayOfPlayer[0][awayPitcher].getPitchIP()
+            pitchERA.text? = Player.arrayOfPlayer[0][awayPitcher].getERA()
+            pitchH.text? = Player.arrayOfPlayer[0][awayPitcher].getPitchH()
+            
+        }
         scoreboardRef.child("\(inning)").child("\(topOrBot)").setValue(scoringOfTheInning)
         
 
@@ -764,18 +839,18 @@ class ViewController: UIViewController{
  //       if bases != 4{
    //         self.panRunnerGesture[awayOrHome][batter].isEnabled = true
      //   }
-        self.batters[self.awayOrHome][self.batterOn[self.awayOrHome]].center.x = (inBoxX)
-        self.batters[self.awayOrHome][self.batterOn[self.awayOrHome]].center.y = (inBoxY)
+        self.batters[awayOrHome][batterOn[awayOrHome]].center.x = (inBoxX)
+        self.batters[awayOrHome][batterOn[awayOrHome]].center.y = (inBoxY)
         if bases <= 0 {
             UIView.animate(withDuration: 1.0,animations: {
-            self.batters[self.awayOrHome][self.batterOn[self.awayOrHome]].alpha = 0.0
-            if self.awayOrHome == 0 {
-                self.batters[self.awayOrHome][self.batterOn[self.awayOrHome]].center.x = (self.awayBenchX)
-                self.batters[self.awayOrHome][self.batterOn[self.awayOrHome]].center.y = (self.awayBenchY)
+            self.batters[awayOrHome][batterOn[awayOrHome]].alpha = 0.0
+            if awayOrHome == 0 {
+                self.batters[awayOrHome][batterOn[awayOrHome]].center.x = (self.awayBenchX)
+                self.batters[awayOrHome][batterOn[awayOrHome]].center.y = (self.awayBenchY)
             }
             else{
-                self.batters[self.awayOrHome][self.batterOn[self.awayOrHome]].center.x = (self.homeBenchX)
-                self.batters[self.awayOrHome][self.batterOn[self.awayOrHome]].center.y = (self.homeBenchY)
+                self.batters[awayOrHome][batterOn[awayOrHome]].center.x = (self.homeBenchX)
+                self.batters[awayOrHome][batterOn[awayOrHome]].center.y = (self.homeBenchY)
             }
         })
         }
@@ -808,44 +883,44 @@ class ViewController: UIViewController{
                 if self.batters[awayOrHome][i].center.x == self.inBoxX &&
                 self.batters[awayOrHome][i].center.y == self.inBoxY{
                     UIView.animate(withDuration: 1.0,delay: TimeInterval(j-1), animations: {
-                        self.batters[self.awayOrHome][i].center.x = self.base1X
-                        self.batters[self.awayOrHome][i].center.y = self.base1Y
+                        self.batters[awayOrHome][i].center.x = self.base1X
+                        self.batters[awayOrHome][i].center.y = self.base1Y
                     })
                 }
                 //如果一壘有人，且進一壘意圖為T，則一壘跑者上二壘
                 else if self.batters[awayOrHome][i].center.x == CGFloat(self.base1X) &&
                 self.batters[awayOrHome][i].center.y == self.base1Y && toFirstBase == true{
                     UIView.animate(withDuration: 1.0, delay: TimeInterval(j-1),animations: {
-                        self.batters[self.awayOrHome][i].center.x = self.base2X
-                        self.batters[self.awayOrHome][i].center.y = self.base2Y
+                        self.batters[awayOrHome][i].center.x = self.base2X
+                        self.batters[awayOrHome][i].center.y = self.base2Y
                     })
                 }
                 //如果二壘有人，且進二壘意圖為T，則二壘跑者上三壘
                 else if self.batters[awayOrHome][i].center.x == (self.base2X) &&
                 self.batters[awayOrHome][i].center.y == (self.base2Y) && toSecondBase == true{
                     UIView.animate(withDuration: 1.0,delay: TimeInterval(j-1), animations: {
-                        self.batters[self.awayOrHome][i].center.x = (self.base3X)
-                        self.batters[self.awayOrHome][i].center.y = (self.base3Y)
+                        self.batters[awayOrHome][i].center.x = (self.base3X)
+                        self.batters[awayOrHome][i].center.y = (self.base3Y)
                     })
                 }
                 //如果三壘有人，且進三壘的意圖為T，則三壘跑者回本壘得分
                 else if self.batters[awayOrHome][i].center.x == (self.base3X) &&
                 self.batters[awayOrHome][i].center.y == (self.base3Y) && toThirdBase == true{
                     UIView.animate(withDuration: 1.0,delay: TimeInterval(j-1), animations: {
-                        self.batters[self.awayOrHome][i].center.x = (self.homeBaseX)
-                        self.batters[self.awayOrHome][i].center.y = (self.homeBaseY)
+                        self.batters[awayOrHome][i].center.x = (self.homeBaseX)
+                        self.batters[awayOrHome][i].center.y = (self.homeBaseY)
                     })
                 
                     UIView.animate(withDuration: 1.0,delay: TimeInterval(j) ,animations: {
-                        self.batters[self.awayOrHome][i].alpha = 0.0
-                        if self.awayOrHome == 0{
-                            self.batters[self.awayOrHome][i].center.x = (self.awayBenchX)
-                            self.batters[self.awayOrHome][i].center.y = (self.awayBenchY)
+                        self.batters[awayOrHome][i].alpha = 0.0
+                        if awayOrHome == 0{
+                            self.batters[awayOrHome][i].center.x = (self.awayBenchX)
+                            self.batters[awayOrHome][i].center.y = (self.awayBenchY)
 
                         }
-                        if self.awayOrHome == 1{
-                            self.batters[self.awayOrHome][i].center.x = (self.homeBenchX)
-                            self.batters[self.awayOrHome][i].center.y = (self.homeBenchY)
+                        if awayOrHome == 1{
+                            self.batters[awayOrHome][i].center.x = (self.homeBenchX)
+                            self.batters[awayOrHome][i].center.y = (self.homeBenchY)
                         }
                     })
                     scoring(whichTeam: awayOrHome)
@@ -859,15 +934,15 @@ class ViewController: UIViewController{
     /*
     func batterOutFunc(){
         UIView.animate(withDuration: 1.0,animations: {
-            Player.arrayOfPlayer[self.awayOrHome][self.batterOn[self.awayOrHome]].addOut()
+            Player.arrayOfPlayer[awayOrHome][batterOn[awayOrHome]].addOut()
             //        打者打擊率
-            self.playerBA.text? = Player.arrayOfPlayer[self.awayOrHome][self.batterOn[self.awayOrHome]].getBA()
+            self.playerBA.text? = Player.arrayOfPlayer[awayOrHome][batterOn[awayOrHome]].getBA()
             //        打者打擊紀錄
-            self.playerHit.text? = "\(Player.arrayOfPlayer[self.awayOrHome][self.batterOn[self.awayOrHome]].getAtBat())-\(Player.arrayOfPlayer[self.awayOrHome][self.batterOn[self.awayOrHome]].getHit())"
-            self.playerBattingRecord.text? =             Player.arrayOfPlayer[self.awayOrHome][self.batterOn[self.awayOrHome]].getbattingRecord()
+            self.playerHit.text? = "\(Player.arrayOfPlayer[awayOrHome][batterOn[awayOrHome]].getAtBat())-\(Player.arrayOfPlayer[awayOrHome][batterOn[awayOrHome]].getHit())"
+            self.playerBattingRecord.text? =             Player.arrayOfPlayer[awayOrHome][batterOn[awayOrHome]].getbattingRecord()
 
             //        投手紀錄
-            if self.awayOrHome == 1{
+            if awayOrHome == 1{
                 Player.arrayOfPlayer[0][self.awayPitcher].addIP()
                 self.pitchIP.text? = Player.arrayOfPlayer[0][self.awayPitcher].getPitchIP()
                 self.pitchERA.text? = Player.arrayOfPlayer[0][self.awayPitcher].getERA()
@@ -876,14 +951,14 @@ class ViewController: UIViewController{
                 self.pitchIP.text? = Player.arrayOfPlayer[1][self.homePitcher].getPitchIP()
                 self.pitchERA.text? = Player.arrayOfPlayer[1][self.homePitcher].getERA()
             }
-            self.batters[self.awayOrHome][self.batterOn[self.awayOrHome]].alpha = 0.0
-            if self.awayOrHome == 0 {
-                self.batters[self.awayOrHome][self.batterOn[self.awayOrHome]].center.x = (self.awayBenchX)
-                self.batters[self.awayOrHome][self.batterOn[self.awayOrHome]].center.y = (self.awayBenchY)
+            self.batters[awayOrHome][batterOn[awayOrHome]].alpha = 0.0
+            if awayOrHome == 0 {
+                self.batters[awayOrHome][batterOn[awayOrHome]].center.x = (self.awayBenchX)
+                self.batters[awayOrHome][batterOn[awayOrHome]].center.y = (self.awayBenchY)
             }
             else{
-                self.batters[self.awayOrHome][self.batterOn[self.awayOrHome]].center.x = (self.homeBenchX)
-                self.batters[self.awayOrHome][self.batterOn[self.awayOrHome]].center.y = (self.homeBenchY)
+                self.batters[awayOrHome][batterOn[awayOrHome]].center.x = (self.homeBenchX)
+                self.batters[awayOrHome][batterOn[awayOrHome]].center.y = (self.homeBenchY)
             }
         })
             self.out = self.out + 1
@@ -912,52 +987,112 @@ class ViewController: UIViewController{
     
     //點擊背景觸發func-call:讓下一位打者上打擊區
 @IBAction func call(_ sender: UITapGestureRecognizer) {
+        countReset()
         eachPitchCount = 1
         callingCount += 1
         if callingCount == 1{
+        let gameBoxRef = FIRDatabase.database().reference().child("newPosts").child(gameKey!).child("Box")
         let playerLogRef = FIRDatabase.database().reference().child("Player").child("PlayerList")
             Player.arrayOfPlayer[0].sort{$1.battingOrder > $0.battingOrder}
             Player.arrayOfPlayer[1].sort{$1.battingOrder > $0.battingOrder}
             for i in 0 ... 1{
                 for j in 0 ... 8{
+                                        
                     playerLogRef.child(Player.arrayOfPlayer[i][j].getName()).child("gamelog").child(gameKey!).child("AB").setValue(0)
+                    gameBoxRef.child(String(i)).child(String(j+1)).child("AB").setValue(0)
                     playerLogRef.child(Player.arrayOfPlayer[i][j].getName()).child("gamelog").child(gameKey!).child("H").setValue(0)
-                    playerLogRef.child(Player.arrayOfPlayer[i][j].getName()).child("gamelog").child(gameKey!).child("2B").setValue(0)
-                    playerLogRef.child(Player.arrayOfPlayer[i][j].getName()).child("gamelog").child(gameKey!).child("3B").setValue(0)
+                    gameBoxRef.child(String(i)).child(String(j+1)).child("H").setValue(0)
+                    playerLogRef.child(Player.arrayOfPlayer[i][j].getName()).child("gamelog").child(gameKey!).child("double").setValue(0)
+                    gameBoxRef.child(String(i)).child(String(j+1)).child("double").setValue(0)
+                    playerLogRef.child(Player.arrayOfPlayer[i][j].getName()).child("gamelog").child(gameKey!).child("triple").setValue(0)
+                    gameBoxRef.child(String(i)).child(String(j+1)).child("triple").setValue(0)
                     playerLogRef.child(Player.arrayOfPlayer[i][j].getName()).child("gamelog").child(gameKey!).child("HR").setValue(0)
+                    gameBoxRef.child(String(i)).child(String(j+1)).child("HR").setValue(0)
                     playerLogRef.child(Player.arrayOfPlayer[i][j].getName()).child("gamelog").child(gameKey!).child("BB").setValue(0)
+                    gameBoxRef.child(String(i)).child(String(j+1)).child("BB").setValue(0)
                     playerLogRef.child(Player.arrayOfPlayer[i][j].getName()).child("gamelog").child(gameKey!).child("SO").setValue(0)
+                    gameBoxRef.child(String(i)).child(String(j+1)).child("SO").setValue(0)
+                    playerLogRef.child(Player.arrayOfPlayer[i][j].getName()).child("gamelog").child(gameKey!).child("DATE").setValue(dateInput)
+                    gameBoxRef.child(String(i)).child(String(j+1)).child("Name").setValue(Player.arrayOfPlayer[i][j].getName())
+                    if i == 0 {
+                    playerLogRef.child(Player.arrayOfPlayer[i][j].getName()).child("gamelog").child(gameKey!).child("OPP").setValue(homeTeamInput)
+                    }
+                    else if i == 1{
+                    playerLogRef.child(Player.arrayOfPlayer[i][j].getName()).child("gamelog").child(gameKey!).child("OPP").setValue(awayTeamInput)
+                    }
+
                 }
             }
+            for i in 0...8{
+                if Player.arrayOfPlayer[1][i].position == "P"{
+                    homePitcher = i
+                    
+                }
+                if Player.arrayOfPlayer[0][i].position == "P"{
+                    awayPitcher = i
+                }
+            }
+            gameBoxRef.child("0/0").child("SO").setValue(0)
+            gameBoxRef.child("0/0").child("IP").setValue(0)
+            gameBoxRef.child("0/0").child("BB").setValue(0)
+            gameBoxRef.child("0/0").child("H").setValue(0)
+            gameBoxRef.child("0/0").child("ER").setValue(0)
+            gameBoxRef.child("0/0").child("Count").setValue(0)
+            gameBoxRef.child("0/0").child("ERA").setValue(0)
+            gameBoxRef.child("0/0").child("Name").setValue(Player.arrayOfPlayer[0][awayPitcher].getName())
+            playerLogRef.child(Player.arrayOfPlayer[0][awayPitcher].getName()).child("gamelog").child(gameKey!).child("Pitch/SO").setValue(0)
+            playerLogRef.child(Player.arrayOfPlayer[0][awayPitcher].getName()).child("gamelog").child(gameKey!).child("Pitch/IP").setValue(0)
+            playerLogRef.child(Player.arrayOfPlayer[0][awayPitcher].getName()).child("gamelog").child(gameKey!).child("Pitch/BB").setValue(0)
+            playerLogRef.child(Player.arrayOfPlayer[0][awayPitcher].getName()).child("gamelog").child(gameKey!).child("Pitch/H").setValue(0)
+            playerLogRef.child(Player.arrayOfPlayer[0][awayPitcher].getName()).child("gamelog").child(gameKey!).child("Pitch/ER").setValue(0)
+            playerLogRef.child(Player.arrayOfPlayer[0][awayPitcher].getName()).child("gamelog").child(gameKey!).child("Pitch/Count").setValue(0)
+            playerLogRef.child(Player.arrayOfPlayer[0][awayPitcher].getName()).child("gamelog").child(gameKey!).child("Pitch/ERA").setValue(0)
+            gameBoxRef.child("1/0").child("SO").setValue(0)
+            gameBoxRef.child("1/0").child("IP").setValue(0)
+            gameBoxRef.child("1/0").child("BB").setValue(0)
+            gameBoxRef.child("1/0").child("H").setValue(0)
+            gameBoxRef.child("1/0").child("ER").setValue(0)
+            gameBoxRef.child("1/0").child("Count").setValue(0)
+            gameBoxRef.child("1/0").child("ERA").setValue(0)
+            gameBoxRef.child("1/0").child("Name").setValue(Player.arrayOfPlayer[1][homePitcher].getName())
+            playerLogRef.child(Player.arrayOfPlayer[0][homePitcher].getName()).child("gamelog").child(gameKey!).child("Pitch/SO").setValue(0)
+            playerLogRef.child(Player.arrayOfPlayer[1][homePitcher].getName()).child("gamelog").child(gameKey!).child("Pitch/IP").setValue(0)
+            playerLogRef.child(Player.arrayOfPlayer[1][homePitcher].getName()).child("gamelog").child(gameKey!).child("Pitch/BB").setValue(0)
+            playerLogRef.child(Player.arrayOfPlayer[1][homePitcher].getName()).child("gamelog").child(gameKey!).child("Pitch/H").setValue(0)
+            playerLogRef.child(Player.arrayOfPlayer[1][homePitcher].getName()).child("gamelog").child(gameKey!).child("Pitch/ER").setValue(0)
+            playerLogRef.child(Player.arrayOfPlayer[1][homePitcher].getName()).child("gamelog").child(gameKey!).child("Pitch/Count").setValue(0)
+            playerLogRef.child(Player.arrayOfPlayer[1][homePitcher].getName()).child("gamelog").child(gameKey!).child("Pitch/ERA").setValue(0)
             
         setDefence(setPlayers: batters, whichTeamBatting: awayOrHome, awayP: awayPitcher, homeP: homePitcher)
-        for i in 0...8{
-            if Player.arrayOfPlayer[1][i].position == "P"{
-                homePitcher = i
-            }
-            if Player.arrayOfPlayer[0][i].position == "P"{
-                awayPitcher = i
-            }
-        }
-        if self.awayOrHome == 0{
-            pitchName.text? = Player.arrayOfPlayer[1][homePitcher].getName()
-            pitchIP.text? = Player.arrayOfPlayer[1][homePitcher].getPitchIP()
-            pitchERA.text? = Player.arrayOfPlayer[1][homePitcher].getERA()
-            pitchH.text? = Player.arrayOfPlayer[1][homePitcher].getPitchH()
-        }
+//
+//            if awayOrHome == 1{
+//                pitchName.text? = Player.arrayOfPlayer[0][awayPitcher].getName()
+//                pitchIP.text? = Player.arrayOfPlayer[0][awayPitcher].getPitchIP()
+//                pitchERA.text? = Player.arrayOfPlayer[0][awayPitcher].getERA()
+//                pitchH.text? = Player.arrayOfPlayer[0][awayPitcher].getPitchH()
+//            }
+//            else{
+//                pitchName.text? = Player.arrayOfPlayer[1][homePitcher].getName()
+//                pitchIP.text? = Player.arrayOfPlayer[1][homePitcher].getPitchIP()
+//                pitchERA.text? = Player.arrayOfPlayer[1][homePitcher].getERA()
+//                pitchH.text? = Player.arrayOfPlayer[1][homePitcher].getPitchH()
+//
+//            }
+//        saveResult(input: "RESET")
+     }
         else{
-            pitchName.text? = Player.arrayOfPlayer[0][awayPitcher].getName()
-            pitchIP.text? = Player.arrayOfPlayer[0][awayPitcher].getPitchIP()
-            pitchERA.text? = Player.arrayOfPlayer[0][awayPitcher].getERA()
-            pitchH.text? = Player.arrayOfPlayer[0][awayPitcher].getPitchH()
-            }
-    }
-        else{
+            var anybodyOnplate = 0
             for i in 0 ... 1 {
                 for j in 0 ... 8{
                     panBattingGesture[i][j].isEnabled = false
+                    if self.batters[i][j].center.x == self.inBoxX && self.batters[i][j].center.y == self.inBoxY{
+                        anybodyOnplate += 1
+                    }
                 }
             }
+            if anybodyOnplate != 0{
+            }
+            else{
         self.result.text = ""
         self.position.text = ""
         self.runnerOnBase.text = ""
@@ -967,22 +1102,76 @@ class ViewController: UIViewController{
             self.baseball.center.y = (self.hitBallY)
         })
         UIView.animate(withDuration: 1.0,animations: {
-            self.batterOn[self.awayOrHome] = self.batterOn[self.awayOrHome] + 1
-            if self.batterOn[self.awayOrHome] == 9{
-                self.batterOn[self.awayOrHome] = 0
+            batterOn[awayOrHome] = batterOn[awayOrHome] + 1
+            if batterOn[awayOrHome] == 9{
+                batterOn[awayOrHome] = 0
             }
-            self.batters[self.awayOrHome][self.batterOn[self.awayOrHome]].alpha = 1.0
-            self.batters[self.awayOrHome][self.batterOn[self.awayOrHome]].center.x = (self.inBoxX)
-            self.batters[self.awayOrHome][self.batterOn[self.awayOrHome]].center.y = (self.inBoxY)
-            self.eachBatterCount += 1
+            self.batters[awayOrHome][batterOn[awayOrHome]].alpha = 1.0
+            self.batters[awayOrHome][batterOn[awayOrHome]].center.x = (self.inBoxX)
+            self.batters[awayOrHome][batterOn[awayOrHome]].center.y = (self.inBoxY)
+            eachBatterCount += 1
         })
         //打者資訊
-        playerName.text? = Player.arrayOfPlayer[self.awayOrHome][self.batterOn[self.awayOrHome]].getName()
-        playerPosition.text? = Player.arrayOfPlayer[self.awayOrHome][self.batterOn[self.awayOrHome]].getPosition()
-        playerBA.text? = Player.arrayOfPlayer[self.awayOrHome][self.batterOn[self.awayOrHome]].getBA()
-        playerHit.text? = "\(Player.arrayOfPlayer[self.awayOrHome][self.batterOn[self.awayOrHome]].getAtBat())-\(Player.arrayOfPlayer[self.awayOrHome][self.batterOn[self.awayOrHome]].getHit())"
-        playerBattingRecord.text? = Player.arrayOfPlayer[self.awayOrHome][self.batterOn[self.awayOrHome]].getbattingRecord()
-        playerBattingOrder.text? = "\(Player.arrayOfPlayer[self.awayOrHome][self.batterOn[self.awayOrHome]].getBattingOrder())"
+        playerName.text? = Player.arrayOfPlayer[awayOrHome][batterOn[awayOrHome]].getName()
+        playerPosition.text? = Player.arrayOfPlayer[awayOrHome][batterOn[awayOrHome]].getPosition()
+        playerBA.text? = Player.arrayOfPlayer[awayOrHome][batterOn[awayOrHome]].getBA()
+        playerHit.text? = "\(Player.arrayOfPlayer[awayOrHome][batterOn[awayOrHome]].getAtBat())-\(Player.arrayOfPlayer[awayOrHome][batterOn[awayOrHome]].getHit())"
+        playerBattingRecord.text? = Player.arrayOfPlayer[awayOrHome][batterOn[awayOrHome]].getbattingRecord()
+        playerBattingOrder.text? = "\(Player.arrayOfPlayer[awayOrHome][batterOn[awayOrHome]].getBattingOrder())"
+                
+        let careerRef = FIRDatabase.database().reference().child("Player").child("PlayerList").child(Player.arrayOfPlayer[awayOrHome][batterOn[awayOrHome]].getName()).child("career")
+                careerRef.child("HR").observeSingleEvent(of: .value, with: {(snapshot)in
+                    careerHR = snapshot.value as! Int
+                })
+                careerRef.child("AB").observeSingleEvent(of: .value, with: {(snapshot)in
+                    careerAB = snapshot.value as! Int
+                })
+                careerRef.child("SO").observeSingleEvent(of: .value, with: {(snapshot)in
+                    careerSO = snapshot.value as! Int
+                })
+                careerRef.child("BB").observeSingleEvent(of: .value, with: {(snapshot)in
+                    careerBB = snapshot.value as! Int
+                })
+                careerRef.child("H").observeSingleEvent(of: .value, with: {(snapshot)in
+                    careerH = snapshot.value as! Int
+                })
+                careerRef.child("double").observeSingleEvent(of: .value, with: {(snapshot)in
+                    career2B = snapshot.value as! Int
+                })
+                careerRef.child("triple").observeSingleEvent(of: .value, with: {(snapshot)in
+                    career3B = snapshot.value as! Int
+                })
+                
+        var careerPitcherRef:FIRDatabaseReference
+        if awayOrHome == 1{
+            careerPitcherRef = FIRDatabase.database().reference().child("Player").child("PlayerList").child(Player.arrayOfPlayer[0][awayPitcher].getName()).child("career/pitch")
+                }
+        else{
+            careerPitcherRef = FIRDatabase.database().reference().child("Player").child("PlayerList").child(Player.arrayOfPlayer[1][homePitcher].getName()).child("career/pitch")
+                }
+        careerPitcherRef.child("IP").observeSingleEvent(of: .value, with: {(snapshot)in
+                careerIP = snapshot.value as! Double
+            })
+        careerPitcherRef.child("SO").observeSingleEvent(of: .value, with: {(snapshot)in
+                careerPitchSO = snapshot.value as! Int
+            })
+        careerPitcherRef.child("BB").observeSingleEvent(of: .value, with: {(snapshot)in
+                careerPitchBB = snapshot.value as! Int
+            })
+        careerPitcherRef.child("H").observeSingleEvent(of: .value, with: {(snapshot)in
+                careerPitchH = snapshot.value as! Int
+            })
+        careerPitcherRef.child("ER").observeSingleEvent(of: .value, with: {(snapshot)in
+                careerPitchER = snapshot.value as! Int
+            })
+        careerPitcherRef.child("ERA").observeSingleEvent(of: .value, with: {(snapshot)in
+                careerERA = snapshot.value as! Double
+            })
+        careerPitcherRef.child("Count").observeSingleEvent(of: .value, with: {(snapshot)in
+                careerCount = snapshot.value as! Int
+            })
+
+    }
     }
     }
     //func-getRunnerOnBase:文字提示更新目前壘上狀況
@@ -1034,8 +1223,8 @@ class ViewController: UIViewController{
     //拖曳打擊的球觸發func-hit:拖曳棒球到球擊出的方向
     @IBAction func hitLocation(sender: UIPanGestureRecognizer) {
         panBattingGesture[awayOrHome][batterOn[awayOrHome]].isEnabled = true
-         let gameLogRef = FIRDatabase.database().reference().child("posts").child(gameKey!).child("\(inning)").child("\(topOrBot)").child("\(eachBatterCount)").child(Player.arrayOfPlayer[awayOrHome][batterOn[awayOrHome]].getName()).child("\(eachPitchCount)")
-        let playerLogRef = FIRDatabase.database().reference().child("Player").child("PlayerList").child(Player.arrayOfPlayer[awayOrHome][batterOn[awayOrHome]].getName()).child("gamelog").child(gameKey!)
+//         let gameLogRef = FIRDatabase.database().reference().child("posts").child(gameKey!).child("\(inning)").child("\(topOrBot)").child("\(eachBatterCount)").child(Player.arrayOfPlayer[awayOrHome][batterOn[awayOrHome]].getName()).child("\(eachPitchCount)")
+//        let playerLogRef = FIRDatabase.database().reference().child("Player").child("PlayerList").child(Player.arrayOfPlayer[awayOrHome][batterOn[awayOrHome]].getName()).child("gamelog").child(gameKey!)
         let point = sender.location(in: baseball)
         baseball.center.x = baseball.center.x + point.x
         baseball.center.y = baseball.center.y + point.y
@@ -1046,6 +1235,13 @@ class ViewController: UIViewController{
                 || (baseball.center.x > 435 && baseball.center.y < 70)
                 || (baseball.center.x > 415 && baseball.center.y < 70)
                 {
+                    addNP()
+                    if awayOrHome == 0{
+                        pitchCount.text? = String(homeNP)
+                    }
+                    if awayOrHome == 1{
+                        pitchCount.text? = String(awayNP)
+                    }
                     if baseball.center.x < 155 {
                         battingPosition = "左外野方向"
                         self.position.text = battingPosition
@@ -1061,24 +1257,54 @@ class ViewController: UIViewController{
                     }
                     self.result.text = "全壘打"
                     self.runnerOnBase.text = ""
-                    self.batters[self.awayOrHome][self.batterOn[self.awayOrHome]].center.x = (inBoxX)
-                    self.batters[self.awayOrHome][self.batterOn[self.awayOrHome]].center.y = (inBoxY)
+                    self.batters[awayOrHome][batterOn[awayOrHome]].center.x = (inBoxX)
+                    self.batters[awayOrHome][batterOn[awayOrHome]].center.y = (inBoxY)
                     HitChangingRecord(bases: 4)
-                playerLogRef.child("AB").setValue(Player.arrayOfPlayer[self.awayOrHome][self.batterOn[self.awayOrHome]].getAtBat())
-                    playerLogRef.child("H").setValue(Player.arrayOfPlayer[self.awayOrHome][self.batterOn[self.awayOrHome]].getHit())
-                playerLogRef.child("HR").setValue(Player.arrayOfPlayer[self.awayOrHome][self.batterOn[self.awayOrHome]].getHR())
-                    gameLogRef.setValue(battingPosition + "全壘打")
+//                playerLogRef.child("AB").setValue(Player.arrayOfPlayer[awayOrHome][batterOn[awayOrHome]].getAtBat())
+//                    playerLogRef.child("H").setValue(Player.arrayOfPlayer[awayOrHome][batterOn[awayOrHome]].getHit())
+//                playerLogRef.child("HR").setValue(Player.arrayOfPlayer[awayOrHome][batterOn[awayOrHome]].getHR())
+//                    gameLogRef.setValue(battingPosition + "全壘打")
+                    saveResult(input: "HR")
+                    //        投手紀錄
+                    if awayOrHome == 0{
+                        pitchIP.text? = Player.arrayOfPlayer[1][homePitcher].getPitchIP()
+                        pitchERA.text? = Player.arrayOfPlayer[1][homePitcher].getERA()
+                        pitchH.text? = Player.arrayOfPlayer[1][homePitcher].getPitchH()
+                    }
+                    if awayOrHome == 1{
+                        pitchIP.text? = Player.arrayOfPlayer[0][awayPitcher].getPitchIP()
+                        pitchERA.text? = Player.arrayOfPlayer[0][awayPitcher].getERA()
+                        pitchH.text? = Player.arrayOfPlayer[0][awayPitcher].getPitchH()
+                        
+                    }
+                    setRecordResult(input: battingPosition + "全壘打")
+                    setRecordPByP(input: battingPosition + "全壘打")
             }
             else if getPosition(x: baseball.center.x, y: baseball.center.y) == "NULL"{}
             else{
+                addNP()
+                if awayOrHome == 0{
+                    pitchCount.text? = String(homeNP)
+                }
+                if awayOrHome == 1{
+                    pitchCount.text? = String(awayNP)
+                }
                 if getPosition(x: baseball.center.x, y: baseball.center.y) == "界外球"{
                     if strike < 2 {
                         strike = strike + 1
                     }
-                    callStrike(count: strike)
+                        self.runnerOnBase.text = ""
+                        if strike == 1{
+                            strikeCount.text = "● ○"
+                        }
+                        else{
+                            strikeCount.text = "● ●"
+                        }
                     self.position.text = ""
                     self.result.text = "界外球"
-                    gameLogRef.setValue("界外球")
+//                    gameLogRef.setValue("界外球")
+                    setRecordPByP(input: "界外球")
+                    eachPitchCount += 1
                     self.runnerOnBase.text = ""
                     baseball.center.x = (hitBallX)
                     baseball.center.y = (hitBallY)
@@ -1095,116 +1321,146 @@ class ViewController: UIViewController{
     
     func HitChangingRecord(bases: Int){
         if bases == 1 {
-            Player.arrayOfPlayer[self.awayOrHome][self.batterOn[self.awayOrHome]].addBattingRecord(Record: "H")
-            Player.arrayOfPlayer[self.awayOrHome][self.batterOn[self.awayOrHome]].addHit()
+            Player.arrayOfPlayer[awayOrHome][batterOn[awayOrHome]].addBattingRecord(Record: "H")
+            Player.arrayOfPlayer[awayOrHome][batterOn[awayOrHome]].addHit()
         }
         else if bases == 2{
-            Player.arrayOfPlayer[self.awayOrHome][self.batterOn[self.awayOrHome]].addBattingRecord(Record: "2B")
-            Player.arrayOfPlayer[self.awayOrHome][self.batterOn[self.awayOrHome]].addHit()
-            Player.arrayOfPlayer[self.awayOrHome][self.batterOn[self.awayOrHome]].add2B()
+            Player.arrayOfPlayer[awayOrHome][batterOn[awayOrHome]].addBattingRecord(Record: "2B")
+            Player.arrayOfPlayer[awayOrHome][batterOn[awayOrHome]].addHit()
+            Player.arrayOfPlayer[awayOrHome][batterOn[awayOrHome]].add2B()
         }
         else if bases == 3{
-        Player.arrayOfPlayer[self.awayOrHome][self.batterOn[self.awayOrHome]].addBattingRecord(Record: "3B")
-            Player.arrayOfPlayer[self.awayOrHome][self.batterOn[self.awayOrHome]].addHit()
-            Player.arrayOfPlayer[self.awayOrHome][self.batterOn[self.awayOrHome]].add3B()
+        Player.arrayOfPlayer[awayOrHome][batterOn[awayOrHome]].addBattingRecord(Record: "3B")
+            Player.arrayOfPlayer[awayOrHome][batterOn[awayOrHome]].addHit()
+            Player.arrayOfPlayer[awayOrHome][batterOn[awayOrHome]].add3B()
         }
         else if bases == 4{
-            Player.arrayOfPlayer[self.awayOrHome][self.batterOn[self.awayOrHome]].addBattingRecord(Record: "HR")
-            Player.arrayOfPlayer[self.awayOrHome][self.batterOn[self.awayOrHome]].addHit()
-            Player.arrayOfPlayer[self.awayOrHome][self.batterOn[self.awayOrHome]].addHR()
+            Player.arrayOfPlayer[awayOrHome][batterOn[awayOrHome]].addBattingRecord(Record: "HR")
+            Player.arrayOfPlayer[awayOrHome][batterOn[awayOrHome]].addHit()
+            Player.arrayOfPlayer[awayOrHome][batterOn[awayOrHome]].addHR()
         }
         else if bases == 0{
-            Player.arrayOfPlayer[self.awayOrHome][self.batterOn[self.awayOrHome]].addBattingRecord(Record: "Out")
-            Player.arrayOfPlayer[self.awayOrHome][self.batterOn[self.awayOrHome]].addOut()
+            Player.arrayOfPlayer[awayOrHome][batterOn[awayOrHome]].addBattingRecord(Record: "Out")
+            Player.arrayOfPlayer[awayOrHome][batterOn[awayOrHome]].addOut()
         }
         else if bases == -1{
-            Player.arrayOfPlayer[self.awayOrHome][self.batterOn[self.awayOrHome]].addBattingRecord(Record: "K")
-            Player.arrayOfPlayer[self.awayOrHome][self.batterOn[self.awayOrHome]].addOut()
-            Player.arrayOfPlayer[self.awayOrHome][self.batterOn[self.awayOrHome]].addSO()
+            Player.arrayOfPlayer[awayOrHome][batterOn[awayOrHome]].addBattingRecord(Record: "K")
+            Player.arrayOfPlayer[awayOrHome][batterOn[awayOrHome]].addOut()
+            Player.arrayOfPlayer[awayOrHome][batterOn[awayOrHome]].addSO()
         }
         //        打者打擊率
-        playerBA.text? = Player.arrayOfPlayer[self.awayOrHome][self.batterOn[self.awayOrHome]].getBA()
+        playerBA.text? = Player.arrayOfPlayer[awayOrHome][batterOn[awayOrHome]].getBA()
         //        打者打擊紀錄
-        playerHit.text? = "\(Player.arrayOfPlayer[self.awayOrHome][self.batterOn[self.awayOrHome]].getAtBat())-\(Player.arrayOfPlayer[self.awayOrHome][self.batterOn[self.awayOrHome]].getHit())"
-        playerBattingRecord.text? = Player.arrayOfPlayer[self.awayOrHome][self.batterOn[self.awayOrHome]].getbattingRecord()
-        //        投手紀錄
-        if awayOrHome == 1{
-            if bases > 0 {
-            Player.arrayOfPlayer[0][awayPitcher].addPitchH()
-            self.hitCheck(whichTeam: self.awayOrHome)
-            }
-            else if bases <= 0{
-                Player.arrayOfPlayer[0][self.awayPitcher].addIP()
-                self.out = self.out + 1
-            }
-            pitchIP.text? = Player.arrayOfPlayer[0][awayPitcher].getPitchIP()
-            pitchH.text? = Player.arrayOfPlayer[0][awayPitcher].getPitchH()
-            self.runner(batter: self.batterOn[self.awayOrHome], bases: bases)
-
+        playerHit.text? = "\(Player.arrayOfPlayer[awayOrHome][batterOn[awayOrHome]].getAtBat())-\(Player.arrayOfPlayer[awayOrHome][batterOn[awayOrHome]].getHit())"
+        playerBattingRecord.text? = Player.arrayOfPlayer[awayOrHome][batterOn[awayOrHome]].getbattingRecord()
+//        //        投手紀錄
+//        if awayOrHome == 0{
+//        pitchIP.text? = Player.arrayOfPlayer[1][homePitcher].getPitchIP()
+//        pitchERA.text? = Player.arrayOfPlayer[1][homePitcher].getERA()
+//        pitchH.text? = Player.arrayOfPlayer[1][homePitcher].getPitchH()
+//        }
+//        if awayOrHome == 1{
+//            pitchIP.text? = Player.arrayOfPlayer[0][awayPitcher].getPitchIP()
+//            pitchERA.text? = Player.arrayOfPlayer[0][awayPitcher].getERA()
+//            pitchH.text? = Player.arrayOfPlayer[0][awayPitcher].getPitchH()
+//
+//        }
+//            if bases > 0 {
+//                addPitcherRecord(whichTeamBatting: awayOrHome, Record: "H")
+//                self.hitCheck(whichTeam: awayOrHome)
+//            }
+//            else if bases == 0{
+//                addPitcherRecord(whichTeamBatting: awayOrHome, Record: "OUT")
+//                out = out + 1
+//            }
+//            else if bases == -1{
+//                addPitcherRecord(whichTeamBatting: awayOrHome, Record: "SO")
+//                out = out + 1
+//            }
+        if bases > 0{
+            self.hitCheck(whichTeam: awayOrHome)
         }
-        else{
-            if bases > 0 {
-            Player.arrayOfPlayer[1][homePitcher].addPitchH()
-            self.hitCheck(whichTeam: self.awayOrHome)
-            }
-            else if bases <= 0{
-                Player.arrayOfPlayer[1][self.homePitcher].addIP()
-                self.out = self.out + 1
-            }
-            pitchIP.text? = Player.arrayOfPlayer[1][homePitcher].getPitchIP()
-            pitchH.text? = Player.arrayOfPlayer[1][homePitcher].getPitchH()
-            self.runner(batter: self.batterOn[self.awayOrHome], bases: bases)
+        else if bases <= 0{
+            out = out + 1
         }
-
+            self.runner(batter: batterOn[awayOrHome], bases: bases)
     }
     
     //func-battingResult:拖曳打者決定壘打數或出局
     func battingResultInPlay(){
-        let gameLogRef = FIRDatabase.database().reference().child("posts").child(gameKey!).child("\(inning)").child("\(topOrBot)").child("\(eachBatterCount)").child(Player.arrayOfPlayer[awayOrHome][batterOn[awayOrHome]].getName()).child("\(eachPitchCount)")
-        let playerLogRef = FIRDatabase.database().reference().child("Player").child("PlayerList").child(Player.arrayOfPlayer[awayOrHome][batterOn[awayOrHome]].getName()).child("gamelog").child(gameKey!)
-        if  getBaseOfHits(x: self.batters[self.awayOrHome][self.batterOn[self.awayOrHome]].center.x, y: self.batters[self.awayOrHome][self.batterOn[self.awayOrHome]].center.y) == -10{
+//        let gameLogRef = FIRDatabase.database().reference().child("posts").child(gameKey!).child("\(inning)").child("\(topOrBot)").child("\(eachBatterCount)").child(Player.arrayOfPlayer[awayOrHome][batterOn[awayOrHome]].getName()).child("\(eachPitchCount)")
+//        let playerLogRef = FIRDatabase.database().reference().child("Player").child("PlayerList").child(Player.arrayOfPlayer[awayOrHome][batterOn[awayOrHome]].getName()).child("gamelog").child(gameKey!)
+        if  getBaseOfHits(x: self.batters[awayOrHome][batterOn[awayOrHome]].center.x, y: self.batters[awayOrHome][batterOn[awayOrHome]].center.y) == -10{
         }
         else{
             
             self.runnerOnBase.text = ""
-        if getBaseOfHits(x: self.batters[self.awayOrHome][self.batterOn[self.awayOrHome]].center.x, y: self.batters[self.awayOrHome][self.batterOn[self.awayOrHome]].center.y) == 1{
+        if getBaseOfHits(x: self.batters[awayOrHome][batterOn[awayOrHome]].center.x, y: self.batters[awayOrHome][batterOn[awayOrHome]].center.y) == 1{
                 self.result.text = "一壘安打"
-            gameLogRef.setValue(battingPosition + "一壘安打")
+//            gameLogRef.setValue(battingPosition + "一壘安打")
+            setRecordPByP(input: battingPosition + "一壘安打")
+            setRecordResult(input: battingPosition + "一壘安打")
             HitChangingRecord(bases: 1)
-            playerLogRef.child("AB").setValue(Player.arrayOfPlayer[self.awayOrHome][self.batterOn[self.awayOrHome]].getAtBat())
-            playerLogRef.child("H").setValue(Player.arrayOfPlayer[self.awayOrHome][self.batterOn[self.awayOrHome]].getHit())
+//            playerLogRef.child("AB").setValue(Player.arrayOfPlayer[awayOrHome][batterOn[awayOrHome]].getAtBat())
+//            playerLogRef.child("H").setValue(Player.arrayOfPlayer[awayOrHome][batterOn[awayOrHome]].getHit())
+            saveResult(input: "H")
         }
-        else if  getBaseOfHits(x: self.batters[self.awayOrHome][self.batterOn[self.awayOrHome]].center.x, y: self.batters[self.awayOrHome][self.batterOn[self.awayOrHome]].center.y) == 2{
+        else if  getBaseOfHits(x: self.batters[awayOrHome][batterOn[awayOrHome]].center.x, y: self.batters[awayOrHome][batterOn[awayOrHome]].center.y) == 2{
             self.result.text = "二壘安打"
-            gameLogRef.setValue(battingPosition + "二壘安打")
+//            gameLogRef.setValue(battingPosition + "二壘安打")
+            setRecordPByP(input: battingPosition + "二壘安打")
+            setRecordResult(input: battingPosition + "二壘安打")
             HitChangingRecord(bases: 2)
-            playerLogRef.child("AB").setValue(Player.arrayOfPlayer[self.awayOrHome][self.batterOn[self.awayOrHome]].getAtBat())
-            playerLogRef.child("H").setValue(Player.arrayOfPlayer[self.awayOrHome][self.batterOn[self.awayOrHome]].getHit())
-            playerLogRef.child("2B").setValue(Player.arrayOfPlayer[self.awayOrHome][self.batterOn[self.awayOrHome]].get2B())
+//            playerLogRef.child("AB").setValue(Player.arrayOfPlayer[awayOrHome][batterOn[awayOrHome]].getAtBat())
+//            playerLogRef.child("H").setValue(Player.arrayOfPlayer[awayOrHome][batterOn[awayOrHome]].getHit())
+//            playerLogRef.child("double").setValue(Player.arrayOfPlayer[awayOrHome][batterOn[awayOrHome]].get2B())
+            saveResult(input: "2B")
         }
-        else if  getBaseOfHits(x: self.batters[self.awayOrHome][self.batterOn[self.awayOrHome]].center.x, y: self.batters[self.awayOrHome][self.batterOn[self.awayOrHome]].center.y) == 3{
+        else if  getBaseOfHits(x: self.batters[awayOrHome][batterOn[awayOrHome]].center.x, y: self.batters[awayOrHome][batterOn[awayOrHome]].center.y) == 3{
             self.result.text = "三壘安打"
-            gameLogRef.setValue(battingPosition + "三壘安打")
+//            gameLogRef.setValue(battingPosition + "三壘安打")
+            setRecordPByP(input: battingPosition + "三壘安打")
+            setRecordResult(input: battingPosition + "三壘安打")
             HitChangingRecord(bases: 3)
-            playerLogRef.child("AB").setValue(Player.arrayOfPlayer[self.awayOrHome][self.batterOn[self.awayOrHome]].getAtBat())
-            playerLogRef.child("H").setValue(Player.arrayOfPlayer[self.awayOrHome][self.batterOn[self.awayOrHome]].getHit())
-            playerLogRef.child("3B").setValue(Player.arrayOfPlayer[self.awayOrHome][self.batterOn[self.awayOrHome]].get3B())
+//            playerLogRef.child("AB").setValue(Player.arrayOfPlayer[awayOrHome][batterOn[awayOrHome]].getAtBat())
+//            playerLogRef.child("H").setValue(Player.arrayOfPlayer[awayOrHome][batterOn[awayOrHome]].getHit())
+//            playerLogRef.child("triple").setValue(Player.arrayOfPlayer[awayOrHome][batterOn[awayOrHome]].get3B())
+            saveResult(input: "3B")
         }
-        else if  getBaseOfHits(x: self.batters[self.awayOrHome][self.batterOn[self.awayOrHome]].center.x, y: self.batters[self.awayOrHome][self.batterOn[self.awayOrHome]].center.y) == 4{
+        else if  getBaseOfHits(x: self.batters[awayOrHome][batterOn[awayOrHome]].center.x, y: self.batters[awayOrHome][batterOn[awayOrHome]].center.y) == 4{
             self.result.text = "全壘打"
-            gameLogRef.setValue(battingPosition + "全壘打")
+//            gameLogRef.setValue(battingPosition + "全壘打")
+            setRecordResult(input: battingPosition + "全壘打")
+            setRecordPByP(input: battingPosition + "全壘打")
             HitChangingRecord(bases: 4)
-            playerLogRef.child("AB").setValue(Player.arrayOfPlayer[self.awayOrHome][self.batterOn[self.awayOrHome]].getAtBat())
-            playerLogRef.child("H").setValue(Player.arrayOfPlayer[self.awayOrHome][self.batterOn[self.awayOrHome]].getHit())
-            playerLogRef.child("HR").setValue(Player.arrayOfPlayer[self.awayOrHome][self.batterOn[self.awayOrHome]].getHR())
+//            playerLogRef.child("AB").setValue(Player.arrayOfPlayer[awayOrHome][batterOn[awayOrHome]].getAtBat())
+//            playerLogRef.child("H").setValue(Player.arrayOfPlayer[awayOrHome][batterOn[awayOrHome]].getHit())
+//            playerLogRef.child("HR").setValue(Player.arrayOfPlayer[awayOrHome][batterOn[awayOrHome]].getHR())
+            saveResult(input: "HR")
         }
             
-        else if  getBaseOfHits(x: self.batters[self.awayOrHome][self.batterOn[self.awayOrHome]].center.x, y: self.batters[self.awayOrHome][self.batterOn[self.awayOrHome]].center.y) == 0{
+        else if  getBaseOfHits(x: self.batters[awayOrHome][batterOn[awayOrHome]].center.x, y: self.batters[awayOrHome][batterOn[awayOrHome]].center.y) == 0{
             self.result.text = "出局"
-            gameLogRef.setValue(battingPosition + "出局")
+//            gameLogRef.setValue(battingPosition + "出局")
+            setRecordResult(input: battingPosition + "出局")
+            setRecordPByP(input: battingPosition + "出局")
             HitChangingRecord(bases: 0)
-            playerLogRef.child("AB").setValue(Player.arrayOfPlayer[self.awayOrHome][self.batterOn[self.awayOrHome]].getAtBat())
-            self.outChecking(Count: self.out)
+            saveResult(input: "OUT")
+
+//            playerLogRef.child("AB").setValue(Player.arrayOfPlayer[awayOrHome][batterOn[awayOrHome]].getAtBat())
+            outChecking(Count: out)
+            }
+            //        投手紀錄
+            if awayOrHome == 0{
+                pitchIP.text? = Player.arrayOfPlayer[1][homePitcher].getPitchIP()
+                pitchERA.text? = Player.arrayOfPlayer[1][homePitcher].getERA()
+                pitchH.text? = Player.arrayOfPlayer[1][homePitcher].getPitchH()
+            }
+            if awayOrHome == 1{
+                pitchIP.text? = Player.arrayOfPlayer[0][awayPitcher].getPitchIP()
+                pitchERA.text? = Player.arrayOfPlayer[0][awayPitcher].getERA()
+                pitchH.text? = Player.arrayOfPlayer[0][awayPitcher].getPitchH()
+                
             }
  
  }
@@ -1252,25 +1508,33 @@ class ViewController: UIViewController{
     
     //拖曳投手球，決定好壞球和觸身球
     @IBAction func pitch(sender: UIPanGestureRecognizer) {
-        let gameLogRef = FIRDatabase.database().reference().child("posts").child(gameKey!).child("\(inning)").child("\(topOrBot)").child("\(eachBatterCount)").child(Player.arrayOfPlayer[awayOrHome][batterOn[awayOrHome]].getName()).child("\(eachPitchCount)")
-        
+//        let gameLogRef = FIRDatabase.database().reference().child("posts").child(gameKey!).child("\(inning)").child("\(topOrBot)").child("\(eachBatterCount)").child(Player.arrayOfPlayer[awayOrHome][batterOn[awayOrHome]].getName()).child("\(eachPitchCount)")
         let point = sender.location(in: pitchingBall)
         pitchingBall.center.x = pitchingBall.center.x + point.x
         pitchingBall.center.y = pitchingBall.center.y + point.y
         if sender.state == UIGestureRecognizerState.ended {
+            addNP()
+            if awayOrHome == 0{
+                pitchCount.text? = String(homeNP)
+            }
+            if awayOrHome == 1{
+                pitchCount.text? = String(awayNP)
+            }
        if pitchingBall.center.x > 217 && pitchingBall.center.x < 287 && pitchingBall.center.y > 263 {
         strike = strike + 1
         callStrike(count: strike)
             }
        else if pitchingBall.center.x > 167 && pitchingBall.center.x < 217 && pitchingBall.center.y > 243 && pitchingBall.center.y < 293 {
         self.result.text = "觸身球保送"
-        gameLogRef.setValue("觸身球保送")
-        Player.arrayOfPlayer[self.awayOrHome][self.batterOn[self.awayOrHome]].addBattingRecord(Record: "HBP")
-        self.playerBattingRecord.text =  Player.arrayOfPlayer[self.awayOrHome][self.batterOn[self.awayOrHome]].getbattingRecord()
+//        gameLogRef.setValue("觸身球保送")
+        setRecordResult(input: "觸身球保送")
+        setRecordPByP(input: "觸身球保送")
+        Player.arrayOfPlayer[awayOrHome][batterOn[awayOrHome]].addBattingRecord(Record: "HBP")
+        self.playerBattingRecord.text =  Player.arrayOfPlayer[awayOrHome][batterOn[awayOrHome]].getbattingRecord()
         self.runnerOnBase.text = ""
         self.position.text = ""
         countReset()
-        self.runner(batter: self.batterOn[self.awayOrHome], bases: 1)
+        self.runner(batter: batterOn[awayOrHome], bases: 1)
             }
        else {
         ball = ball + 1

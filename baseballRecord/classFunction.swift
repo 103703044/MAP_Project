@@ -32,10 +32,12 @@ class Player{
     var HR: Int = 0
     
     var IP:Float = 0.0 //投球局數
+    var outCount = 0 //投球出局數
     var ER:Int = 0 //自責分
     var pitcherH:Int = 0 //被安打數
     var pitcherBB:Int = 0//保送數
     var pitcherSO:Int = 0//三振數
+    var pitcherCount:Int = 0
     var locationX:CGFloat = 0
     var locationY:CGFloat = 0
     var benchX:CGFloat = 0
@@ -142,12 +144,19 @@ class Player{
     func addPitchH(){
         self.pitcherH += 1
     }
+    func addPitchBB(){
+        self.pitcherBB += 1
+    }
+    func addPitchSO(){
+        self.pitcherSO += 1
+    }
+    func addPitchCount(){
+        self.pitcherCount += 1
+    }
     //增加投球局數
     func addIP(){
-        self.IP += 0.1
-        if self.IP.truncatingRemainder(dividingBy: 1) == 0.3 {
-            self.IP +=  -0.3 + 1
-        }
+        outCount += 1
+        self.IP = Float(outCount/3) + (Float(outCount%3)*0.1)
     }
     //增加自責失分
     func addER(){
@@ -186,12 +195,24 @@ class Player{
     func getPitchH() -> String{
         return String(self.pitcherH)
     }
+    func getPitchBB() -> String{
+        return String(self.pitcherBB)
+    }
+    func getPitchSO() -> String{
+        return String(self.pitcherSO)
+    }
+    func getPitchCount() -> String{
+        return String(self.pitcherCount)
+    }
     //取得投球局數
     func getPitchIP() -> String{
         return String(self.IP)
     }
     func getbattingRecord()->String{
         return self.battingRecord
+    }
+    func getPitchER() ->String{
+        return String(self.ER)
     }
     //取得防禦率
     func getERA() -> String{
@@ -224,5 +245,26 @@ class Player{
 
 //--------------function ended--------------------
 
-
+func getCareerERA() -> String{
+    var ERA:Float
+    var batterOutCount:Int
+    if careerPitchER == 0{
+        ERA = 0
+    }
+    else if careerPitchER > 0 && careerIP == 0{
+        ERA = 999.99
+    }
+    else{
+        batterOutCount = Int(careerIP / 1)*3 + Int(Float(careerIP.truncatingRemainder(dividingBy: 1))*10)
+        ERA = Float(careerPitchER) * 27 / Float(batterOutCount)
+    }
+    return String(format:"%.2f", ERA)
+}
+func addCareerIP(){
+    var batterOutCount:Int
+    batterOutCount = Int(careerIP / 1)*3 + Int(Float(careerIP.truncatingRemainder(dividingBy: 1))*10)
+    batterOutCount += 1
+    careerIP = Double(batterOutCount/3) + (Double(batterOutCount%3)*0.1)
+    
+}
 

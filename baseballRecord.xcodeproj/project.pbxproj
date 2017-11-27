@@ -21,6 +21,10 @@
 		A90E319E1ED4E256004D1704 /* start.png in Resources */ = {isa = PBXBuildFile; fileRef = A90E319B1ED4E256004D1704 /* start.png */; };
 		A90E319F1ED4E256004D1704 /* startbot.png in Resources */ = {isa = PBXBuildFile; fileRef = A90E319C1ED4E256004D1704 /* startbot.png */; };
 		A90E31A11ED674AF004D1704 /* score.swift in Sources */ = {isa = PBXBuildFile; fileRef = A90E31A01ED674AE004D1704 /* score.swift */; };
+		A918784D1FC0B35A00FA6342 /* settingBackground.JPG in Resources */ = {isa = PBXBuildFile; fileRef = A918784C1FC0B35A00FA6342 /* settingBackground.JPG */; };
+		A953A1841FBC31BF00476018 /* test.swift in Sources */ = {isa = PBXBuildFile; fileRef = A953A1831FBC31BF00476018 /* test.swift */; };
+		A9652D5E1FC43DB200D44DE6 /* DBFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9652D5D1FC43DB200D44DE6 /* DBFunction.swift */; };
+		A9652D601FC7CA9C00D44DE6 /* login.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9652D5F1FC7CA9C00D44DE6 /* login.swift */; };
 		A9B8E47F1F86BE320014515A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A9B8E47E1F86BE320014515A /* GoogleService-Info.plist */; };
 		A9F603C11F51699300284B1B /* baseballField-3.png in Resources */ = {isa = PBXBuildFile; fileRef = A9F603BF1F51699300284B1B /* baseballField-3.png */; };
 		A9F603C61F516B8C00284B1B /* baseballField-1.png in Resources */ = {isa = PBXBuildFile; fileRef = A9F603C51F516B8C00284B1B /* baseballField-1.png */; };
@@ -46,6 +50,10 @@
 		A90E319B1ED4E256004D1704 /* start.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = start.png; sourceTree = SOURCE_ROOT; };
 		A90E319C1ED4E256004D1704 /* startbot.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = startbot.png; sourceTree = SOURCE_ROOT; };
 		A90E31A01ED674AE004D1704 /* score.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = score.swift; sourceTree = "<group>"; };
+		A918784C1FC0B35A00FA6342 /* settingBackground.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = settingBackground.JPG; sourceTree = SOURCE_ROOT; };
+		A953A1831FBC31BF00476018 /* test.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = test.swift; sourceTree = "<group>"; };
+		A9652D5D1FC43DB200D44DE6 /* DBFunction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DBFunction.swift; sourceTree = "<group>"; };
+		A9652D5F1FC7CA9C00D44DE6 /* login.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = login.swift; sourceTree = "<group>"; };
 		A9B8E47E1F86BE320014515A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
 		A9F603BF1F51699300284B1B /* baseballField-3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "baseballField-3.png"; path = "../baseballField-3.png"; sourceTree = "<group>"; };
 		A9F603C51F516B8C00284B1B /* baseballField-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "baseballField-1.png"; sourceTree = "<group>"; };
@@ -97,11 +105,15 @@
 		A903B0231EB78B8600470B7C /* baseballRecord */ = {
 			isa = PBXGroup;
 			children = (
+				A918784C1FC0B35A00FA6342 /* settingBackground.JPG */,
 				A903B0241EB78B8600470B7C /* AppDelegate.swift */,
 				A903B0261EB78B8600470B7C /* ViewController.swift */,
+				A953A1831FBC31BF00476018 /* test.swift */,
+				A9652D5D1FC43DB200D44DE6 /* DBFunction.swift */,
 				A90DA14B1F9002ED00448F1D /* classFunction.swift */,
 				A903B0281EB78B8600470B7C /* Main.storyboard */,
 				A90E319A1ED4E256004D1704 /* bbbaseball.png */,
+				A9652D5F1FC7CA9C00D44DE6 /* login.swift */,
 				A90E319B1ED4E256004D1704 /* start.png */,
 				A90E31A01ED674AE004D1704 /* score.swift */,
 				A90E319C1ED4E256004D1704 /* startbot.png */,
@@ -204,6 +216,7 @@
 				A9FF2F841EB79DA6000E3FC5 /* baseballField.png in Resources */,
 				A903B02A1EB78B8600470B7C /* Main.storyboard in Resources */,
 				A90E31981ED4E24F004D1704 /* baseball.png in Resources */,
+				A918784D1FC0B35A00FA6342 /* settingBackground.JPG in Resources */,
 				A90E31951ED4E242004D1704 /* aboutus.png in Resources */,
 				A9F603C61F516B8C00284B1B /* baseballField-1.png in Resources */,
 				A90E31991ED4E24F004D1704 /* baseballcourt.png in Resources */,
@@ -266,10 +279,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				A903B0271EB78B8600470B7C /* ViewController.swift in Sources */,
+				A9652D5E1FC43DB200D44DE6 /* DBFunction.swift in Sources */,
+				A953A1841FBC31BF00476018 /* test.swift in Sources */,
 				A903B0251EB78B8600470B7C /* AppDelegate.swift in Sources */,
 				A90E31A11ED674AF004D1704 /* score.swift in Sources */,
 				A903B02D1EB78B8600470B7C /* baseballRecord.xcdatamodeld in Sources */,
 				A90DA14C1F9002ED00448F1D /* classFunction.swift in Sources */,
+				A9652D601FC7CA9C00D44DE6 /* login.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
