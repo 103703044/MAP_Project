@@ -201,8 +201,8 @@ class Player{
     func getPitchSO() -> String{
         return String(self.pitcherSO)
     }
-    func getPitchCount() -> String{
-        return String(self.pitcherCount)
+    func getPitchCount() -> Int{
+        return self.pitcherCount
     }
     //取得投球局數
     func getPitchIP() -> String{

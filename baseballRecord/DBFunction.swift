@@ -218,17 +218,20 @@ func addNP(){
     var pitcherNum = 0
     var NP = 0
     if(awayOrHome == 0){
-        homeNP += 1
+//        homeNP += 1
         whichTeamPitch = 1
         pitcherNum = homePitcher
-        NP = homeNP
+//        NP = homeNP
     }
     else{
-        awayNP += 1
+//        awayNP += 1
         whichTeamPitch = 0
         pitcherNum = awayPitcher
-        NP = awayNP
+//        NP = awayNP
     }
+    Player.arrayOfPlayer[whichTeamPitch][pitcherNum].addPitchCount()
+    NP = Player.arrayOfPlayer[whichTeamPitch][pitcherNum].getPitchCount()
+    
     let pitcherLogRef = FIRDatabase.database().reference().child("Player/PlayerList").child(Player.arrayOfPlayer[whichTeamPitch][pitcherNum].getName()).child("gamelog").child(gameKey!).child("Pitch")
     let pitcherCareerRef = FIRDatabase.database().reference().child("Player/PlayerList").child(Player.arrayOfPlayer[whichTeamPitch][pitcherNum].getName()).child("career/pitch")
     let gameBoxPitcherRef = FIRDatabase.database().reference().child("newPosts").child(gameKey!).child("Box").child("\(whichTeamPitch)/0")

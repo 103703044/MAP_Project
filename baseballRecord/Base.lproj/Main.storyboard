@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16B2657" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="whf-t8-zuC">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16B2657" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina4_0" orientation="landscape">
         <adaptation id="fullscreen"/>
     </device>
@@ -606,6 +606,13 @@
                                 </subviews>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="woq-A4-hIt">
+                                <rect key="frame" x="421" y="288" width="42" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.25016120076179504" green="0.56478977203369141" blue="0.93730813264846802" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" tag="58" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="❾" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="abg-QS-1G0">
                                 <rect key="frame" x="100" y="250" width="55" height="55"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -617,14 +624,8 @@
                                     <outletCollection property="gestureRecognizers" destination="Tzc-ml-TDV" appends="YES" id="itF-m1-a2Z"/>
                                     <outletCollection property="gestureRecognizers" destination="ovZ-wx-585" appends="YES" id="tJv-tG-FOD"/>
                                     <outletCollection property="gestureRecognizers" destination="01h-qs-j30" appends="YES" id="JaZ-AE-NXp"/>
+                                    <outletCollection property="gestureRecognizers" destination="QA8-19-mG2" appends="YES" id="Hgn-PG-dfn"/>
                                 </connections>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="woq-A4-hIt">
-                                <rect key="frame" x="421" y="288" width="42" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.25016120076179504" green="0.56478977203369141" blue="0.93730813264846802" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" tag="57" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="❽" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cqh-Yd-xhl">
                                 <rect key="frame" x="100" y="250" width="55" height="55"/>
@@ -637,6 +638,7 @@
                                     <outletCollection property="gestureRecognizers" destination="bJt-Hp-QTW" appends="YES" id="JwB-Ip-ONk"/>
                                     <outletCollection property="gestureRecognizers" destination="7fP-1S-ZEb" appends="YES" id="DJX-7U-nsi"/>
                                     <outletCollection property="gestureRecognizers" destination="0XU-ue-2XW" appends="YES" id="b6T-G5-5hV"/>
+                                    <outletCollection property="gestureRecognizers" destination="n3h-B5-8dA" appends="YES" id="4rz-MZ-Tsi"/>
                                 </connections>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" tag="56" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="❼" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GpW-JH-nbc">
@@ -650,6 +652,7 @@
                                     <outletCollection property="gestureRecognizers" destination="kKb-0W-JlU" appends="YES" id="N8X-SM-kaD"/>
                                     <outletCollection property="gestureRecognizers" destination="EOy-20-nkf" appends="YES" id="04o-du-xez"/>
                                     <outletCollection property="gestureRecognizers" destination="QwH-Jl-etG" appends="YES" id="nGo-iY-cXl"/>
+                                    <outletCollection property="gestureRecognizers" destination="oeb-dK-5td" appends="YES" id="k25-je-Nxg"/>
                                 </connections>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" tag="55" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="❻" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xtL-6R-t1k">
@@ -663,6 +666,7 @@
                                     <outletCollection property="gestureRecognizers" destination="Tfr-vL-EUJ" appends="YES" id="wA2-Pn-cFk"/>
                                     <outletCollection property="gestureRecognizers" destination="qMX-Fc-1nR" appends="YES" id="JnK-dM-jRo"/>
                                     <outletCollection property="gestureRecognizers" destination="Um2-OL-WVi" appends="YES" id="tSM-Ep-EXd"/>
+                                    <outletCollection property="gestureRecognizers" destination="WAC-LB-Aaa" appends="YES" id="Noh-WQ-2qA"/>
                                 </connections>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" tag="54" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="❺" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VgO-Ad-l8Q">
@@ -676,6 +680,7 @@
                                     <outletCollection property="gestureRecognizers" destination="EL3-Ic-MCb" appends="YES" id="jOX-OB-f9p"/>
                                     <outletCollection property="gestureRecognizers" destination="iDO-nI-YAn" appends="YES" id="FY4-XT-R44"/>
                                     <outletCollection property="gestureRecognizers" destination="6Y2-66-jtj" appends="YES" id="5Bm-QN-Rnw"/>
+                                    <outletCollection property="gestureRecognizers" destination="tBY-Oh-8Cw" appends="YES" id="i3B-X2-Mbb"/>
                                 </connections>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" tag="51" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="❷" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ir6-eq-4Ut">
@@ -688,6 +693,7 @@
                                     <outletCollection property="gestureRecognizers" destination="0dJ-Wi-Whi" appends="YES" id="3Pi-nX-USW"/>
                                     <outletCollection property="gestureRecognizers" destination="j8r-az-Zbe" appends="YES" id="h1i-Q7-OuW"/>
                                     <outletCollection property="gestureRecognizers" destination="xCS-6q-w9a" appends="YES" id="1qH-5h-MJp"/>
+                                    <outletCollection property="gestureRecognizers" destination="tBr-ub-5mm" appends="YES" id="Zr0-vU-2Th"/>
                                 </connections>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" tag="50" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="❶" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ceb-2V-f0o">
@@ -701,6 +707,7 @@
                                     <outletCollection property="gestureRecognizers" destination="hdk-br-rOI" appends="YES" id="Jzn-DA-Vly"/>
                                     <outletCollection property="gestureRecognizers" destination="KVa-mp-hCh" appends="YES" id="IWj-rd-cUr"/>
                                     <outletCollection property="gestureRecognizers" destination="lnv-UL-ql7" appends="YES" id="NAm-Lv-oET"/>
+                                    <outletCollection property="gestureRecognizers" destination="YbV-dV-1dK" appends="YES" id="fRH-WU-rIl"/>
                                 </connections>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" tag="53" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="❹" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fMR-rq-eWa">
@@ -714,6 +721,7 @@
                                     <outletCollection property="gestureRecognizers" destination="eDx-6c-ncx" appends="YES" id="Okr-xy-ev0"/>
                                     <outletCollection property="gestureRecognizers" destination="QjJ-FC-5q3" appends="YES" id="hRZ-YV-PxK"/>
                                     <outletCollection property="gestureRecognizers" destination="EaF-nK-kjy" appends="YES" id="MaQ-D6-gxC"/>
+                                    <outletCollection property="gestureRecognizers" destination="SwF-iG-B9B" appends="YES" id="34V-sr-6w9"/>
                                 </connections>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" tag="52" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="❸" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DmU-8h-07a">
@@ -726,6 +734,7 @@
                                     <outletCollection property="gestureRecognizers" destination="pNY-t7-vFB" appends="YES" id="geT-lq-9DZ"/>
                                     <outletCollection property="gestureRecognizers" destination="FQD-d9-GfZ" appends="YES" id="XQM-6y-1oc"/>
                                     <outletCollection property="gestureRecognizers" destination="KV8-l1-hGK" appends="YES" id="5da-V9-HJz"/>
+                                    <outletCollection property="gestureRecognizers" destination="aYT-Qv-bhZ" appends="YES" id="nO8-PU-Jbd"/>
                                 </connections>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="baseball.png" translatesAutoresizingMaskIntoConstraints="NO" id="zeS-kB-t6R">
@@ -753,6 +762,7 @@
                                     <outletCollection property="gestureRecognizers" destination="tvk-qn-WF0" appends="YES" id="BvP-xX-izZ"/>
                                     <outletCollection property="gestureRecognizers" destination="Lmm-dh-Ueq" appends="YES" id="2GB-fA-5Wp"/>
                                     <outletCollection property="gestureRecognizers" destination="9Et-eg-Lgd" appends="YES" id="Apt-7P-H8J"/>
+                                    <outletCollection property="gestureRecognizers" destination="SlH-8I-hZO" appends="YES" id="8H8-z2-KLb"/>
                                 </connections>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" tag="155" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="❻" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kV1-W9-t9I">
@@ -765,6 +775,7 @@
                                     <outletCollection property="gestureRecognizers" destination="BBL-Gy-2mK" appends="YES" id="jSw-87-JrH"/>
                                     <outletCollection property="gestureRecognizers" destination="35Q-lO-vJo" appends="YES" id="FKP-Jx-XaH"/>
                                     <outletCollection property="gestureRecognizers" destination="JNr-ls-Sh2" appends="YES" id="c0B-h8-Krf"/>
+                                    <outletCollection property="gestureRecognizers" destination="LEh-ln-I3H" appends="YES" id="QLz-Xl-HvP"/>
                                 </connections>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" tag="156" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="❼" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nMj-5T-Idb">
@@ -777,6 +788,7 @@
                                     <outletCollection property="gestureRecognizers" destination="fa5-Te-2to" appends="YES" id="fu0-Sl-r0T"/>
                                     <outletCollection property="gestureRecognizers" destination="zyc-Fi-moh" appends="YES" id="7Rr-ls-iHH"/>
                                     <outletCollection property="gestureRecognizers" destination="t48-11-6QG" appends="YES" id="kx6-XW-rwl"/>
+                                    <outletCollection property="gestureRecognizers" destination="4X1-x9-1Th" appends="YES" id="4sc-1p-PwA"/>
                                 </connections>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" tag="157" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="❽" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8GB-9Q-HeN">
@@ -789,6 +801,7 @@
                                     <outletCollection property="gestureRecognizers" destination="2v6-Sj-WVh" appends="YES" id="kyY-pG-TVZ"/>
                                     <outletCollection property="gestureRecognizers" destination="kZs-sH-mkZ" appends="YES" id="g1f-Sz-aIi"/>
                                     <outletCollection property="gestureRecognizers" destination="70g-gi-UbQ" appends="YES" id="6H1-Pe-B7h"/>
+                                    <outletCollection property="gestureRecognizers" destination="4Ql-0U-a6g" appends="YES" id="b0K-QE-6qk"/>
                                 </connections>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" tag="158" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="❾" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mLI-aa-iEa">
@@ -801,6 +814,7 @@
                                     <outletCollection property="gestureRecognizers" destination="tht-hW-KEc" appends="YES" id="kMM-yN-lw2"/>
                                     <outletCollection property="gestureRecognizers" destination="7Fm-cu-1Tx" appends="YES" id="o7U-PJ-0YV"/>
                                     <outletCollection property="gestureRecognizers" destination="AsR-H7-K9q" appends="YES" id="ZzE-ug-OQw"/>
+                                    <outletCollection property="gestureRecognizers" destination="clZ-mk-LH9" appends="YES" id="0rx-YD-MSj"/>
                                 </connections>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" tag="154" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="❺" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LiW-P9-QTM">
@@ -813,6 +827,7 @@
                                     <outletCollection property="gestureRecognizers" destination="KJr-mA-xt4" appends="YES" id="GnX-ya-3Rd"/>
                                     <outletCollection property="gestureRecognizers" destination="oW4-RX-VyZ" appends="YES" id="DMV-9D-iaw"/>
                                     <outletCollection property="gestureRecognizers" destination="dLl-Sg-hcq" appends="YES" id="iQa-hy-NlR"/>
+                                    <outletCollection property="gestureRecognizers" destination="uti-aG-Njt" appends="YES" id="OFb-Ku-M9j"/>
                                 </connections>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" tag="152" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="❸" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8cf-Ia-VcU">
@@ -825,6 +840,7 @@
                                     <outletCollection property="gestureRecognizers" destination="W7W-vk-agS" appends="YES" id="x0o-VS-3bS"/>
                                     <outletCollection property="gestureRecognizers" destination="1px-ar-76B" appends="YES" id="rNQ-Bl-FdX"/>
                                     <outletCollection property="gestureRecognizers" destination="cpG-Ln-59C" appends="YES" id="7Y6-aO-YMZ"/>
+                                    <outletCollection property="gestureRecognizers" destination="cj3-H7-jm6" appends="YES" id="C2R-iu-gl9"/>
                                 </connections>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" tag="150" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="❶" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="miZ-y6-khV">
@@ -838,6 +854,7 @@
                                     <outletCollection property="gestureRecognizers" destination="rj3-LE-eDW" appends="YES" id="CNC-8p-iW2"/>
                                     <outletCollection property="gestureRecognizers" destination="Uo8-7Z-Q8l" appends="YES" id="HYj-n5-eqW"/>
                                     <outletCollection property="gestureRecognizers" destination="nnX-w4-GnI" appends="YES" id="OzF-Mh-0u8"/>
+                                    <outletCollection property="gestureRecognizers" destination="aqD-CL-yPV" appends="YES" id="Mz4-uf-4ns"/>
                                 </connections>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" tag="151" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="❷" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xUF-HG-wlq">
@@ -851,6 +868,7 @@
                                     <outletCollection property="gestureRecognizers" destination="1oU-As-roO" appends="YES" id="ejW-mN-AAM"/>
                                     <outletCollection property="gestureRecognizers" destination="d2H-6d-iWa" appends="YES" id="b86-Sj-kwi"/>
                                     <outletCollection property="gestureRecognizers" destination="QFJ-77-mPj" appends="YES" id="NcW-Ca-sUs"/>
+                                    <outletCollection property="gestureRecognizers" destination="e30-Sl-Qhf" appends="YES" id="kMJ-MR-gGq"/>
                                 </connections>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="baseball.png" translatesAutoresizingMaskIntoConstraints="NO" id="ZoW-UD-8JA">
@@ -1342,6 +1360,24 @@ Unicode: U+25B2、UTF-8: E2 96 B2</string>
                         <outlet property="panBattingResultHome7" destination="fa5-Te-2to" id="Zjy-Wx-rYS"/>
                         <outlet property="panBattingResultHome8" destination="2v6-Sj-WVh" id="qzI-Jo-r9G"/>
                         <outlet property="panBattingResultHome9" destination="tht-hW-KEc" id="NYM-Pj-1RG"/>
+                        <outlet property="panExchangeDefA1" destination="YbV-dV-1dK" id="kCj-Na-1Qe"/>
+                        <outlet property="panExchangeDefA2" destination="tBr-ub-5mm" id="rxk-7v-QXV"/>
+                        <outlet property="panExchangeDefA3" destination="aYT-Qv-bhZ" id="0n2-X8-Icf"/>
+                        <outlet property="panExchangeDefA4" destination="SwF-iG-B9B" id="dOp-7g-Xmj"/>
+                        <outlet property="panExchangeDefA5" destination="tBY-Oh-8Cw" id="wr2-JI-vlz"/>
+                        <outlet property="panExchangeDefA6" destination="WAC-LB-Aaa" id="KOD-bt-hMp"/>
+                        <outlet property="panExchangeDefA7" destination="oeb-dK-5td" id="ZMA-Mi-i0V"/>
+                        <outlet property="panExchangeDefA8" destination="n3h-B5-8dA" id="fem-Lc-pCo"/>
+                        <outlet property="panExchangeDefA9" destination="QA8-19-mG2" id="Wc6-gT-8Sc"/>
+                        <outlet property="panExchangeDefH1" destination="aqD-CL-yPV" id="KLF-yE-UH9"/>
+                        <outlet property="panExchangeDefH2" destination="e30-Sl-Qhf" id="4yu-DC-At8"/>
+                        <outlet property="panExchangeDefH3" destination="cj3-H7-jm6" id="0q0-xa-0Bw"/>
+                        <outlet property="panExchangeDefH4" destination="SlH-8I-hZO" id="V4j-Nr-dfC"/>
+                        <outlet property="panExchangeDefH5" destination="uti-aG-Njt" id="R7R-Hc-QJN"/>
+                        <outlet property="panExchangeDefH6" destination="LEh-ln-I3H" id="MQX-Qt-pfn"/>
+                        <outlet property="panExchangeDefH7" destination="4X1-x9-1Th" id="db0-IA-62h"/>
+                        <outlet property="panExchangeDefH8" destination="4Ql-0U-a6g" id="pi6-h5-Zoj"/>
+                        <outlet property="panExchangeDefH9" destination="clZ-mk-LH9" id="uxr-qS-PDA"/>
                         <outlet property="panHitting" destination="D4N-8B-vya" id="wwT-cr-wyA"/>
                         <outlet property="panPitching" destination="Ika-U5-BEJ" id="ESo-ey-2Pt"/>
                         <outlet property="panRunnerA1" destination="lnv-UL-ql7" id="g3D-Ou-oKH"/>
@@ -1420,6 +1456,96 @@ Unicode: U+25B2、UTF-8: E2 96 B2</string>
                 <panGestureRecognizer minimumNumberOfTouches="1" id="Ika-U5-BEJ" userLabel="panToPitch">
                     <connections>
                         <action selector="pitchWithSender:" destination="BYZ-38-t0r" id="mjV-gy-pM3"/>
+                    </connections>
+                </panGestureRecognizer>
+                <panGestureRecognizer minimumNumberOfTouches="1" id="YbV-dV-1dK">
+                    <connections>
+                        <action selector="exchangeDefFunctionWithSender:" destination="BYZ-38-t0r" id="cAt-MR-zEa"/>
+                    </connections>
+                </panGestureRecognizer>
+                <panGestureRecognizer minimumNumberOfTouches="1" id="tBr-ub-5mm">
+                    <connections>
+                        <action selector="exchangeDefFunctionWithSender:" destination="BYZ-38-t0r" id="wsr-NX-tMI"/>
+                    </connections>
+                </panGestureRecognizer>
+                <panGestureRecognizer minimumNumberOfTouches="1" id="aYT-Qv-bhZ">
+                    <connections>
+                        <action selector="exchangeDefFunctionWithSender:" destination="BYZ-38-t0r" id="igU-h4-5x1"/>
+                    </connections>
+                </panGestureRecognizer>
+                <panGestureRecognizer minimumNumberOfTouches="1" id="SwF-iG-B9B">
+                    <connections>
+                        <action selector="exchangeDefFunctionWithSender:" destination="BYZ-38-t0r" id="Xcw-Cl-vk7"/>
+                    </connections>
+                </panGestureRecognizer>
+                <panGestureRecognizer minimumNumberOfTouches="1" id="tBY-Oh-8Cw">
+                    <connections>
+                        <action selector="exchangeDefFunctionWithSender:" destination="BYZ-38-t0r" id="EqK-uE-aRI"/>
+                    </connections>
+                </panGestureRecognizer>
+                <panGestureRecognizer minimumNumberOfTouches="1" id="WAC-LB-Aaa">
+                    <connections>
+                        <action selector="exchangeDefFunctionWithSender:" destination="BYZ-38-t0r" id="uB9-Ww-Vc4"/>
+                    </connections>
+                </panGestureRecognizer>
+                <panGestureRecognizer minimumNumberOfTouches="1" id="oeb-dK-5td">
+                    <connections>
+                        <action selector="exchangeDefFunctionWithSender:" destination="BYZ-38-t0r" id="Hbd-hx-yRa"/>
+                    </connections>
+                </panGestureRecognizer>
+                <panGestureRecognizer minimumNumberOfTouches="1" id="n3h-B5-8dA">
+                    <connections>
+                        <action selector="exchangeDefFunctionWithSender:" destination="BYZ-38-t0r" id="Fiz-a0-UvH"/>
+                    </connections>
+                </panGestureRecognizer>
+                <panGestureRecognizer minimumNumberOfTouches="1" id="QA8-19-mG2">
+                    <connections>
+                        <action selector="exchangeDefFunctionWithSender:" destination="BYZ-38-t0r" id="7eF-AZ-ww6"/>
+                    </connections>
+                </panGestureRecognizer>
+                <panGestureRecognizer minimumNumberOfTouches="1" id="aqD-CL-yPV">
+                    <connections>
+                        <action selector="exchangeDefFunctionWithSender:" destination="BYZ-38-t0r" id="Uzx-1R-bV1"/>
+                    </connections>
+                </panGestureRecognizer>
+                <panGestureRecognizer minimumNumberOfTouches="1" id="e30-Sl-Qhf">
+                    <connections>
+                        <action selector="exchangeDefFunctionWithSender:" destination="BYZ-38-t0r" id="zAO-lI-fCs"/>
+                    </connections>
+                </panGestureRecognizer>
+                <panGestureRecognizer minimumNumberOfTouches="1" id="cj3-H7-jm6">
+                    <connections>
+                        <action selector="exchangeDefFunctionWithSender:" destination="BYZ-38-t0r" id="gnO-Dh-aeN"/>
+                    </connections>
+                </panGestureRecognizer>
+                <panGestureRecognizer minimumNumberOfTouches="1" id="SlH-8I-hZO">
+                    <connections>
+                        <action selector="exchangeDefFunctionWithSender:" destination="BYZ-38-t0r" id="mZ8-U6-gIy"/>
+                    </connections>
+                </panGestureRecognizer>
+                <panGestureRecognizer minimumNumberOfTouches="1" id="uti-aG-Njt">
+                    <connections>
+                        <action selector="exchangeDefFunctionWithSender:" destination="BYZ-38-t0r" id="4gM-la-mvG"/>
+                    </connections>
+                </panGestureRecognizer>
+                <panGestureRecognizer minimumNumberOfTouches="1" id="LEh-ln-I3H">
+                    <connections>
+                        <action selector="exchangeDefFunctionWithSender:" destination="BYZ-38-t0r" id="vdT-iS-EcO"/>
+                    </connections>
+                </panGestureRecognizer>
+                <panGestureRecognizer minimumNumberOfTouches="1" id="4X1-x9-1Th">
+                    <connections>
+                        <action selector="exchangeDefFunctionWithSender:" destination="BYZ-38-t0r" id="2Qf-DF-Fdo"/>
+                    </connections>
+                </panGestureRecognizer>
+                <panGestureRecognizer minimumNumberOfTouches="1" id="4Ql-0U-a6g">
+                    <connections>
+                        <action selector="exchangeDefFunctionWithSender:" destination="BYZ-38-t0r" id="uOS-4j-HzR"/>
+                    </connections>
+                </panGestureRecognizer>
+                <panGestureRecognizer minimumNumberOfTouches="1" id="clZ-mk-LH9">
+                    <connections>
+                        <action selector="exchangeDefFunctionWithSender:" destination="BYZ-38-t0r" id="kSW-3D-9go"/>
                     </connections>
                 </panGestureRecognizer>
                 <panGestureRecognizer minimumNumberOfTouches="1" id="lnv-UL-ql7">
@@ -2315,9 +2441,6 @@ Unicode: U+25B2、UTF-8: E2 96 B2</string>
                                             <color key="titleColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <color key="titleShadowColor" red="0.50196081400000003" green="0.50196081400000003" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
-                                        <connections>
-                                            <segue destination="BYZ-38-t0r" kind="show" id="aaH-zx-AiC"/>
-                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
