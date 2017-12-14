@@ -603,6 +603,10 @@
                                         <color key="textColor" red="0.8000379205" green="0.80000758169999997" blue="0.80002820490000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="catcher.png" translatesAutoresizingMaskIntoConstraints="NO" id="lBk-6c-k0Y">
+                                        <rect key="frame" x="84" y="78" width="55" height="55"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </imageView>
                                 </subviews>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
@@ -724,6 +728,10 @@
                                     <outletCollection property="gestureRecognizers" destination="SwF-iG-B9B" appends="YES" id="34V-sr-6w9"/>
                                 </connections>
                             </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="helmet.png" translatesAutoresizingMaskIntoConstraints="NO" id="Fl5-5e-ho9">
+                                <rect key="frame" x="164" y="96" width="55" height="55"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" tag="52" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="❸" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DmU-8h-07a">
                                 <rect key="frame" x="100" y="250" width="55" height="55"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -872,7 +880,7 @@
                                 </connections>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="baseball.png" translatesAutoresizingMaskIntoConstraints="NO" id="ZoW-UD-8JA">
-                                <rect key="frame" x="259" y="215" width="35" height="32"/>
+                                <rect key="frame" x="269" y="216" width="35" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <gestureRecognizers/>
                                 <connections>
@@ -887,7 +895,7 @@
                                         <rect key="frame" x="1" y="-19" width="102" height="79"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="SP" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Ol-bt-CEP">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="P" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Ol-bt-CEP">
                                                 <rect key="frame" x="0.0" y="0.0" width="28" height="21"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -1436,6 +1444,7 @@ Unicode: U+25B2、UTF-8: E2 96 B2</string>
                         <outlet property="tapErrorModeH7" destination="zyc-Fi-moh" id="Np2-TN-YjI"/>
                         <outlet property="tapErrorModeH8" destination="kZs-sH-mkZ" id="D4j-fR-ocT"/>
                         <outlet property="tapErrorModeH9" destination="7Fm-cu-1Tx" id="isS-pe-E0S"/>
+                        <outlet property="testplayer1" destination="Fl5-5e-ho9" id="h1Q-HL-LBV"/>
                         <outlet property="top1" destination="PT4-X7-y3j" id="C2v-YR-OLO"/>
                         <outlet property="top2" destination="Bu2-6O-p9h" id="TWH-Ds-b1t"/>
                         <outlet property="top3" destination="ks4-MT-u3M" id="fwp-FG-vvu"/>
@@ -3565,6 +3574,8 @@ Unicode: U+25B2、UTF-8: E2 96 B2</string>
         <image name="baseballField-3.png" width="1210" height="621"/>
         <image name="baseballcourt.png" width="1596" height="1194"/>
         <image name="bbbaseball.png" width="604" height="254"/>
+        <image name="catcher.png" width="512" height="512"/>
+        <image name="helmet.png" width="512" height="512"/>
         <image name="settingBackground.JPG" width="797" height="320"/>
         <image name="startbot.png" width="502" height="294"/>
     </resources>

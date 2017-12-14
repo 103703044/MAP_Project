@@ -46,9 +46,9 @@ class TestController: UIViewController,UIPickerViewDelegate,UIPickerViewDataSour
     @IBOutlet weak var H2: UITextField!
     
     @IBOutlet weak var H3: UITextField!
-
+    
     @IBOutlet weak var H4: UITextField!
- 
+    
     @IBOutlet weak var H5: UITextField!
     
     @IBOutlet weak var H6: UITextField!
@@ -139,44 +139,44 @@ class TestController: UIViewController,UIPickerViewDelegate,UIPickerViewDataSour
     
     
     @IBAction func tap(_ sender: UIButton) {
-            if selectHome.text != "Home" && selectHome.text != "Away"{
-                let alert = UIAlertController(title: "Error", message:"請選擇先後攻", preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "OK", style: .default) { _ in })
-                self.present(alert, animated: true){}
-            }
-            else if oppTextField.text == ""{
-                let alert = UIAlertController(title: "Error", message:"請選擇對戰隊伍", preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "OK", style: .default) { _ in })
-                self.present(alert, animated: true){}
-            }
+        if selectHome.text != "Home" && selectHome.text != "Away"{
+            let alert = UIAlertController(title: "Error", message:"請選擇先後攻", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default) { _ in })
+            self.present(alert, animated: true){}
+        }
+        else if oppTextField.text == ""{
+            let alert = UIAlertController(title: "Error", message:"請選擇對戰隊伍", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default) { _ in })
+            self.present(alert, animated: true){}
+        }
         else if oppTextField.text == myTeam.text{
             let alert = UIAlertController(title: "Error", message:"相同隊伍無法對戰", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "OK", style: .default) { _ in })
             self.present(alert, animated: true){}
         }
-            else{
-                if confirm.alpha == 1{
-                    let alert = UIAlertController(title: "Success", message:"已儲存雙方打序", preferredStyle: .alert)
-                    alert.addAction(UIAlertAction(title: "OK", style: .default) { _ in })
-                    self.present(alert, animated: true){}
-                }
-                confirm.alpha = 1
-                confirmHint.alpha = 1
-                
-                ref.child("teams").child(oppTextField.text!).child("Abbreviation").observeSingleEvent(of: .value, with: {(opp)in
-                    if self.selectHome.text == "Home"{
-                            awayTeamInput = opp.value! as! String
-                            homeTeamInput = self.myTeam.text
-                    }
-                    else if self.selectHome.text == "Away"{
-                            awayTeamInput = self.myTeam.text
-                            homeTeamInput = opp.value! as! String
-                    }
-                    self.lineUpSetting(teamInput: homeTeamInput, awayOrHome: 1)
-                    self.lineUpSetting(teamInput: awayTeamInput, awayOrHome: 0)
-                })
+        else{
+            if confirm.alpha == 1{
+                let alert = UIAlertController(title: "Success", message:"已儲存雙方打序", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .default) { _ in })
+                self.present(alert, animated: true){}
             }
+            confirm.alpha = 1
+            confirmHint.alpha = 1
+            
+            ref.child("teams").child(oppTextField.text!).child("Abbreviation").observeSingleEvent(of: .value, with: {(opp)in
+                if self.selectHome.text == "Home"{
+                    awayTeamInput = opp.value! as! String
+                    homeTeamInput = self.myTeam.text
+                }
+                else if self.selectHome.text == "Away"{
+                    awayTeamInput = self.myTeam.text
+                    homeTeamInput = opp.value! as! String
+                }
+                self.lineUpSetting(teamInput: homeTeamInput, awayOrHome: 1)
+                self.lineUpSetting(teamInput: awayTeamInput, awayOrHome: 0)
+            })
         }
+    }
     
     @IBAction func updateData(_ sender: UIButton) {
         var positionRepeated:Bool = false
@@ -220,16 +220,16 @@ class TestController: UIViewController,UIPickerViewDelegate,UIPickerViewDataSour
                 self.present(alert, animated: true){}
             }
             else{
-            for i in 0 ... 8{
-                avenueInput = avenueTextField.text
-                ref.child("teams").child(awayTeamInput).child("order").child(String(i+1)).child("Name").setValue(nameTextField[0][i].text)
-                ref.child("teams").child(homeTeamInput).child("order").child(String(i+1)).child("Name").setValue(nameTextField[1][i].text)
-                ref.child("teams").child(awayTeamInput).child("order").child(String(i+1)).child("Position").setValue(positionTextField[0][i].text)
-                ref.child("teams").child(homeTeamInput).child("order").child(String(i+1)).child("Position").setValue(positionTextField[1][i].text)
-            }
+                for i in 0 ... 8{
+                    avenueInput = avenueTextField.text
+                    ref.child("teams").child(awayTeamInput).child("order").child(String(i+1)).child("Name").setValue(nameTextField[0][i].text)
+                    ref.child("teams").child(homeTeamInput).child("order").child(String(i+1)).child("Name").setValue(nameTextField[1][i].text)
+                    ref.child("teams").child(awayTeamInput).child("order").child(String(i+1)).child("Position").setValue(positionTextField[0][i].text)
+                    ref.child("teams").child(homeTeamInput).child("order").child(String(i+1)).child("Position").setValue(positionTextField[1][i].text)
+                }
                 let vc = self.storyboard?.instantiateViewController(withIdentifier: "mainPage")
                 self.present(vc!,animated: true,completion:nil)
-    }
+            }
         }
     }
     
@@ -253,10 +253,10 @@ class TestController: UIViewController,UIPickerViewDelegate,UIPickerViewDataSour
         timeTextField.text = timeInput
         self.view.endEditing(true)
     }
-
+    
     func lineUpSetting(teamInput: String, awayOrHome: Int){
         for i in 1 ... 9 {
-        ref.child("teams").child(teamInput).child("order").child(String(i)).observe(FIRDataEventType.value, with:{(snap:FIRDataSnapshot)in
+            ref.child("teams").child(teamInput).child("order").child(String(i)).observe(FIRDataEventType.value, with:{(snap:FIRDataSnapshot)in
                 self.positionTextField[awayOrHome][i-1].text = snap.childSnapshot(forPath: "Position").value! as? String
                 self.nameTextField[awayOrHome][i-1].text = snap.childSnapshot(forPath: "Name").value! as? String
             })
@@ -378,5 +378,5 @@ class TestController: UIViewController,UIPickerViewDelegate,UIPickerViewDataSour
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
+    
 }

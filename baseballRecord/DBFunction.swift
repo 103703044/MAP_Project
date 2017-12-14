@@ -12,13 +12,16 @@ import  Firebase
 func saveResult(input: String){
     var whichTeamPitch = 0
     var pitcherNum = 0
+    var RPcount = 0
     if(awayOrHome == 0){
         whichTeamPitch = 1
         pitcherNum = homePitcher
+        RPcount = homeRPCount
     }
     else{
         whichTeamPitch = 0
         pitcherNum = awayPitcher
+        RPcount = awayRPCount
     }
     let pitcherLogRef = FIRDatabase.database().reference().child("Player/PlayerList").child(Player.arrayOfPlayer[whichTeamPitch][pitcherNum].getName()).child("gamelog").child(gameKey!).child("Pitch")
     let batterLogRef = FIRDatabase.database().reference().child("Player").child("PlayerList").child(Player.arrayOfPlayer[awayOrHome][batterOn[awayOrHome]].getName()).child("gamelog").child(gameKey!)
@@ -28,7 +31,7 @@ func saveResult(input: String){
     let batterCareerRef = FIRDatabase.database().reference().child("Player/PlayerList").child(Player.arrayOfPlayer[awayOrHome][batterOn[awayOrHome]].getName()).child("career")
 
     
-    let gameBoxPitcherRef = FIRDatabase.database().reference().child("newPosts").child(gameKey!).child("Box").child("\(whichTeamPitch)/0")
+    let gameBoxPitcherRef = FIRDatabase.database().reference().child("newPosts").child(gameKey!).child("Box").child("\(whichTeamPitch)/0/\(RPcount)")
     let gameBoxBatterRef = FIRDatabase.database().reference().child("newPosts").child(gameKey!).child("Box").child(String(awayOrHome)).child(String(batterOn[awayOrHome]+1))
     
     
@@ -40,7 +43,6 @@ func saveResult(input: String){
     case "SO":
         batterLogRef.child("AB").setValue(Player.arrayOfPlayer[awayOrHome][batterOn[awayOrHome]].getAtBat())
         batterLogRef.child("SO").setValue(Player.arrayOfPlayer[awayOrHome][batterOn[awayOrHome]].getSO())
-        
         gameBoxBatterRef.child("AB").setValue(Player.arrayOfPlayer[awayOrHome][batterOn[awayOrHome]].getAtBat())
         gameBoxBatterRef.child("SO").setValue(Player.arrayOfPlayer[awayOrHome][batterOn[awayOrHome]].getSO())
         careerSO += 1
@@ -50,12 +52,9 @@ func saveResult(input: String){
         
         Player.arrayOfPlayer[whichTeamPitch][pitcherNum].addPitchSO()
         Player.arrayOfPlayer[whichTeamPitch][pitcherNum].addIP()
-        
-
         pitcherLogRef.child("ERA").setValue(Player.arrayOfPlayer[whichTeamPitch][pitcherNum].getERA())
         pitcherLogRef.child("SO").setValue(Player.arrayOfPlayer[whichTeamPitch][pitcherNum].getPitchSO())
         pitcherLogRef.child("IP").setValue(Player.arrayOfPlayer[whichTeamPitch][pitcherNum].getPitchIP())
-        
         careerPitchSO += 1
         addCareerIP()
         pitcherCareerRef.child("ERA").setValue(Double(getCareerERA()))
@@ -73,16 +72,24 @@ func saveResult(input: String){
         gameBoxBatterRef.child("AB").setValue(Player.arrayOfPlayer[awayOrHome][batterOn[awayOrHome]].getAtBat())
         careerAB += 1
         batterCareerRef.child("AB").setValue(careerAB)
-        
         Player.arrayOfPlayer[whichTeamPitch][pitcherNum].addIP()
-        
         pitcherLogRef.child("ERA").setValue(Player.arrayOfPlayer[whichTeamPitch][pitcherNum].getERA())
         pitcherLogRef.child("IP").setValue(Player.arrayOfPlayer[whichTeamPitch][pitcherNum].getPitchIP())
-
         addCareerIP()
         pitcherCareerRef.child("ERA").setValue(Double(getCareerERA()))
         pitcherCareerRef.child("IP").setValue(careerIP)
+        gameBoxPitcherRef.child("ERA").setValue(Double(Player.arrayOfPlayer[whichTeamPitch][pitcherNum].getERA()))
+        gameBoxPitcherRef.child("IP").setValue(Double(Player.arrayOfPlayer[whichTeamPitch][pitcherNum].getPitchIP()))
         
+    case "E":
+        batterLogRef.child("AB").setValue(Player.arrayOfPlayer[awayOrHome][batterOn[awayOrHome]].getAtBat())
+        gameBoxBatterRef.child("AB").setValue(Player.arrayOfPlayer[awayOrHome][batterOn[awayOrHome]].getAtBat())
+        careerAB += 1
+        batterCareerRef.child("AB").setValue(careerAB)
+        pitcherLogRef.child("ERA").setValue(Player.arrayOfPlayer[whichTeamPitch][pitcherNum].getERA())
+        pitcherLogRef.child("IP").setValue(Player.arrayOfPlayer[whichTeamPitch][pitcherNum].getPitchIP())
+        pitcherCareerRef.child("ERA").setValue(Double(getCareerERA()))
+        pitcherCareerRef.child("IP").setValue(careerIP)
         gameBoxPitcherRef.child("ERA").setValue(Double(Player.arrayOfPlayer[whichTeamPitch][pitcherNum].getERA()))
         gameBoxPitcherRef.child("IP").setValue(Double(Player.arrayOfPlayer[whichTeamPitch][pitcherNum].getPitchIP()))
         
@@ -209,6 +216,29 @@ func setRecordPByP(input: String){
     gameLogRef.child("Count").setValue(eachPitchCount)
     gameLogRef.child("Name").setValue(Player.arrayOfPlayer[awayOrHome][batterOn[awayOrHome]].getName())
 }
+func setRecordBaseStatus(input: String){
+    let gameLogRef = FIRDatabase.database().reference().child("newPosts").child(gameKey!).child("\(inning)").child("\(topOrBot)").child("\(eachBatterCount)")
+    if eachBatterCount != 0 {
+        if input == ""{
+            gameLogRef.child("BaseStatus").setValue(input)
+        }
+        else{
+            gameLogRef.child("BaseStatus").setValue("，" + input)
+        }
+    }
+    if eachBatterCount != 0 && out == 0{
+        gameLogRef.child("OutStatus").setValue("無人出局")
+    }
+    else if eachBatterCount != 0 && out == 1{
+        gameLogRef.child("OutStatus").setValue("一人出局")
+    }
+    else if eachBatterCount != 0 && out == 2{
+        gameLogRef.child("OutStatus").setValue("兩人出局")
+    }
+    else if eachBatterCount != 0 && out == 3{
+        gameLogRef.child("OutStatus").setValue("三人出局")
+    }
+}
 func setRecordResult(input: String){
     let gameLogRef = FIRDatabase.database().reference().child("newPosts").child(gameKey!).child("\(inning)").child("\(topOrBot)").child("\(eachBatterCount)")
     gameLogRef.child("Result").setValue(input)
@@ -217,16 +247,19 @@ func addNP(){
     var whichTeamPitch = 0
     var pitcherNum = 0
     var NP = 0
+    var RPCount = 0
     if(awayOrHome == 0){
 //        homeNP += 1
         whichTeamPitch = 1
         pitcherNum = homePitcher
+        RPCount = homeRPCount
 //        NP = homeNP
     }
     else{
 //        awayNP += 1
         whichTeamPitch = 0
         pitcherNum = awayPitcher
+        RPCount = awayRPCount
 //        NP = awayNP
     }
     Player.arrayOfPlayer[whichTeamPitch][pitcherNum].addPitchCount()
@@ -234,10 +267,44 @@ func addNP(){
     
     let pitcherLogRef = FIRDatabase.database().reference().child("Player/PlayerList").child(Player.arrayOfPlayer[whichTeamPitch][pitcherNum].getName()).child("gamelog").child(gameKey!).child("Pitch")
     let pitcherCareerRef = FIRDatabase.database().reference().child("Player/PlayerList").child(Player.arrayOfPlayer[whichTeamPitch][pitcherNum].getName()).child("career/pitch")
-    let gameBoxPitcherRef = FIRDatabase.database().reference().child("newPosts").child(gameKey!).child("Box").child("\(whichTeamPitch)/0")
+    let gameBoxPitcherRef = FIRDatabase.database().reference().child("newPosts").child(gameKey!).child("Box").child("\(whichTeamPitch)/0/\(RPCount)")
     
     pitcherLogRef.child("Count").setValue(NP)
     gameBoxPitcherRef.child("Count").setValue(NP)
     careerCount += 1
     pitcherCareerRef.child("Count").setValue(careerCount)
+}
+
+func pitcherRecordReset(){
+    var whichTeamPitch = 0
+    var pitcherNum = 0
+    var RPcount = 0
+    if(awayOrHome == 0){
+        whichTeamPitch = 1
+        pitcherNum = homePitcher
+        RPcount = homeRPCount
+    }
+    else{
+        whichTeamPitch = 0
+        pitcherNum = awayPitcher
+        RPcount = awayRPCount
+    }
+    let gameBoxRef = FIRDatabase.database().reference().child("newPosts").child(gameKey!).child("Box").child("\(whichTeamPitch)/0/\(RPcount)")
+    let pitcherLogRef = FIRDatabase.database().reference().child("Player/PlayerList").child(Player.arrayOfPlayer[whichTeamPitch][pitcherNum].getName()).child("gamelog").child(gameKey!).child("Pitch")
+    gameBoxRef.child("SO").setValue(0)
+    gameBoxRef.child("IP").setValue(0)
+    gameBoxRef.child("BB").setValue(0)
+    gameBoxRef.child("H").setValue(0)
+    gameBoxRef.child("ER").setValue(0)
+    gameBoxRef.child("Count").setValue(0)
+    gameBoxRef.child("ERA").setValue(0)
+    gameBoxRef.child("Name").setValue(Player.arrayOfPlayer[whichTeamPitch][pitcherNum].getName())
+    
+    pitcherLogRef.child("SO").setValue(0)
+    pitcherLogRef.child("IP").setValue(0)
+    pitcherLogRef.child("BB").setValue(0)
+    pitcherLogRef.child("H").setValue(0)
+    pitcherLogRef.child("ER").setValue(0)
+    pitcherLogRef.child("Count").setValue(0)
+    pitcherLogRef.child("ERA").setValue(0)
 }
