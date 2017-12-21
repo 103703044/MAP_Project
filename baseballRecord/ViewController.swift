@@ -433,8 +433,8 @@ class ViewController: UIViewController{
     
     //---------------IBoutlet&varible number ended-------------------------
     override func viewDidAppear(_ animated: Bool) {
-        homeTeamInput = "PHI"
-        awayTeamInput = "NYY"
+//        homeTeamInput = "PHI"
+//        awayTeamInput = "NYY"
         super.viewDidAppear(animated)
         ref = FIRDatabase.database().reference()
         //let playerRef = ref?.child("player")
@@ -442,18 +442,18 @@ class ViewController: UIViewController{
         let homeTeamRef = ref?.child("teams").child(homeTeamInput!)
         let awayBattingOrderRef = awayTeamRef?.child("order")
         let homeBattingOrderRef = homeTeamRef?.child("order")
-        gameKey = ref?.child("Game").childByAutoId().key
-        self.ref?.child("newPosts").child(gameKey!).child("Date").setValue(dateInput)
-        self.ref?.child("newPosts").child(gameKey!).child("Time").setValue(timeInput)
-        self.ref?.child("newPosts").child(gameKey!).child("Avenue").setValue(avenueInput)
+        gameKey = ref?.child("GamesData").childByAutoId().key
+        self.ref?.child("GamesData").child(gameKey!).child("Date").setValue(dateInput)
+        self.ref?.child("GamesData").child(gameKey!).child("Time").setValue(timeInput)
+        self.ref?.child("GamesData").child(gameKey!).child("Avenue").setValue(avenueInput)
         awayTeamRef?.child("Abbreviation").observe(FIRDataEventType.value, with:{(snap:FIRDataSnapshot)in
-            self.ref?.child("newPosts").child(gameKey!).child("Away").setValue(snap.value)
+            self.ref?.child("GamesData").child(gameKey!).child("Away").setValue(snap.value)
             self.AwayTeam.text = (snap.value as AnyObject).description
             self.awayNameOrder.text = (snap.value as AnyObject).description
             self.awayNameOnboard.text = (snap.value as AnyObject).description
         })
         homeTeamRef?.child("Abbreviation").observe(FIRDataEventType.value, with:{(snap:FIRDataSnapshot)in
-            self.ref?.child("newPosts").child(gameKey!).child("Home").setValue(snap.value)
+            self.ref?.child("GamesData").child(gameKey!).child("Home").setValue(snap.value)
             self.HomeTeam.text = (snap.value as AnyObject).description
             self.homeNameOrder.text = (snap.value as AnyObject).description
             self.homeNameOnboard.text = (snap.value as AnyObject).description
@@ -645,7 +645,7 @@ class ViewController: UIViewController{
         })
         scores = [[top1,top2,top3,top4,top5,top6,top7,top8,top9],[bottom1,bottom2,bottom3,bottom4,bottom5,bottom6,bottom7,bottom8,bottom9]]
         
-        let scoreboardRef = FIRDatabase.database().reference().child("newPosts").child(gameKey!).child("scoreboard")
+        let scoreboardRef = FIRDatabase.database().reference().child("GamesData").child(gameKey!).child("scoreboard")
         
         
         for i in 1...9 {
@@ -762,7 +762,7 @@ class ViewController: UIViewController{
     
     //func-hitcheck(0 = 客隊打擊 1 = 主隊打擊):讓攻擊方的安打數+1
     func hitCheck(whichTeam: Int) {
-        let scoreboardRef = FIRDatabase.database().reference().child("newPosts").child(gameKey!).child("scoreboard")
+        let scoreboardRef = FIRDatabase.database().reference().child("GamesData").child(gameKey!).child("scoreboard")
         if whichTeam == 0 {
             awayHits = awayHits + 1
             awayHit.text = String (awayHits)
@@ -776,7 +776,7 @@ class ViewController: UIViewController{
     }
     //func-errorcheck(0 = 主隊守備 1 = 客隊守備):讓守備方的失誤數+1
     func errorCheck(whichTeam: Int){
-        let scoreboardRef = FIRDatabase.database().reference().child("newPosts").child(gameKey!).child("scoreboard")
+        let scoreboardRef = FIRDatabase.database().reference().child("GamesData").child(gameKey!).child("scoreboard")
         if whichTeam == 0 {
             awayErrorCount = awayErrorCount + 1
             awayError.text = String (awayErrorCount)
@@ -790,7 +790,7 @@ class ViewController: UIViewController{
     }
     //func-inningCheck(0 = 上換下 1 = 下換上):上半局換成下半局，或下半局換到下局的上半局，並setDefence
     func inningCheck(whichTeamBattingEnded: Int) {
-        let scoreboardRef = FIRDatabase.database().reference().child("newPosts").child(gameKey!).child("scoreboard")
+        let scoreboardRef = FIRDatabase.database().reference().child("GamesData").child(gameKey!).child("scoreboard")
         if scoringOfTheInning == 0 {
             scoreboardRef.child("\(inning)").child("\(topOrBot)").setValue(scoringOfTheInning)
         }
@@ -890,7 +890,7 @@ class ViewController: UIViewController{
     }
     //func-scoring(0 = 客場得分 1 = 主場得分):增加得分方一分，並增加投手的自責分(率)
     func scoring(whichTeam: Int) {
-        let scoreboardRef = FIRDatabase.database().reference().child("newPosts").child(gameKey!).child("scoreboard")
+        let scoreboardRef = FIRDatabase.database().reference().child("GamesData").child(gameKey!).child("scoreboard")
         scoringOfTheInning = scoringOfTheInning + 1
         if whichTeam == 0 {
             awayScoring = awayScoring + 1
@@ -1023,7 +1023,7 @@ class ViewController: UIViewController{
         eachPitchCount = 1
         callingCount += 1
         if callingCount == 1{
-            let gameBoxRef = FIRDatabase.database().reference().child("newPosts").child(gameKey!).child("Box")
+            let gameBoxRef = FIRDatabase.database().reference().child("GamesData").child(gameKey!).child("Box")
             let playerLogRef = FIRDatabase.database().reference().child("Player").child("PlayerList")
             Player.arrayOfPlayer[0].sort{$1.battingOrder > $0.battingOrder}
             Player.arrayOfPlayer[1].sort{$1.battingOrder > $0.battingOrder}
@@ -1138,7 +1138,7 @@ class ViewController: UIViewController{
                     self.panRunnerGesture[awayOrHome][batterOn[awayOrHome]].isEnabled = false
                 })
                 //打者資訊
-                let gameLogRef = FIRDatabase.database().reference().child("newPosts").child(gameKey!).child("\(inning)").child("\(topOrBot)").child("\(eachBatterCount)")
+                let gameLogRef = FIRDatabase.database().reference().child("GamesData").child(gameKey!).child("\(inning)").child("\(topOrBot)").child("\(eachBatterCount)")
                 gameLogRef.child("Name").setValue(Player.arrayOfPlayer[awayOrHome][batterOn[awayOrHome]].getName())
                 playerName.text? = Player.arrayOfPlayer[awayOrHome][batterOn[awayOrHome]].getName()
                 playerPosition.text? = Player.arrayOfPlayer[awayOrHome][batterOn[awayOrHome]].getPosition()

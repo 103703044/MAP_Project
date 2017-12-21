@@ -267,6 +267,11 @@ class TestController: UIViewController,UIPickerViewDelegate,UIPickerViewDataSour
             }
         })
         lineupView.alpha = 1
+        if awayOrHome == 1{
+        ref.child("teams").child(teamInput).child("Ballpark").observeSingleEvent(of: .value, with: {(ballpark)in
+            self.avenueTextField.text = ballpark.value! as? String
+            })
+        }
     }
     
     override func viewDidLoad() {
