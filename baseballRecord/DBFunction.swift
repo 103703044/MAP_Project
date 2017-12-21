@@ -80,6 +80,16 @@ func saveResult(input: String){
         pitcherCareerRef.child("IP").setValue(careerIP)
         gameBoxPitcherRef.child("ERA").setValue(Double(Player.arrayOfPlayer[whichTeamPitch][pitcherNum].getERA()))
         gameBoxPitcherRef.child("IP").setValue(Double(Player.arrayOfPlayer[whichTeamPitch][pitcherNum].getPitchIP()))
+    
+    case "runnerOUT":
+        Player.arrayOfPlayer[whichTeamPitch][pitcherNum].addIP()
+        pitcherLogRef.child("ERA").setValue(Player.arrayOfPlayer[whichTeamPitch][pitcherNum].getERA())
+        pitcherLogRef.child("IP").setValue(Player.arrayOfPlayer[whichTeamPitch][pitcherNum].getPitchIP())
+        addCareerIP()
+        pitcherCareerRef.child("ERA").setValue(Double(getCareerERA()))
+        pitcherCareerRef.child("IP").setValue(careerIP)
+        gameBoxPitcherRef.child("ERA").setValue(Double(Player.arrayOfPlayer[whichTeamPitch][pitcherNum].getERA()))
+        gameBoxPitcherRef.child("IP").setValue(Double(Player.arrayOfPlayer[whichTeamPitch][pitcherNum].getPitchIP()))
         
     case "E":
         batterLogRef.child("AB").setValue(Player.arrayOfPlayer[awayOrHome][batterOn[awayOrHome]].getAtBat())
@@ -208,7 +218,17 @@ func saveResult(input: String){
     
 }
 
-
+func setRecordRunnerStatus(input: String , playSituation: String){
+    let gameLogRef = FIRDatabase.database().reference().child("newPosts").child(gameKey!).child("\(inning)").child("\(topOrBot)").child("\(eachBatterCount)")
+    gameLogRef.child(playSituation).observeSingleEvent(of: .value, with: { (snapshot) in
+        if snapshot.exists(){
+            gameLogRef.child(playSituation).setValue(String(describing: snapshot.value!) + "，" + input)
+        }
+        else{
+            gameLogRef.child(playSituation).setValue(input)
+        }
+    })
+}
 
 func setRecordPByP(input: String){
     let gameLogRef = FIRDatabase.database().reference().child("newPosts").child(gameKey!).child("\(inning)").child("\(topOrBot)").child("\(eachBatterCount)")

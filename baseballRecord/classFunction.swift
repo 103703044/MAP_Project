@@ -38,8 +38,7 @@ class Player{
     var pitcherBB:Int = 0//保送數
     var pitcherSO:Int = 0//三振數
     var pitcherCount:Int = 0
-    var locationX:CGFloat = 0
-    var locationY:CGFloat = 0
+    var location = CGPoint(x:0,y:0)
     var benchX:CGFloat = 0
     var benchY:CGFloat = 0
     var awayOrHome:Int = 0
@@ -53,35 +52,25 @@ class Player{
         self.awayOrHome = awayOrHome
         switch position {
         case "P":
-            locationX = 232
-            locationY = 143
+            location = CGPoint(x:232,y:143)
         case "C":
-            locationX = 232
-            locationY = 299
+            location = CGPoint(x:232,y:299)
         case "1B":
-            locationX = 342
-            locationY = 141
+            location = CGPoint(x:342,y:141)
         case "2B":
-            locationX = 284
-            locationY = 91
+            location = CGPoint(x:284,y:91)
         case "3B":
-            locationX = 125
-            locationY = 141
+            location = CGPoint(x:125,y:141)
         case "SS":
-            locationX = 185
-            locationY = 91
+            location = CGPoint(x:185,y:91)
         case "LF":
-            locationX = 98
-            locationY = 83
+            location = CGPoint(x:98,y:83)
         case "RF":
-            locationX = 367
-            locationY = 83
+            location = CGPoint(x:367,y:83)
         case "CF":
-            locationX = 232
-            locationY = 36
+            location = CGPoint(x:232,y:36)
         default:
-            locationX = 0
-            locationY = 0
+            location = CGPoint(x:0,y:0)
         }
         if awayOrHome == 0 {
             benchX = 100
@@ -226,10 +215,7 @@ class Player{
         }
         else{
             batterOutCount = Int(self.IP / 1)*3 + Int(Float(self.IP.truncatingRemainder(dividingBy: 1))*10)
-            print(batterOutCount)
-            print(self.ER)
             ERA = Float(self.ER) * 27 / Float(batterOutCount)
-            print(ERA)
         }
         return String(format:"%.2f", ERA)
     }
